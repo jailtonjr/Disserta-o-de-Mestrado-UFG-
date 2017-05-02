@@ -1,0 +1,2157 @@
+\chapter{Construção do Processo FreeTest 2.0}
+\label{sec:construcaoframeworkprocesso}
+
+Neste capítulo é proposto uma série de melhorias no processo do Método FreeTest com base nas revisões da literatura (capítulo \ref{sec:revisao}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
+
+\begin{itemize}
+    \item Na subseção \ref{sec:identificacaomelhoriasfreetest}, os estudos com embasamento teórico é mostrado com a intenção de evidenciar as possíveis melhorias para o novo processo;
+    \item Na subseção \ref{sec:melhoriaspropostas}, é elicitado as melhorias propostas para o novo processo do Método FreeTest;
+    \item Na subseção \ref{sec:novoprocesso}, o novo processo é definido e sua estrutura geral é mostrada;
+    \item Na subseção \ref{sec:areasdeprocessoepraticas}, são listados as Áreas de Processo (AP's) e Práticas Especificas (PE's) de forma detalhada;
+    \item Na subseção \ref{sec:consideracoesfinaiscap4}, uma explanação e sintetização desse capítulo é realizada.
+\end{itemize}
+
+%Construção do Framework de processo
+\section{Identificação de melhorias no Método FreeTest}
+\label{sec:identificacaomelhoriasfreetest}
+
+Para que essa pesquisa fosse conduzida e eventuais melhorias no processo do Método FreeTest fossem realizadas, foi necessário um estudo do estado da prática (capítulo \ref{sec:revisao}) de processos de teste já consolidados, artigos científicos, teses e dissertações que abordassem processos de teste com aplicação prática, estudo de caso e validações em ambientes controlados. Por fim, após essa análise dos estudos e utilizando o embasamento teórico do capítulo \ref{sec:referencialteorico}, foram realizadas análises comparativas entre o Método FreeTest, MPT.Br \cite{GuiaMPTbr}, Métodos Ágeis \cite{Beck2001} e adição de práticas especificas dentro do processo que são inerentes ao contexto de DevOps \cite{Debois2008}. 
+
+Com a finalidade de comparar os processos e sugerir adições ou remoções no mesmo, foi realizado um mapeamento de equivalência entre o Método FreeTest e MPT.Br exibido na tabela \ref{tab:4.1}, esse mapeamento mostra as práticas especificas existentes no MPT.Br que o FreeTest possui de forma equivalente. Uma tabela (\ref{tab:4.2}) que contém as atividades do FreeTest que não possuem equivalência com o MPT.Br também foi criada para contribuir na análise entre os dois processos.
+
+\begin{table}[!ht]
+\centering
+\caption{Equivalência entre MPT.Br e FreeTest.}
+\label{tab:4.1}
+  \scalebox{0.75}{
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \multicolumn{2}{|c|}{MPT.Br} & \multicolumn{1}{c|}{FreeTest} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Práticas Especificas} & \multicolumn{1}{c|}{Equivalente?} \\ 
+    \hline
+    \multicolumn{1}{|c|}{GPT – Gerência de Projetos de Teste} & GPT11 – Planejar o ambiente de teste para o projeto & \multicolumn{1}{c|}{Sim} \\ 
+    \hline
+    \multicolumn{1}{|c|}{PET – Projeto e Execução de Teste} & PET2 – Executar casos de teste & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & PET3 – Reportar incidentes & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & PET4 – Acompanhar incidentes & \multicolumn{1}{c|}{Sim} \\ 
+    \hline
+    \multicolumn{1}{|c|}{FDT – Fechamento do Teste} & FDT4 – Consolidar dados de teste & \multicolumn{1}{c|}{Sim} \\ 
+    \hline
+    \multicolumn{1}{|c|}{TDA – Teste de Aceitação} & TDA5 – Preparar ambiente para aceitação & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TDA6 – Conduzir testes de aceitação & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TDA7 – Avaliar condições de aceitação & \multicolumn{1}{c|}{Sim} \\ 
+    \hline
+    \multicolumn{1}{|c|}{TES – Teste Estático} & TES1 – Identificar produtos de trabalho e tipos de revisão & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TES2 – Definir critérios de revisões & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TES3 – Conduzir revisões & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TES4 – Analisar dados de revisões & \multicolumn{1}{c|}{Sim} \\ 
+    \hline
+    \multicolumn{1}{|c|}{AET – Automação da Execução do Teste} & AET3 – Definir um framework para automação de teste & \multicolumn{1}{c|}{Sim} \\ 
+    \cline{2-3}
+     & AET4 – Gerenciar incidentes de teste automatizado & \multicolumn{1}{c|}{Sim} \\ 
+    \hline
+    \end{tabular}
+}
+\end{table}
+
+
+\begin{table}[!ht]
+\centering
+\caption{Práticas especificas do Método FreeTest que NÃO possuem equivalência com o MPT.Br.}
+\label{tab:4.2}
+  \scalebox{0.75}{
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \multicolumn{2}{|c|}{MPT.Br} & \multicolumn{1}{c|}{FreeTest} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Práticas Especificas} & \multicolumn{1}{c|}{Equivalente?} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Teste de regressão} & Preparar massa de teste (TRG1) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Manter script de regressão (TRG2) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Executar teste de regressão (TRG3) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Encerrar teste de regressão (TRG4) & \multicolumn{1}{c|}{Não} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Integração contínua} & Elaborar código (INC1) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Elaborar script BDD (INC2) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Montar build (INC3) & \multicolumn{1}{c|}{Não} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Teste de desempenho} & Preparar massa de teste (TPE1) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Manter script de desempenho (TPE2) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Executar teste de desempenho (TPE3) & \multicolumn{1}{c|}{Não} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Encerrar teste de desempenho (TPE4) & \multicolumn{1}{c|}{Não} \\ 
+    \hline
+    \end{tabular}
+}
+\end{table}
+
+Como observados na tabela \ref{tab:4.2} somente as práticas especificas do Método FreeTest que não possuem quaisquer equivalências com as práticas especificas do MPT.Br foram ressaltadas. Na tabela \ref{tab:4.1} as práticas especificas do MPT.Br que possuem equivalência com o FreeTest foram listadas, a intenção é que somente as práticas especificas do MPT.Br que não forem listadas sejam possíveis contribuições de melhoria ao novo processo proposto neste trabalho.
+
+Diante da revisão da literatura realizada no capítulo \ref{sec:revisao} e do referencial teórico no capítulo \ref{sec:revisao}, algumas propostas de mudança no processo foram elencadas de acordo com as boas práticas da Metodologia Ágil \cite{Beck2001,Debois2008} e Devops \cite{Howlett,Fitzgerald2014,Erich2014}, como pode ser visto a seguir:
+
+\begin{itemize}
+    \item Testes Unitários (\textit{Unit Testing});
+    \item Testes de Fumaça (\textit{Smoke Testing / Build Verification Test});
+    \item Testes de Integração (\textit{Integration Testing});
+    \item Testes de Sistema (\textit{System Testing});
+    \item Testes Exploratórios (\textit{Exploratory Testing});
+    \item Testes de Aceitação (\textit{Storytesting / Acceptance Criteria / Acceptance Testing});
+    \item Testes contínuos (\textit{Continuos Testing});
+    \item Infraestrutura como código (\textit{Infrastructure as Code})\cite{BRAGA2015};
+\end{itemize}
+
+Na seção \ref{sec:melhoriaspropostas} será apresentado as melhorias propostas para a nova versão do processo FreeTest. O mapeamento incluirá a adição, permanência e remoção das práticas especificas para o processo proposto.
+
+\section{Melhorias propostas para o processo}
+\label{sec:melhoriaspropostas}
+
+Para propor as melhorias para o novo processo do Método FreeTest foi necessário a elaboração de um mapeamento das equivalências identificadas entre as práticas especificas do Método FreeTest e MPT.Br, e revisão da literatura na perspectiva da Metodologia Ágil e das boas práticas empregadas no Devops (subseção \ref{sec:identificacaomelhoriasfreetest}).
+A abordagem utilizada para a tomada de decisão de quais práticas especificas seriam mantidas, incluídas ou removidas do novo processo do FreeTest foi o contexto no qual ele se emprega, ou seja, as Micro e Pequenas Empresas, sendo assim, alguns critérios de seleção foram adotados com base no conhecimento empírico do autor e da literatura \cite{JamesWhittakerJasonCarollo2012, Especialistas2015, Whittaker2009, ABESSofftware2014, FelipeDreher2016, Laporte2010, Ramachandram2008, SilvaDias2015}, para ajudar nas escolhas no contexto das MPE's:
+
+\begin{itemize}
+\item Soluções de baixo custo de aquisição e implantação;
+\item Equipe enxutas. Por exemplo, muitas vezes o gestor gere tanto a equipe de teste quanto de desenvolvimento;
+\item Não existem politicas de teste ou organizacionais bem definidas;
+\item Não existe tanta burocracia e muitas pessoas tem pode de decisão;
+\item Projetos de software menores ou softwares de prateleira;
+\item Poucos recurso seniores, geralmente o sócio fundador é o que entende mais do software/código fonte;
+\item Comunicação mais ágil e pontual, sem muita formalização ou documentação;
+\item Baixa documentação de software e de requisitos;
+\item Baixo orçamento para aquisição de ferramentas de trabalho e licenças de software mais caras;
+\item Processos de desenvolvimento e teste não definidos, muitas vezes processos diferentes para clientes diferentes.
+\end{itemize}
+
+Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de melhoria a partir do MPT.Br para o novo processo proposto. É importante salientar que as práticas especificas avaliadas, tanto do processo MPT.Br e Método FreeTest sofreram uma avaliação do tipo, "Mantido", "Excluído" ou "Adicionado" como observado nas tabelas. 
+
+\begin{table}[!ht]
+\centering
+\caption{Sugestões de Melhoria para o novo processo a partir do MPT.Br}
+\label{tab:4.3}
+\scalebox{0.75}{
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Prática Especifica} & \multicolumn{1}{c|}{Ação} \\ 
+    \hline
+    \multicolumn{1}{|c|}{GPT} & GPT1 – Realizar análise de risco do produto & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT3 – Definir estratégia de teste & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT4 – Definir o escopo do trabalho para o projeto de teste & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT5 – Estabelecer estimativas de tamanho & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT7 – Estimar o esforço e o custo & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT9 – Identificar riscos do projeto & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT10 – Planejar os recursos humanos & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT11 – Planejar o ambiente de teste para o projeto & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT12 – Planejar os artefatos e dados do projeto & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT14 – Estabelecer o Plano de Teste & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT16 – Monitorar o projeto & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & GPT24 – Monitorar defeitos & \multicolumn{1}{c|}{Adicionado} \\ 
+    \hline
+    \multicolumn{1}{|c|}{PET} & PET1 – Identificar casos de teste & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & PET2 – Executar casos de teste & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & PET3 – Reportar incidentes & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & PET4 – Acompanhar incidentes & \multicolumn{1}{c|}{Mantido} \\ 
+    \hline
+    \multicolumn{1}{|c|}{FDT} & FDT4 – Consolidar dados de teste & \multicolumn{1}{c|}{Mantido} \\ 
+    \hline
+    \multicolumn{1}{|c|}{MAT} & MAT1 – Definir objetivos de medição de teste & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & MAT4 – Coletar, analisar e comunicar dados de medição & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & MAT5 – Armazenar dados de medição & \multicolumn{1}{c|}{Adicionado} \\ 
+    \hline
+    \multicolumn{1}{|c|}{OGT} & OGT1 – Definir a estrutura organizacional do teste & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & OGT2 – Estabelecer um Grupo de processo de teste de software & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & OGT6 – Coletar informações e implementar ações de melhoria & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & OGT11 – Identificar oportunidades de reuso & \multicolumn{1}{c|}{Adicionado} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & OGT12 – Reusar ativos de teste & \multicolumn{1}{c|}{Adicionado} \\ 
+    \hline
+    \multicolumn{1}{|c|}{TDA} & TDA5 – Preparar ambiente para aceitação & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TDA6 – Conduzir testes de aceitação & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TDA7 – Avaliar condições de aceitação & \multicolumn{1}{c|}{Mantido} \\ 
+    \hline
+    \multicolumn{1}{|c|}{TES} & TES1 – Identificar produtos de trabalho e tipos de revisão & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TES2 – Definir critérios de revisões & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TES3 – Conduzir revisões & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & TES4 – Analisar dados de revisões & \multicolumn{1}{c|}{Mantido} \\ 
+    \hline
+    \multicolumn{1}{|c|}{AET} & AET3 – Definir um framework para automação de teste & \multicolumn{1}{c|}{Mantido} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & AET4 – Gerenciar incidentes de teste automatizado & \multicolumn{1}{c|}{Mantido} \\ 
+    \hline
+    \end{tabular}
+}
+\end{table}
+
+
+\begin{table}[!ht]
+\centering
+\caption{Melhorias promovidas para o novo processo nas práticas do FreeTest}
+\label{tab:4.4}
+  \scalebox{0.75}{
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Prática Especifica} & \multicolumn{1}{c|}{Ação} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Teste de regressão} & Preparar massa de teste (TRG1) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Manter script de regressão (TRG2) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Executar teste de regressão (TRG3) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Encerrar teste de regressão (TRG4) & \multicolumn{1}{c|}{Mantida} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Integração contínua} & Elaborar código (INC1) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Elaborar script BDD (INC2) & \multicolumn{1}{c|}{Removida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Montar build (INC3) & \multicolumn{1}{c|}{Mantida} \\ 
+    \hline
+    \multicolumn{1}{|c|}{Teste de desempenho} & Preparar massa de teste (TPE1) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Manter script de desempenho (TPE2) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Executar teste de desempenho (TPE3) & \multicolumn{1}{c|}{Mantida} \\ 
+    \cline{2-3}
+    \multicolumn{1}{|c|}{} & Encerrar teste de desempenho (TPE4) & \multicolumn{1}{c|}{Mantida} \\ 
+    \hline
+    \end{tabular}
+}
+\end{table}
+
+As tabelas \ref{tab:4.3} e \ref{tab:4.4} mostram as práticas especificas que foram mantidas, adicionadas ou removidas, com base nos critérios de tomada de decisão mencionados na subseção \ref{sec:melhoriaspropostas}, na análise do MPT.Br e os estudos realizados sobre Metodologia Ágil e Devops. Por fim, uma proposta para o novo processo foi definida no item \ref{sec:novoprocesso}.
+
+\section{Definição do novo processo}
+\label{sec:novoprocesso}
+
+Com base nos esforços apontados na seção anterior, revisão da literatura e referencial teórico sobre Metodologia Ágil e Devops, um novo processo para o Método FreeTest será apresentado nessa seção. Devido ao perfil atual das MPE's foi necessário a junção de algumas práticas especificas citadas no MPT.Br, de modo que a sua execução por parte das MPE's fossem realizadas de forma mais fácil e menos onerosa. Outra decisão tomada foi a alteração do nível de maturidade de determinadas práticas especificas utilizadas tanto do MPT.Br quanto do antigo processo do FreeTest, a intenção foi mantê-los em um nível de maturidade que estivesse mais atrelado à situação atual das MPE's nacionais.
+
+Como é possível verificar na tabela \ref{tab:4.5}, a coluna "Nível de Maturidade Atual" mostra o nível de maturidade no qual a prática especifica corresponde nessa nova abordagem, "AP" é o nome da área de processo, "PE" é o nome da prática especifica, "Nível de Maturidade Anterior" é o nível de maturidade no qual a prática especifica tanto do MPT.Br quanto do FreeTest pertencia, e por fim as práticas especificas relacionadas à criação da nova prática. É importante salientar que nem todas práticas especificas abordadas no MPT.Br e na versão anterior do FreeTest foram mantidas para essa nova abordagem (vide seção \ref{sec:melhoriaspropostas}).
+
+\begin{table}[!ht]
+\centering
+\caption{Proposta para o novo processo: Readaptação com a junção de práticas especificas e alteração de nível de maturidade.}
+\label{tab:4.5}
+  \scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{\begin{tabular}[c]{@{}c@{}}Nível de \\ Maturidade\\ Atual\end{tabular}} & \textbf{AP}                   & \textbf{PE} & \textbf{Origem}   & \textbf{\begin{tabular}[c]{@{}c@{}}Nível de \\ Maturidade\\ Anterior\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Práticas \\ Relacionadas\end{tabular}} \\ \hline
+\multirow{9}{*}{\textbf{1}}                                                     & \multirow{6}{*}{\textbf{GPT}} & GPT1        & MPT.Br            & 1                                                                           & GPT1, GPT3                                                                \\ \cline{3-6} 
+                                                                                &                               & GPT2        & MPT.Br            & 1                                                                                  & GPT4                                                                      \\ \cline{3-6} 
+                                                                                &                               & GPT3        & MPT.Br            & 1                                                                                  & GPT5,GPT11, GPT12                                                         \\ \cline{3-6} 
+                                                                                &                               & GPT4        & MPT.Br            & 1                                                                                  & GPT3, GPT7                                                                \\ \cline{3-6} 
+                                                                                &                               & GPT5        & MPT.Br            & 1                                                                                  & GPT9                                                                      \\ \cline{3-6} 
+                                                                                &                               & GPT6        & MPT.Br            & 1                                                                                  & GPT16                                                                     \\ \cline{2-6} 
+                                                                                & \multirow{3}{*}{\textbf{ET}}  & ET1         & MPT.Br            & 1                                                                                  & PET1                                                                      \\ \cline{3-6} 
+                                                                                &                               & ET3         & MPT.Br            & 1                                                                                  & PET2                                                                      \\ \cline{3-6} 
+                                                                                &                               & ET4         & MPT.Br            & 1                                                                                  & PET3, PET4                                                                \\ \hline
+\multirow{5}{*}{\textbf{2}}                                                     & \multirow{2}{*}{\textbf{RR}}  & RR1         & \textbf{FreeTest} & 2                                                                                  & TES1, TES2, TES3                                                          \\ \cline{3-6} 
+                                                                                &                               & RR3         & \textbf{FreeTest} & 2                                                                                  & TES4                                                                      \\ \cline{2-6} 
+                                                                                & \multirow{3}{*}{\textbf{AES}} & AES1        & MPT.Br            & 3                                                                                  & TES1, TES2                                                                \\ \cline{3-6} 
+                                                                                &                               & AES2        & MPT.Br            & 3                                                                                  & TES3                                                                      \\ \cline{3-6} 
+                                                                                &                               & AES3        & MPT.Br            & 3                                                                                  & TES5                                                                      \\ \hline
+\multirow{7}{*}{\textbf{3}}                                                     & \multirow{3}{*}{\textbf{AET}} & AET1        & MPT.Br            & 5                                                                                  & AET2                                                                      \\ \cline{3-6} 
+                                                                                &                               & AET2        & MPT.Br            & 5                                                                                  & AET3                                                                      \\ \cline{3-6} 
+                                                                                &                               & AET3        & MPT.Br            & 5                                                                                  & AET4                                                                      \\ \cline{2-6} 
+                                                                                & \textbf{GCT}                  & GCT1        & MPT.Br            & 4                                                                                  & OGT11, OGT12                                                              \\ \cline{2-6} 
+                                                                                & \multirow{3}{*}{\textbf{MED}} & MED1        & MPT.Br            & 3                                                                                  & MAT1                                                                      \\ \cline{3-6} 
+                                                                                &                               & MED2        & MPT.Br            & 3                                                                                  & MAT4                                                                      \\ \cline{3-6} 
+                                                                                &                               & MED3        & MPT.Br            & 3                                                                                  & MAT5                                                                      \\ \hline
+\multirow{9}{*}{\textbf{4}}                                                     & \textbf{INC}                  & INC1        & \textbf{FreeTest} & 4                                                                                  & INC3                                                                      \\ \cline{2-6} 
+                                                                                & \multirow{4}{*}{\textbf{TRG}} & TRG1        & \textbf{FreeTest} & 3                                                                                  & TRG1                                                                      \\ \cline{3-6} 
+                                                                                &                               & TRG2        & \textbf{FreeTest} & 3                                                                                  & TRG2                                                                      \\ \cline{3-6} 
+                                                                                &                               & TRG3        & \textbf{FreeTest} & 3                                                                                  & TRG3                                                                      \\ \cline{3-6} 
+                                                                                &                               & TRG4        & \textbf{FreeTest} & 3                                                                                  & TRG4                                                                      \\ \cline{2-6} 
+                                                                                & \multirow{4}{*}{\textbf{TEP}} & TPE1        & \textbf{FreeTest} & 5                                                                                  & TPE1                                                                      \\ \cline{3-6} 
+                                                                                &                               & TPE2        & \textbf{FreeTest} & 5                                                                                  & TPE2                                                                      \\ \cline{3-6} 
+                                                                                &                               & TPE3        & \textbf{FreeTest} & 5                                                                                  & TPE3                                                                      \\ \cline{3-6} 
+                                                                                &                               & TPE4        & \textbf{FreeTest} & 5                                                                                  & TPE4                                                                      \\ \hline
+\multirow{3}{*}{\textbf{5}}                                                     & \multirow{3}{*}{\textbf{OT1}} & OT1         & MPT.Br            & 4                                                                                  & OGT1                                                                      \\ \cline{3-6} 
+                                                                                &                               & OT2         & MPT.Br            & 4                                                                                  & OGT2                                                                      \\ \cline{3-6} 
+                                                                                &                               & OT3         & MPT.Br            & 4                                                                                  & OGT6                                                                      \\ \hline
+\end{tabular}
+}
+\end{table}
+
+Como pode ser visto na tabela \ref{tab:4.5} a Área de Processos (AP) de Gerenciamento de Projetos de Teste (GPT), por exemplo, foi a que mais sofreu alterações. Como as MPE's possuem equipes reduzidas de teste, normalmente a gestão dos projetos de teste das MPE's ocorre juntamente com a gestão do projeto de desenvolvimento, é muito comum que para esse formato de equipe haja um gestor ou líder técnico que faça a gestão tanto das atividades de desenvolvimento quanto das atividades de teste. A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, contudo as Práticas Especificas (PE) do PET3 e PET4 do MPT.Br se transformaram em ET4, que consolida todas as tarefas de reportar e acompanhar incidentes.
+
+Uma mudança importante foi definir as atividades de revisão (AES), normalmente realizadas no nível três de maturidade do MPT.Br para o nível dois de maturidade do novo processo do FreeTest. Essa iniciativa surgiu, pois as atividades de revisão costumam ser de baixo custo e facilmente automatizadas (exemplo revisão de código), neste sentido são práticas especificas eficazes e que evidenciam erros numa fase bem primária da produção, ideal para o contexto das MPE's e como sugere a Metodologia Ágil.
+
+As práticas especificas que abordam automação dos testes também sofreram grande mudança, pois no MPT.Br elas são aplicadas no nível cinco de maturidade, contudo na proposta para o novo processo elas são sugeridas no nível três. Essa mudança foi proposta, pois a automação é uma prática muito recomendada e difundida, apesar de ser vista como uma prática muitas vezes cara e de retorno de investimento a médio/longo prazo, hoje em dia, com os avanços de ferramentas e técnicas de automação é possível a implantação de uma automação com baixo custo e muito eficiente \cite{BRAGA2015}.
+
+Na seção \ref{sec:areasdeprocessoepraticas} serão listadas as Áreas de Processos (AP) e suas respectivas Práticas Especificas (PE) de acordo com a proposta para o novo processo do FreeTest.
+
+\section{Áreas de Processo e Práticas Específicas}
+\label{sec:areasdeprocessoepraticas}
+
+O novo processo proposto possui uma estrutura similar aos processos revisados na literatura, neste caso possui níveis de maturidade que vão de 1 (um) a 5 (cinco), Áreas de Processo (AP) que por sua vez agrupam suas Práticas Especificas (PE) respectivas. Na tabela \ref{tab:4.6} é possível ver a estrutura geral do novo processo proposto e nas próximas seções cada área de processo e suas respectivas práticas especificas serão descritas.
+
+\begin{table}[H]
+\caption{Estrutura completa proposta para o novo processo.}
+\label{tab:4.6}
+\scalebox{0.60}{
+    \begin{tabular}{|p{45mm}|p{76mm}|p{100mm}|}
+    \hline
+        \centering{\textbf{Nível de Maturidade}} & 
+        \multicolumn{1}{c|}{\textbf{Área de Processo}} & \multicolumn{1}{c|}{\textbf{Práticas Específicas}}\\ 
+    \hline
+        \multirow{11}{*}{\centering{1}}&
+        \multicolumn{1}{c|}{\multirow{6}{*}{Gerência de projetos de teste (GPT)}}& 
+        Realizar Análise de Risco e Definir estratégia de teste - GPT1\\ 
+    \cline{3-3}
+        & \multicolumn{1}{c|}{}& 
+        Definir Escopo de Trabalho para o Projeto - GPT2\\
+    \cline{3-3}
+        & \multicolumn{1}{c|}{}& 
+        Estabelecer estimativas de tamanho tempo para realização de tarefas, criação de artefatos e preparação do ambientes de trabalho - GPT3\\ 
+    \cline{3-3}
+        & \multicolumn{1}{c|}{}& 
+        Planejar os recursos humanos - GPT4\\ 
+    \cline{3-3}
+        & \multicolumn{1}{c|}{}& 
+        Determinar e documentar os riscos do projeto de teste, assim como seu impacto, probabilidade de ocorrência e prioridade de tratamento - GPT5 \\ 
+    \cline{3-3}
+        & \multicolumn{1}{c|}{}& 
+        Monitorar o progresso do projeto com relação ao estabelecido no planejamento e assessorar na realização de pendência - GPT6\\ 
+    \cline{2-3}
+        & \multirow{5}{*}{Execução dos Testes Funcionais - (ET)}&
+        Identificar Casos de Teste - ET1\\ 
+    \cline{3-3}
+        & & Criar/Atualizar Ambiente de Teste - ET2\\ 
+    \cline{3-3}
+        & & Executar os Testes - ET3\\ 
+    \cline{3-3}
+        & & Reportar e Acompanhar Incidentes  - ET4\\ 
+    \cline{3-3}
+        & & Encerrar teste - ET5\\ 
+    \hline
+        \multirow{9}{*}{2}& 
+        \multirow{3}{*}{Revisão dos Requisitos (RR)}& 
+        Realizar verificação - RR1\\ 
+    \cline{3-3}
+        & & Relatar e Acompanhar Inconsistências - RR2\\
+    \cline{3-3}
+        & & Encerrar verificação - RR3\\ 
+    \cline{2-3}
+        & \multirow{3}{*}{Teste de aceite (TDA)}& 
+        Criar/Atualizar ambiente de teste - TDA1\\ 
+    \cline{3-3}
+        & & Executar teste de aceite - TDA2\\ 
+    \cline{3-3}
+        & & Encerrar teste de aceite - TDA3\\ 
+    \cline{2-3}
+        & \multirow{3}{*}{Análise Estática (AES)}& 
+        Identificar produtos de trabalho, tipos e critérios de revisão - AES1\\ 
+    \cline{3-3}
+        & & Conduzir revisão de Código - AES2\\ 
+    \cline{3-3}
+        & & Realizar Análises Estáticas Automatizadas - AES3\\
+    \hline
+        \multirow{10}{*}{3}&
+       \multirow{4}{*}{Automação da Execução do Teste (AET)}& Definir critérios para seleção de casos de teste paraautomação - AET1\\ 
+    \cline{3-3}
+        & & Definir um framework para automação de teste - AET2\\
+    \cline{3-3}
+        &  & Gerenciar incidentes de teste automatizado - AET3\\
+    \cline{3-3}
+        & & Automatizar a execução dos testes Automatizados - AET4\\ 
+    \cline{2-3}
+        & \multirow{3}{*}{Gerência de Configuração de Teste (GCT)} & 
+        Versionar Artefatos/scripts/planos/infraestrutura de Teste - GCT1\\ 
+    \cline{3-3}
+        & & Criar baseline dos artefatos/scripts/planos já testados - GCT2\\
+    \cline{3-3}
+        & & Versionar ambientes de Teste - GCT3\\ 
+    \cline{2-3}
+        & \multirow{3}{*}{Medição (MED)}& 
+        Definir Objetivos de Medição de Teste - MED1\\ 
+    \cline{3-3}
+        & & Coletar, analisar e comunicar dados de medição - MED2\\
+    \cline{3-3}
+        & & Armazenar dados de medição - MED3\\ 
+    \hline
+        \multirow{12}{*}{4}& 
+        \multirow{4}{*}{Integração contínua (INC)}& 
+        Gerar build Automatizado - INC1\\ 
+    \cline{3-3} 
+        & & Executar análise Testes estática Automatizada - INC2\\ 
+    \cline{3-3}
+        & & Executar conjunto de testes automatizados abrangentes - INC3\\ 
+    \cline{3-3}
+        & & Executar criação de ambientes virtualizados  de forma automatizada - INC4 \\ 
+    \cline{2-3}
+        & \multirow{4}{*}{Teste de regressão (TRG)}& 
+        Preparar massa de teste - TRG1\\ 
+    \cline{3-3}
+        & & Manter script de regressão - TRG2\\ 
+    \cline{3-3}
+        & & Executar teste de regressão - TRG3\\ 
+    \cline{3-3}
+        & & Encerrar teste de regressão - TRG4\\ 
+    \cline{2-3}
+        & \multirow{4}{*}{Teste de desempenho (TPE)}& 
+        Preparar massa de teste - TPE1\\ 
+    \cline{3-3}
+        & & Manter script de desempenho - TPE2\\ 
+    \cline{3-3}
+        & & Executar teste de desempenho - TPE3\\ 
+    \cline{3-3}
+        & & Encerrar teste de desempenho - TPE4\\ 
+    \hline
+        \multirow{8}{*}{5}&
+        \multirow{5}{*}{Testes Contínuos Automatizados (TC)}&
+        Definição da abordagem de automação que será utilizada - TC1\\ 
+    \cline{3-3}
+        & & Criação dos scripts de teste de aceitação - TC2\\
+    \cline{3-3}
+        & & Medir cobertura de testes - TC3\\ 
+    \cline{3-3}
+        & & Automatizar testes repetitíveis - TC4\\ 
+    \cline{3-3}
+        & & Manter Infraestrutura de Versionamento de Ambientes - TC5\\ 
+    \cline{2-3}
+        & \multirow{3}{*}{Otimização do,Teste (OT)}& 
+        Definir a estrutura organizacional do teste - OT1\\
+    \cline{3-3}
+        & & Estabelecer um Grupo de processo de teste de software - OT2\\ 
+    \cline{3-3}
+        & & Definir melhoria continua do processo de teste - OT3\\ 
+    \hline
+    \end{tabular}
+}
+\end{table}
+
+\subsection{Gerência de Projetos de Teste (GPT)}
+\label{sec:gerenciadeprojetosdeteste}
+
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A gerência de projetos de teste é uma área transversal a todo o projeto de teste que tem como finalidades principais, planejar, definir escopo, abordagens a serem utilizadas nos testes, definir recursos e monitorar todo o projeto até o seu encerramento.\\
+\hline
+\end{tabular}
+\end{table}
+
+
+O gerenciamento de projeto de teste é fundamental para que a execução do projeto seja realizada conforme o seu planejamento. O gerenciamento de testes realizado de forma efetiva, é uma maneira de minimizar os riscos do projeto, para tal é essencial que um bom planejamento de testes, tenha bem explícito as análises de risco, definição das estratégias de testes, escopo de trabalho, estimativas e planejamento de recursos humanos.
+
+Para que um projeto de teste seja bem sucedido é essencial que haja um monitoramento de toda as etapas do projeto, neste sentido é essencial que ferramentas de controle de projetos, criação e definição de cronogramas sejam utilizadas. É importante ressaltar que a manutenção dessas práticas de monitoramento e documentação por todos os projetos da organização e utilização dessas informações como base histórica é essencial para o efetivo sucesso dos projetos futuros.
+
+\subsubsection{Realizar análise de risco e definir estrategia de teste - GPT1}
+\label{sec:gpt1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A análise de risco no projeto de teste é essencial para determinar quais itens de teste merecem mais atenção e minuciosidade, de acordo seu grau de risco. A partir da análise de risco realizada sob o escopo de teste, é possível determinar as estratégias de teste que serão mais interessantes para o projeto. Essa atividade é importante, pois mitiga vários futuros problemas que geralmente ocorrem durante a a execução do projeto. \\
+\hline
+\end{tabular}
+\end{table}
+
+O teste de software exaustivo é impraticável. Como executar todos os casos de teste é uma atividade de alto custo, é de suma importância que haja uma análise de risco no projeto, neste sentido levantando as áreas mais críticas do produto de maior interesse da organização e que esteja alinhado ao seu planejamento estratégico. Os riscos do produto podem ser funcionais ou não funcionais, desde riscos em usabilidade, desempenho, confiabilidade e segurança \cite{GuiaMPTbr}. 
+
+Os riscos em um projeto de teste normalmente surgem por duas causas básicas, custo e prazo. Quanto antes a análise de risco do projeto for realizada melhor, pois é possível definir as melhores estratégias de teste a serem seguidas e reunir o que for necessário para realizar tais atividades. Desta maneira, com a análise de risco realizada será possível de forma assertiva direcionar o planejamento, especificação, preparação e execução dos testes. A estratégia de teste pode ser definida em alto nível, transversal a toda organização ou por projeto, contudo é aconselhável que se defina sempre a estratégia de teste no início de cada ciclo do projeto de testes, pois cada projeto tem suas peculiaridades.
+
+\textbf{Dependências}
+
+
+\begin{itemize}
+\item Relatório com todos os riscos identificados;
+\item Requisitos de sistema.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+\item Análise de risco detalhada;
+\item Estratégia de teste documentada.
+\end{itemize}
+
+
+\subsubsection{Definir Escopo de Trabalho para o Projeto – GPT2}
+\label{sec:gpt2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Esta prática específica define o escopo de trabalho para as atividades de teste. Com as informações inerentes já levantadas nas práticas de análise de risco e definição das estratégias de teste o gestor e/ou a equipe definirá os insumos para criação do cronograma de esforço, tempo e custo. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática é naturalmente exercida no momento prévio da criação dos cronogramas do projeto com o intuito de assegurar que o projeto inclui todo o trabalho necessário, e apenas o necessário, para terminar o projeto com sucesso \cite{pmbok2014}. Essa prática específica está ligada ao Gerenciamento de Projetos, e não necessariamente ao gerenciamento de projetos de teste si, logo o FreeTest se baseia no PMBOK como corpo de conhecimento para implantação dessa técnica.
+
+\textbf{Dependências}
+\begin{itemize}
+\item Estratégias de teste e Análise de Risco do Projeto;
+\item Requisitos de Teste.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+\item Escopo de trabalho para o projeto;
+\item Estrutura Analítica do Projeto.
+\end{itemize}
+
+\subsubsection{Estabelecer estimativas de tempo para realização de tarefas, criação de artefatos e preparação dos ambientes de trabalho – GPT3}
+\label{sec:gpt3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Esta prática tem como objetivo definir o tamanho das tarefas de teste, bem como, o tempo necessário para realização das tarefas de apoio à execução dos testes como preparação de ambientes de trabalho e artefatos gerados. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+É necessário gerar estimativas para as demandas de teste e para tarefas de apoio às atividades principais. Caso seja necessário gerar artefatos e/ou de ambientes específicos ou outras particularidades técnicas nesse momento essas informações devem ser consideradas nas estimativas. Aconselha-se a manutenção de uma base histórica de estimativas para auxiliar em estimativas futuras. A utilização de métodos consagrados de estimativa (de acordo com a preferência de cada organização) em conjunto com estimativas empíricas são altamente recomendados.
+
+Se tratando de ambientes de teste é importante salientar a devida cautela na definição das estimativas, considerando que um mesmo software poderá ser executado em diversas plataformas e usando recursos diferentes. Tendo em vista essa heterogeneização de ambientes de teste o FreeTest recomenda o uso da virtualização de ambientes e seu versionamento como uma prática barata e que poupará tempo da equipe.
+
+\textbf{Dependências}
+\begin{itemize}
+\item Requisitos de Sistema;
+\item Documento de Escopo;
+\item Estrutura Analítica do Projeto;
+\item Análise de Risco.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+\item Cronogramas de Estimativa;
+\item Modelos de artefatos;
+\item Descrição dos ambientes de teste.
+\end{itemize}
+
+\subsubsection{Planejar os recursos humanos - GPT4}
+\label{sec:gpt4}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Esta prática consiste é planejar os recursos humanos necessários para a execução do projeto de teste, considerando seu perfil e proficiência necessária para as atividades. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O planejamento dos recursos humanos é algo muito importante e deve ser sempre bem realizado. Uma equipe capacitada e motivada possui a sinergia necessária para o sucesso do projeto. A separação da equipe por papéis está muito ligado a Organização, algumas organizações definem bem os papéis desempenhados por seus funcionários outros já preferem uma divisão de papéis mais heterogênea, neste último caso uma pessoa desempenha mais de um papel. O FreeTest conhecendo o cenário das Micro e Pequenas Empresas sabe que é comum que o papel de um testador, por exemplo, seja desempenhado por um analista de requisitos ou até mesmo por um desenvolvedor. Considerando esse cenário o FreeTest aconselha que alguns conhecimentos devem ser transversais a toda a equipe:
+
+\begin{itemize}
+\item Conhecer todo o processo;
+\item Conhecer todo os produtos, negócios e modelos de negócio da organização;
+\item Ambientação e capacitação nas tecnologias utilizadas pela organização.
+\end{itemize}
+
+Caso a mão de obra não esteja disponível no projeto, a mesma pode ser capacitada, contratada ou até mesmo terceirizada. É comum que no início de um novo projeto, com um produto com um ecossistema de tecnologias diferentes a organização opte em terceirizar algumas tarefas, por exemplo, testes muito específicos como em aplicações mobile (devido a fragmentação de aparelhos).
+
+\textbf{Dependências}
+\begin{itemize}
+\item Plano de Estratégia de Teste.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+\item Cronograma de Recursos Humanos;
+\item Base de Currículo;
+\item Workshops técnicos;
+\item Agendamento de Treinamentos
+\end{itemize}
+
+\subsubsection{Determinar e documentar os riscos do projeto de teste, assim como seu impacto, probabilidade de ocorrência e prioridade de tratamento - GPT5}
+\label{sec:gpt5}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática tem como objetivo determinar e documentar os riscos do projeto, explicitando seu impacto, probabilidade de ocorrência e prioridade de tratamento. A identificação dos riscos é uma prática iterativa, pois novos riscos podem acontecer durante todo o ciclo de vida do projeto de testes. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+É de suma importância que impactos e riscos de teste e suas probabilidades de ocorrência sejam levantados e mantidos em uma base histórica. Isso fará com que para próximos projetos ações sejam tomadas previamente, desta forma é possível ter uma precisão melhor nas estimativas de teste, considerando os detalhes de impacto e reincidência.
+
+Como já mencionado a identificação dos riscos ocorre de forma iterativa no projeto, e compreende todo o ciclo de vida do mesmo, no entanto a frequência da iteração depende de cada situação e peculiaridade do projeto. É interessante que para projetos de inovação, que utilizem tecnologias desconhecidas e com alto impacto essa iteração para determinação de riscos seja frequente e que toda a equipe participe.
+
+\textbf{Dependências}
+\begin{itemize}
+\item Requisitos de negócio;
+\item Análise de risco detalhada.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+\item Relatório de riscos devidamente preenchido;
+\item Planejamento de mitigação dos riscos.
+\end{itemize}
+
+\subsubsection{Monitorar o progresso do projeto com relação ao estabelecido no planejamento e assessorar na realização de pendência - GPT6}
+\label{sec:gpt6}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo desta prática é monitorar o progresso do projeto com relação ao estabelecido no planejamento inicial do projeto de testes e documentar os resultados. Através desse monitoramento é possível detectar e solucionar problemas corriqueiros inerentes ao projeto de forma antecipada, evitando transtornos futuros. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O monitoramento do projeto é necessário para acompanhar, revisar e regular o progresso e o desempenho do projeto, identificar todas as áreas nas quais serão necessárias mudanças no plano e iniciar as mudanças correspondentes.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Cronograma do projeto;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item  Status do projeto;
+    \item  Registro dos resultados obtidos.
+\end{itemize}
+
+\subsection{Execução dos Testes Funcionais - ET}
+\label{sec:et0}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa área de processo é responsável pela identificação dos casos de teste, execução dos testes funcionais, criação/manutenção de ambientes de teste e reportar incidentes. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa área de processo visa garantir que uma organização realize de forma adequada a execução dos testes funcionais. A execução dos testes é a prática mais elementar que uma organização sem um processo de teste bem definido pode ter, contudo existem determinadas práticas que devem ser seguidas para que tal área seja aplicada com excelência.
+
+A execução dos testes funcionais ocorre na aplicação dos testes planejados e projetados nas etapas anteriores. A execução dos testes vem seguido da aplicação dos casos de teste, estratégia de teste e procedimentos de teste definido. Nesta etapa que os incidentes são normalmente encontrados, registrado e acompanhados.
+
+Por fim, no encerramento dos testes todas as informações da execução dos testes no ciclo de vida do projeto são registrados, que poderão ser utilizados como referência para os próximos projetos.
+
+\textbf{Práticas Especificas:}
+\begin{itemize}
+    \item Identificar Casos de Teste – ET1;
+    \item Criar/Atualizar Ambiente de Teste – ET2;
+    \item Executar os Testes - ET3;
+    \item Reportar e Acompanhar Incidentes - ET4;
+    \item Encerrar teste - ET5.
+\end{itemize}
+
+\subsubsection{Identificar Casos de Teste – ET1}
+\label{sec:et1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo desta prática é identificar, priorizar e documentar os casos de teste do Software Sob Teste. O teste pode ser executado de diferentes maneiras e critérios de acordo com a organização, podem ser documentados de forma ampla ou não. O importante é que os cenários sejam previamente levantados por um especialista e que a escrita do mesmo seja repetível. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A identificação e execução dos casos de teste em uma organização está muito ligado ao seu perfil, contexto, projeto e modelo de negócio. O nível de formalismo da escrita dos casos de teste para um projeto terceirizado, por exemplo, pode ser mais exigente do que para um projeto interno da organização, tudo isso porque nesse contexto se exige mais evidências de que houve os testes.
+
+Independente do nível de formalismo, casos de teste devem ser identificados, priorizados e documentados, pois antes da execução dos testes é necessário que o testador saiba quais as entradas esperadas, comportamento previsto e resultados. A documentação dos casos de testes normalmente é vista de duas formas, baixo nível e alto nível, sendo a primeira uma especificação mais completa, contendo: resumo, pré-condições, entradas, ação, resultados esperados e pós condições.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisitos de Sistema;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item  Casos de teste documentados;
+\end{itemize}
+
+\subsubsection{Criar/Atualizar Ambiente de Teste - ET2}
+\label{sec:et2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A criação/atualização de ambiente é de suma importância para a realização dos testes, é notório que os ambientes de teste desejavelmente sejam o mais próximo possível do ambiente de produção do cliente. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A forma que como os ambientes são criados está muito ligado ao perfil da organização, muitas vezes a criação de ambientes depende muito de um departamento específico (Infraestrutura, Suporte ou Operação) que supervisiona, cria e mantêm ambientes e a infraestrutura técnica de apoio necessária a toda a organização.
+
+Atualmente com o avanço das tecnologias e com a necessidade de se manter e criar ambientes de teste e produção rapidamente o conceito DevOps vem ganhando força. DevOps propõe o rompimento de "barreiras" tradicionais entre o desenvolvimento/teste e operação, incentivando o uso de colaboração constante entre os times. Nesse cenário é possível que as tarefas de criação e manutenção de tais ambientes sejam de responsabilidade da equipe de desenvolvimento/teste e não mais de uma equipe especializada, tornando a criação e manutenção de tais ambientes mais rápida e fidedignas aos requisitos funcionais e não funcionais.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Documento de Estratégia de Teste;
+    \item Requisitos não funcionais.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item \textit{Scripts} de ambiente de teste.
+\end{itemize}
+
+
+\subsubsection{Executar os Testes - ET3}
+\label{sec:et3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Realizar a execução dos casos de teste levantados e manter registro dos resultados das execuções de teste realizados. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A execução dos testes é a tarefa mais evidente no processo de teste. Apesar de ser uma tarefa trivial, é também a mais importante dos ciclo de vida dos testes, é nessa fase onde o testador encontrará os incidentes e irá reportá-los.
+
+É crucial que o testador tenha uma visão ampla de todo o sistema, desta maneira conseguirá saber o comportamento real da funcionalidade, desta forma não relatando falsos erros.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisito de software;
+    \item Lista dos casos de teste levantados.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Registro dos resultados dos testes;
+    \item Status de execução dos testes.
+\end{itemize}
+
+
+\subsubsection{Reportar e Acompanhar Incidentes - ET4}
+\label{sec:et4}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Relatar e acompanhar incidentes encontrados. É importante que os incidentes sejam devidamente reportados, com informações relevantes para a sua devida correção como, passo a passo para reprodução do erro, versão do sistema, descrição detalhada e etc. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O principal resultado da atividade de execução dos testes são os incidentes. O incidente deve ser reportado, rastreável desde a sua descoberta, classificado até sua correção e por fim a corrigido. Para gerenciar os incidentes, a organização deve estabelecer processos, ferramentas e regras de classificação do mesmo.
+
+Incidentes podem ser descobertos durante a fase de desenvolvimento, do teste e na utilização do software. Eles podem se revelar por problemas no código, por funções do sistema, documentação, e até mesmo no manual de instalação e de usuário.
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+\item Lista de incidentes encontrados.
+\end{itemize}
+
+\subsubsection{Encerrar teste - ET5}
+\label{sec:et5}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Definir que a execução dos testes já foi o suficiente. Apesar de parecer notória essa atividade é muito importante saber quando se   deve para a execução dos testes, por envolver questões de tempo e custo do   projeto, bem como cobertura do que foi testado. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa tarefa determina o marco de encerramento da atividade de teste. No encerramento dos testes devem ser coletados os dados de todas as atividades para consolidar a experiência, fatos, números e lições aprendidas. Basicamente é neste momento, diversos indicadores são extraídos, visando avaliar qualitativamente e quantitativamente o desempenho do trabalho, através de comparações históricas de projetos anteriores.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Cronograma do projeto;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Status do projeto;
+    \item Registro dos resultados obtidos.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+\item Wikis, Ferramenta de controle de Projeto.
+\end{itemize}
+
+\subsection{Revisão dos Requisitos - RR}
+\label{sec:revrequisitos}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Área de processo relacionada a revisão dos requisitos de software especificamente em busca da consistência, precisão, contextualização dos requisitos levantados no processo de eliciação. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Apesar da existência de várias técnicas de eliciação de requisitos, \textit{patterns} e capacitados analistas a melhor forma de validar a qualidade de um requisito é com o feedback da equipe. A revisão de requisitos é uma área importante, pois permite a correção das incoerências e inconformidades antes mesmo do desenvolvimento do software, essa validação permite reduzir o tempo gasto na detecção e correção dessas inconformidades, pois é feito previamente.
+
+\textbf{Práticas Especificas:}
+\begin{itemize}
+    \item Realizar verificação - RR1
+    \item Relatar e Acompanhar Inconsistências - RR2
+    \item Encerrar verificação - RR3
+\end{itemize}
+
+\subsubsection{Realizar verificação - RR1}
+\label{sec:realverificacao}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática consiste verificar se há alguma inconsistência nos requisitos antes de sua implementação por parte do desenvolvimento. Ainda que seja somente por meio da leitura dos requisitos para obter informações, essa revisão pode contribuir para a qualidade e economia de tempo para o desenvolvimento do produto. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A revisão de requisitos em equipes mais enxutas, como é o caso de equipes em micro e pequenas empresas pode ser realizada em parceria entre a equipe de desenvolvimento e teste. Essa atividade é importante, pois reduz a probabilidade de erros oriundos na especificação sejam implementados, além de promover o entendimento prévio dos requisitos, e enviar um feedback mais cedo para a equipe de requisitos reduz o custo de correção do erro.
+
+Outros fatores que deixam claro a importância do investimento em requisitos. Ao realizarmos revisões de requisitos ganharemos em:
+
+\begin{itemize}
+    \item Clareza de informações;
+    \item Remoção de ambiguidades;
+    \item Possíveis problemas com modelagem;
+    \item Além de outras enganos (requisitos duplicados, requisitos não identificados).
+\end{itemize}
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisito do software.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Log de revisão.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Wikis (pode ser usada para especificação), Ferramentas de criação/edição de textos.
+\end{itemize}
+
+\subsubsection{Relatar e Acompanhar Inconsistências - RR2}
+\label{sec:rr2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Relatar e acompanhar inconsistências encontradas. É muito importante que essa prática seja realizada em uma ferramenta de uso específico. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O relato das inconsistências encontradas é importante não somente para sua pronta correção, mas para manter informações de erros que são comumente cometidos na escrita dos requisitos, neste caso o feedback é uma ferramenta valiosa de aperfeiçoamento por parte da equipe.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisito do software.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Inconsistência cadastrada.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item  Editor de Texto (fazer comentários no documento), Ferramenta de bug tracker.
+\end{itemize}
+
+\subsubsection{Encerrar verificação - RR3}
+\label{sec:rr3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Consolidar todas as informações da revisão em uma base de conhecimento da organização com a finalidade de utilizar essas informações como lições aprendidas.
+\hline
+\end{tabular}
+\end{table}
+
+Após a conclusão das verificações, caberá ao analista realizar a consolidação dos resultados da verificação para obter informações sobre a qualidade da documentação produzida durante a fase de análise do software.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisito do software.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Log de inconsistências encontradas.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item  wiki, ferramenta de controle de projetos.
+\end{itemize}
+
+\subsection{Teste de aceite - TDA}
+\label{sec:tda}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Teste de aceitação é uma fase do processo de teste em que um teste de caixa-preta é realizado num sistema antes de sua disponibilização. Tem por função verificar o sistema em relação aos seus requisitos originais, e às necessidades atuais do usuário. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O teste de aceitação é um teste forma relacionado às necessidades dos usuários, requisitos e processos de negócio. O teste de aceitação é muito importante para estabelecer se os critérios de aceitação por parte do cliente estão sendo cumpridos ou não.
+
+Essa prática garante a entrega de valor ao cliente, reduzindo a possibilidade de uma entrega que não atenda satisfatoriamente suas necessidades. O teste de aceite com entregas constantes são grandes ferramentas para qualidade do software e satisfação dos envolvidos no projeto.
+
+\textbf{Práticas Especificas:}
+\begin{itemize}
+    \item  Criar/Atualizar ambiente de teste - TDA1
+    \item  Executar teste de aceite - TDA2
+    \item  Encerrar teste de aceite - TDA3
+\end{itemize}
+
+
+\subsubsection{Criar/Atualizar ambiente de teste - TDA1}
+\label{sec:tda1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A criação/atualização do ambiente para realização dos testes de aceite, objetiva viabilizar que os \textit{stakeholders} envolvidos com o teste tenham acesso à última versão do software. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Sempre que possível o teste de aceite deve ocorrer em ambiente totalmente independente visando não mascarar problemas relacionados ao ambiente. É importante ressaltar a importância de se ter um ambiente totalmente fidedigno com o ambiente de produção (ambiente do cliente).
+
+Hoje em dia com técnicas mais avançadas é possível que os ambientes sejam virtualizados e mantidos em um ambiente versionado. Com essa prática é possível a criação/atualização e \textit{rollbacks} de ambiente de forma muito ágil.
+
+\textbf{Dependências: }
+\begin{itemize}
+    \item  Requisito não Funcionais.
+\end{itemize}
+
+\textbf{Resultados Gerados: }
+\begin{itemize}
+    \item  Scripts de Ambientes virtualizados.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas }
+\begin{itemize}
+    \item Ver lista de ferramentas para gerenciamento de ambientes. 
+\end{itemize}
+
+\subsubsection{Executar teste de aceite - TDA2}
+\label{sec:tda2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Consolidar todas as informações da revisão em uma base de conhecimento da organização com a finalidade de utilizar essas informações como lições aprendidas. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Dependendo da forma como o ambiente de teste de aceite foi construído, os \textit{stakeholders} poderão realizar os testes presencialmente ou remotamente. Esses testes objetivam garantir que o software atenda as necessidades fundamentais do negócio, não se preocupando com aspectos irrelevantes. Também é importante que esses testes sejam acompanhados por papéis de outras áreas como, por exemplo, analistas de negócio, requisito e desenvolvimento, a fim de dar todo suporte necessário aos \textit{stakeholders}.
+
+É possível e aconselhável que a execução dos testes de Aceitação sejam automatizados, contudo essa prática é exigida somente no nível 4 de maturidade.
+
+\textbf{Dependências: }
+\begin{itemize}
+    \item Requisito do software.
+    \item Requisitos de negócio.
+\end{itemize}
+
+\textbf{Resultados Gerados: }
+\begin{itemize}
+    \item Relatório dos testes realizados.  
+\end{itemize}
+
+\textbf{Dependências:} O FreeTest recomenda as seguintes técnicas para a realização dos testes de aceitação: 
+
+\begin{itemize}
+    \item Teste de aceitação de usuário: Teste deve ser feito por um usuário não técnico a par das regras de negócio e objetiva verificar se o sistema está apropriado pra o seu uso.
+    \item Teste Alfa: Deve ser realizado no ambiente da organização em que o produto foi desenvolvido. É realizado pelos clientes ou equipe de teste independente.
+    \item Teste Beta: O teste beta deverá ser realizado pelas pessoas ou pelos clientes em próprio ambiente de trabalho. O objetivo é obter um feedback dos clientes ou usuários do sistema antes do sistema entrar em produção.
+\end{itemize}
+
+\subsubsection{Encerrar teste de aceite - TDA3}
+\label{sec:tda3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Consiste no encerramento dos testes de aceite conforme as metas da qualidade para tal atividade e a coleta de informações resultantes da atividade. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Os testes de aceite serão considerados encerrados quando as metas de qualidade (definidas no plano do projeto) forem atendidas. Devendo também ser produzido e assinado pelos \textit{stakeholders} um termo de aceite do produto validado bem como um relatório consolidado indicando todas as inconformidades identificadas, corrigidas e melhorias futuras, indicadores esses que deverão ser discutidos posteriormente com os \textit{stakeholder} envolvidos.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisito do software;
+    \item Requisitos de negócio.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Resultados dos testes.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item wiki, ferramenta de gestão de conhecimento
+\end{itemize}
+
+\subsection{Análise Estática - AES}
+\label{sec:aes}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A análise estática é comumente representada por duas técnicas, o uso de revisões e a análise estática do código. A primeira consiste em uma revisão sistemática do código fonte e outros artefatos com a intenção de evidenciar erros de codificação, requisitos e até mesmo de padrões de projeto. A análise estática de código acontece basicamente da mesma maneira, contudo com o uso de ferramentas automatizadas, que fazem uma varredura por todo ou uma parte do código fonte em busca de erros, geralmente tais ferramentas usam algumas heurísticas para encontrar erros mais comuns. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+As principais características de revisões e análise estática de código:
+
+\textbf{Revisão de Código:}
+\begin{itemize}
+    \item Verificar se há uso incorreto da linguagem e inconsistências do código, normalmente uma má interpretação de regra de negócio.
+    \item Validar o uso de boas práticas, padrões, possíveis otimizações de código, identação de código, ou até mesmo, se o código é um bom candidato à refatoração.
+    \item Erros mais comuns em código fonte, como ausência ou uso indevido de operadores lógicos, loops infinitos, performance e etc.
+\end{itemize}
+
+\textbf{Análise Estática:}
+\begin{itemize}
+    \item Validar se o código fonte está correto e executa a ação esperada;
+    \item Se a semântica e sintaxe está correta;
+    \item Usa heurísticas para a execução automatizada.
+\end{itemize}
+
+\textbf{Práticas Especificas:}
+\begin{itemize}
+    \item Identificar produtos de trabalho, tipos e critérios de revisão - AES1
+    \item Conduzir revisão de Código - AES2
+    \item Realizar Análises Estáticas Automatizadas – AES3
+\end{itemize}
+
+\subsubsection{Identificar produtos de trabalho, tipos e critérios de revisão - AES1}
+\label{sec:aes1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Identificar os produtos de trabalho e critérios para a revisão. A revisão pode ser feita de forma coletiva ou individual. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática consiste em identificar os produtos de trabalhos/artefatos que necessitarão de revisão, bem como levantar quais serão os tipos de revisão utilizada os critérios a serem seguidos. Os critérios definidos para a revisão podem ser diversos, como perfil profissional, quantidade de pessoas e etc, isso varia de organização para organização.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Código Fonte;
+    \item Artefatos.
+\end{itemize}
+
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Lista de itens identificados.
+\end{itemize}
+
+\subsubsection{Conduzir revisão de Código - AES2}
+\label{sec:aes2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Realizar a revisão de código. Comumente feita por revisão em pares com o auxilio de ferramentas de uso especifico. \\
+\hline
+\end{tabular}
+\end{table}
+
+As revisões podem ser realizadas de diversas maneiras, e seu foco não é detectar quem errou, mas sim as inconsistências. Essas revisões podem ser realizadas tanto em artefatos de teste quanto em artefatos/código fonte no desenvolvimento. Uma boa prática amplamente utilizada é a revisão em pares.
+
+\textbf{ Dependências }
+\begin{itemize}
+    \item Requisito do software;
+    \item Código Fonte.
+\end{itemize}
+
+\textbf{ Resultados Gerados }
+\begin{itemize}
+    \item Resultado da Revisão.
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas }
+\begin{itemize}
+    \item Checklist de Revisão;
+    \item Ferramentas de Versionamento de Código.
+\end{itemize}
+
+\subsubsection{Realizar Análises Estáticas Automatizadas - AES3}
+\label{sec:aes3}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Consiste na realização da análise estática no código através de uma ou mais ferramentas. \\
+\hline
+\end{tabular}
+\end{table}
+
+Realizar a análise estática consiste no uso de uma ferramenta para analisar o código fonte ou modelos do software em busca de defeitos que são difíceis de ser detectados pelo teste dinâmico.
+
+Recomendamos fortemente que a análise estática seja feita de forma automatizada. Existem diversas ferramentas já consolidas no mercado, o FreeTest sugere algumas. No entanto, a execução da análise estática quando implantada de forma automática (Geralmente em um ambiente de Integração Continua) é muito prática e com um custo muito baixo. Abaixo os ganhos que se pode obter com a análise estática:
+
+\begin{itemize}
+    \item Validação de regras/estilos de codificação;
+    \item Entendimento do código fonte;
+    \item Identificação de bugs;
+    \item Análise de segurança;
+    \item Mais praticidade (mais rápida que se for comparada com a manual);
+    \item Cobertura completa;
+    \item Facilita a revisão por integrantes da equipe que não são especialistas.
+    \item Barata, pois a máquina que realiza a execução.
+\end{itemize}
+
+\textbf{ Dependências }
+\begin{itemize}
+    \item Código fonte.
+\end{itemize}
+
+\textbf{ Resultados Gerados }
+\begin{itemize}
+    \item Relatório de inconsistências.
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas }
+\begin{itemize}
+    \item Ver lista de ferramentas.
+\end{itemize}
+
+\textbf{ Verificador de Regras de Estilo (style checker, do inglês): }
+\begin{itemize}
+    \item Valida a conformidade do código fonte de acordo com sua definição, como abertura de chaves, ordem de declaração, atribuições e subexpressões, visibilidade não explicita e etc;
+    \item Para linguagens como Java, javadoc é uma boa prática para documentação do código-fonte. Neste sentido é possível validar se os desenvolvedores estão documentando corretamente o código através de tais ferramentas de análise estática.
+    \item Prevenção de erros triviais e formatação de código.
+\end{itemize}
+
+\textbf{Verificador de Erros (bug checker, do inglês):}
+
+\begin{itemize}
+    \item Validação de concatenação de strings em loops;
+    \item Fluxo de encerramento;
+    \item Comparação de objetos;
+    \item Usa heurísticas de erros comuns de desenvolvedores;
+    \item Alertas que podem gerar possíveis erros.
+\end{itemize}
+
+\subsection{Automação da Execução do Teste - AET}
+\label{sec:aet}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Automatizar a execução dos testes é o uso de software para realizar a execução e teste de outro software. Essa área de processo é responsável em guiar a Organização para a utilização de ferramentas de automação para a execução dos testes. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Assim como a execução manual dos testes a automação propõe a execução de testes em busca de erros. A execução de testes de forma manual, no entanto, é massante e em alguns cenários impraticáveis, diante da necessidade de se executar testes de forma exaustiva e repetitiva.
+
+O ato de automatizar casos de teste é definido pela criação de scripts de teste. Uma vez automatizado um grande volume de casos de teste podem ser executados. A automação pode ser uma atividade cara inicialmente, contudo ao logo do tempo, se mostra bastante eficiente, principalmente em organizações que necessitam realizar muitos testes de regressão e possui softwares com muita dependência entre regras de negócio.
+
+\textbf{Práticas Especificas:}
+\begin{itemize}
+    \item Definir critérios para seleção de casos de teste para automação - AET1
+    \item Definir um framework para automação de teste – AET2
+    \item Gerenciar incidentes de teste automatizado – AET3
+    \item Automatizar a execução dos testes Automatizados - AET4
+\end{itemize}
+
+\subsubsection{Definir critérios para seleção de casos de teste para automação - AET1}
+\label{sec:aet1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Definição dos critérios que serão abordados para a escolha dos casos de teste automatizados. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A automação muitas vezes demanda muito tempo e custo para ser implantada. Todavia algumas literaturas recomendam que se automatize o máximo que puder, porém as organizações possuem limitações quanto ao esforço, prazo e custo de tais práticas. Uma abordagem interessante é definir critérios de quais casos de testes serão mais interessantes para serem automatizados, e iniciar o processo de automação por eles.
+
+Alguns critérios podem ser definidos para ajudar na escolha dos casos de teste, como pode ser visto abaixo.
+
+\begin{itemize}
+    \item Importância do caso de teste;
+    \item Condições de risco avaliadas pelo caso de teste;
+    \item Repetibilidade;
+    \item Tempo necessário para execução do caso de teste manualmente;
+    \item Dificuldade de execução manual;
+    \item Custo associado à execução;
+    \item Reaproveitamento;
+    \item Necessidade com relação à regra de negócio associada;
+    \item Software “testável” (Software que seja possível realizar testes automatizados)
+\end{itemize}
+
+\textbf{ Dependências }
+\begin{itemize}
+    \item Análise de Risco do Projeto.
+\end{itemize}
+
+\textbf{ Resultados Gerados }
+\begin{itemize}
+    \item Critérios dos casos de teste automatizados.
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas }
+\begin{itemize}
+    \item Podem ser inseridos na wiki da organização.
+\end{itemize}
+
+\textbf{Importância das funcionalidades no ponto de vista do cliente:}
+
+\begin{table}[!ht]
+\centering
+\caption{Ponto de Vista do Cliente}
+\label{my-label}
+\begin{tabular}{|l|l|lll}
+\cline{1-2}
+\textbf{Incentivo à automação} & \textbf{Cenário do caso de teste manual}                                                                                                                                      &  &  &  \\ \cline{1-2}
+Opcional              & Casos de teste que validam funcionalidades que tem pouco valor para o cliente;                                                                                       &  &  &  \\ \cline{1-2}
+Importante            & Casos de teste que validam funcionalidades importantes para o cliente, contudo não impedem a sua entrega.                                                            &  &  &  \\ \cline{1-2}
+Muito Importante      & Casos de teste que além de validar funcionalidades importantes são fundamentais para a entrega do produto. Geralmente é o núcleo das regras de negócio da aplicação. &  &  &  \\ \cline{1-2}
+\end{tabular}
+\end{table}
+
+\textbf{Critério baseado no tempo de execução manual de um caso de teste:}
+
+\begin{table}[!ht]
+\centering
+\caption{Tempo de execução manual}
+\label{my-label}
+\begin{tabular}{|l|l|lll}
+\cline{1-2}
+\textbf{Incentivo à automação} & \textbf{Cenário do caso de teste manual}                                                   &  &  &  \\ \cline{1-2}
+Baixo                          & Casos de teste pontuais e elementares.                                                     &  &  &  \\ \cline{1-2}
+Médio                          & Casos de teste com mais regras de negócio e com tempo razoável na execução.                &  &  &  \\ \cline{1-2}
+Alto                           & Casos de teste com muitas regras de negócio e que demoram um bom tempo na execução manual. &  &  &  \\ \cline{1-2}
+\end{tabular}
+\end{table}
+
+\textbf{Repetividade do caso de teste}
+
+\begin{table}[!ht]
+\centering
+\caption{Repetividade do caso de teste}
+\label{my-label}
+\begin{tabular}{|l|l|lll}
+\cline{1-2}
+\textbf{Incentivo à automação} & \textbf{Cenário do caso de teste manual}                                                                &  &  &  \\ \cline{1-2}
+Baixo                          & Casos de teste que não realizarão o mesmo teste mais de uma vez.                                        &  &  &  \\ \cline{1-2}
+Médio                          & Casos de teste que serão executados mais de uma vez no mesmo ciclo de teste.                            &  &  &  \\ \cline{1-2}
+Alto                           & Casos de teste que serão executados mais de uma vez no ciclo de teste e em versões futuras do software. &  &  &  \\ \cline{1-2}
+\end{tabular}
+\end{table}
+
+\textbf{Excesso de validações manuais}
+
+\begin{table}[!ht]
+\centering
+\caption{Excesso de validações manuais}
+\label{my-label}
+\begin{tabular}{|l|l|lll}
+\cline{1-2}
+\textbf{Incentivo à automação} & \textbf{Cenário do caso de teste manual}                                                          &  &  &  \\ \cline{1-2}
+Alto                           & Casos de teste com intervenção manual pontual. Exemplo: Tomada de decisão SIM/Não, combobox, etc. &  &  &  \\ \cline{1-2}
+Médio                          & Caso de teste com, pelo menos, três possibilidades de intervenção manual.                         &  &  &  \\ \cline{1-2}
+Baixo                          & Casos de teste com várias tomadas de decisão manual.                                              &  &  &  \\ \cline{1-2}
+\end{tabular}
+\end{table}
+
+
+\textbf{Necessidade de testes em múltiplas plataformas}
+
+
+\begin{table}[!ht]
+\centering
+\caption{Necessidade de testes em múltiplas plataformas}
+\label{my-label}
+\begin{tabular}{|l|l|lll}
+\cline{1-2}
+\textbf{Incentivo à automação} & \textbf{Cenário do caso de teste manual}                                                                &  &  &  \\ \cline{1-2}
+Baixo                          & Casos de teste que serão necessários executar somente em uma plataforma.                                &  &  &  \\ \cline{1-2}
+Alto                           & Casos de teste que deverá executar em mais de uma plataforma. Exemplo, Linux, Windows, Web, Mobile etc. &  &  \cline{1-2}
+\end{tabular}
+\end{table}
+
+\textbf{Validação com vários tipos de massas de entrada}
+
+\begin{table}[!ht]
+\centering
+\caption{Validação com vários tipos de massas de entrada}
+\label{my-label}
+\begin{tabular}{|l|l|lll}
+\cline{1-2}
+\textbf{Incentivo à automação} & \textbf{Cenário do caso de teste manual}                                                                                                                         &  &  &  \\ \cline{1-2}
+Baixo                          & Casos de teste que terão entradas pontuais. Pode-se usar o particionamento por equivalência e análise de valor limite para checar o domínio de entrada possível. &  &  &  \\ \cline{1-2}
+Médio                          & Casos de teste que terão mais de uma entrada/parâmetro possível para execução.                                                                                   &  &  &  \\ \cline{1-2}
+Alto                           & Casos de teste com mais de três entradas possíveis.                                                                                                              &  &  &  \\ \cline{1-2}
+\end{tabular}
+\end{table}
+
+\subsubsection{ Definir um framework para automação de teste - AET2}
+\label{sec:aet2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo dessa prática é escolher e manter frameworks e todo o aparato necessário para a automação de testes na organização. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A escolha do aparato técnico que vai dar suporte a todos os processos de automação da organização é algo muito importante. Não somente da ferramenta de automatização que irá de fato executar os testes, mas também como todo o aparato que vai dar sustentabilidade à execução automatiza, desde ambientes robustos para a execução, como ferramentas para geração de relatório e estatísticas.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Código Fonte.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Lista das Ferramentas de Automação utilizadas na Organização.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ver Lista de Ferramentas Sugeridas.
+\end{itemize}
+
+
+\subsubsection{ Gerenciar incidentes de teste automatizado - AET3}
+\label{sec:aet3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática objetiva relatar e gerenciar os incidentes relatados pelo ambiente de automação. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática é importante, pois muitas vezes vários erros são relatados durante a automação, e nem sempre a mesma ferramenta para relato e acompanhamento de erros dá uma visão real dos incidentes encontrados. É importante um monitoramento mais cuidadoso com a finalidade de levantar realmente o que são erros ou falso erros.
+
+É normal que em ambientes de automação com pouca maturidade aconteça uma grande quantidade de falsos positivos, pois faz parte da curva de amadurecimento e adaptação da empresa. É muito importante que desde o início da criação dos artefatos de automação se trabalhe com um ambiente de versionamento, para que o scripts de teste evoluam com os códigos fontes do sistema.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Lista de erros dos testes automatizados.
+\end{itemize}
+
+\textbf{ Resultados Gerados}
+\begin{itemize}
+    \item Erro relatado.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ver lista de ferramentas.
+\end{itemize}
+
+\subsubsection{Automatizar a execução dos testes Automatizados - AET4}
+\label{sec:aet4}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Permitir que a execução dos testes automatizados seja realizada de forma automática. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática permite com que, quando uma grande massa de testes já consolidada existir, seja possível a sua execução de forma automática. Essa prática é muito comum quando se tem um ambiente que integra todas as etapas do desenvolvimento de software de forma automática, neste caso, usando um ambiente de Integração Contínua \cite{BRAGA2015}.
+
+É muito comum em organizações em que as práticas de automação são bem difundidas e que há uma grande massa de casos de teste automatizados, que ocorra de forma sistemática e automática a execução dos casos de teste. Organizações que lidam dessa maneira com a automação, geralmente mantém essa prática em processo e definia que periodicamente haja a execução de scripts de teste em uma dada versão do software, por exemplo, logo após o lançamento de um build do software ou comitt de código fonte, a arquitetura de testes, por sua vez, através de um ambiente de Integração Contínua inicia de forma automática os scripts de teste.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Código Fonte.
+\end{itemize}
+
+\textbf{Resultados Gerados }
+\begin{itemize}
+    \item Relatório de Casos de Teste executados.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas }
+\begin{itemize}
+    \item Vide lista de ferramentas.
+\end{itemize}
+
+
+\subsection{ Gerência de Configuração de Teste - GCT }
+\label{sec:gct}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A gerência de configuração de teste tem como objetivo dar o suporte necessário no controle de versão, controle de mudanças e auditoria das configurações e artefatos de teste. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A gerência de configuração em teste de software consiste em um conjunto de atividades de apoio que permite o versionamento, controle e auditoria dos artefatos de teste, mantendo a integridade e a estabilidade durante a evolução do projeto. As principais atividades de gerenciamento de configuração proposta para o Método Freetest são:
+
+\begin{itemize}
+    \item Controlar e acompanhar mudanças nos scripts/artefatos de teste;
+    \item Criar baselines e versões dos artefatos/scripts de teste;
+    \item Versionamento dos ambientes e manter sua integridade.
+\end{itemize}
+
+\textbf{Práticas Especificas: }
+\begin{itemize}
+    \item Versionar Artefatos/scripts/planos/infraestrutura de Teste – GCT1
+    \item Criar baseline dos artefatos/scripts/planos já testados – GCT2
+    \item Versionar ambientes de Teste – GCT3
+\end{itemize}
+
+\subsubsection{ Versionar Artefatos/scripts/planos/infraestrutura de Teste - GCT1 }
+\label{sec:gct1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo dessa prática é fazer com que todos os artefatos, scripts, planos de teste e a infraestrutura/ambiente como código sejam versionados. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática tem como objetivo versionar todos os scripts, artefatos, infraestrutura e planos de teste. A Gerência de Configuração é uma área transversal a toda as etapas do processo de desenvolvimento, contudo é importante que os ativos de teste gerados durante toda a execução do projeto de testes sejam armazenados de forma devida.
+
+O Freetest aconselha o versionamento dos seguintes artefatos:
+
+\begin{itemize}
+    \item Scripts de automação;
+    \item Artefatos de teste, como planos, casos de teste, cronogramas, relatórios etc;
+    \item Ambientes de Teste (quando a organização possui ambientes virtualizados).
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Log de versionamento
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas }
+\begin{itemize}
+    \item Ferramentas de Gestão de Configuração.
+\end{itemize}
+
+\subsubsection{Criar baseline dos artefatos/scripts/planos já testados - GCT2 }
+\label{sec:gct2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A criação de baselines (em português, linha-base) consiste numa prática para consolidar os artefatos, scritps e planos de teste numa versão sólida dos mesmos. Apesar de não ser a versão final, as baselines geralmente são criadas nos marcos do projeto. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Criar linha de base dos artefatos, scripts e planos já executados durante o projeto. A criação de linha de base para o teste de software pode ser atrelado às mesmas práticas para o desenvolvimento, no qual ao final de cada marco deve-se versionar a versão sólida dos artefatos, scripts de teste e etc.
+
+\textbf{Dependências }
+\begin{itemize}
+    \item Scripts de teste, artefatos de projeto.
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramenta de Gerência de Configuração.
+\end{itemize}
+
+\subsubsection{Versionar ambientes de Teste – GCT3 }
+\label{sec:gct3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Permitir o versionamento de ambientes como serviço. Essa prática é indicada para organizações que possuem sua infraestrutura virtualizada, é uma prática amplamente utilizada pelo movimento DevOps e aconselhada no FreeTest. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática consiste em versionar ambientes de teste já utilizados para utilização futura. É muito comum, por exemplo, a necessidade de um rollback de uma versão testada anteriormente, com o versionamento desse ambiente é possível voltar essa versão.
+
+O FreeTest 2.0 incentiva o uso de técnicas de virtualização de ambientes na nuvem a fim de gerar flexibilidade, rapidez e robustez na criação de novos ambientes assim como o uso racional de recursos, usando somente o que for consumir.
+
+\textbf{Resultados Gerados }
+\begin{itemize}
+    \item Relatório de ambientes.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas }
+\begin{itemize}
+    \item Ferramenta de Gerenciamento de Ambientes.
+\end{itemize}
+
+\subsection{Medição - MED}
+\label{sec:med}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A área de processo de medição tem como objetivo estabelecer a capacidade de medição das atividades de teste e com isso dar suporte a tomadas de decisão, planejamento e funções gerenciais. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A gestão eficiente de projetos de teste demanda uma série de informações que são coletadas durante o ciclo de vida do projeto. Coletar e medir de forma eficaz as atividades realizadas torna projetos menos suscetíveis a erros, menor incidência de atrasos e cronogramas executados mais fiéis ao planejamento. A área de medição envolve:
+
+\begin{itemize}
+    \item Definir objetivos de medição da organização;
+    \item Técnicas e especificações de medidas;
+    \item Coleta e análise das medições realizadas.
+\end{itemize}
+
+\textbf{Práticas Especificas: }
+\begin{itemize}
+    \item Definir Objetivos de Medição de Teste - MED1
+    \item Coletar, analisar e comunicar dados de medição – MED2
+    \item Armazenar dados de medição - MED3
+\end{itemize}
+
+\subsubsection{Definir Objetivos de Medição de Teste - MED1}
+\label{sec:med1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo dessa prática é definir todos os itens para medição de testes derivados de necessidades de informação. Para que uma organização consiga sempre monitorar e gerenciar seu processo de teste. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O objetivo da medição não se resume a obtenção de dados quantitativos relacionados à aplicação dos testes no software. As suas metas abrangem também a revisão dos documentos tidos como base para a construção de software, bem como todo o processo definido para o ciclo de teste. Prover dados, e análises sobre estes dados, que possam satisfazer as necessidades e os objetivos de informação da organização.
+
+\textbf{ Dependências}
+\begin{itemize}
+    \item Planos de projeto;
+    \item Planejamento estratégico da empresa;
+\end{itemize}
+
+\textbf{Resultados Gerados }
+\begin{itemize}
+    \item Objetivos definidos.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas }
+\begin{itemize}
+    \item Nenhuma ferramenta recomendada.
+\end{itemize}
+
+\subsubsection{Coletar, analisar e comunicar dados de medição - MED2}
+\label{sec:med2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo desta prática é coletar e analisar os dados de medição de acordo com os objetivos de medição definidos na organização. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A análise será feita sempre por quem coleta os dados, logo após a coleta dos dados, caso existam exceções, elas deverão ser relatadas em seu respectivo local na Planilha de Medição. Todas as comunicações devem ser feitas logo após a análise dos dados e documentada na ferramenta de gestão.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Documentos de requisitos;
+    \item Documentação de Negócio;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Métricas de medicação.
+    \item Relatório das métricas.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramenta de gestão.
+\end{itemize}
+
+\textbf{Densidade de Defeitos na fase de Validação}
+
+Questão a ser respondida - Qual a qualidade do produto? Mede os defeitos encontrados por tamanho do sistema
+
+\textbf{Coleta de dados}
+
+Quando: A cada final de projeto Como: Identificar total de defeitos relatados para determinado caso de uso. Identificando o tamanho, (medida usada pela instituição exemplo, ponto de função, ponto de caso de uso), desse caso de uso. Passos: Ir na ferramenta de gestão de defeitos, coletar total de defeitos para cada caso de uso, identificar o tamanho do caso de uso.
+
+\textbf{Análise de dados}
+
+\begin{tabular}{|l|}
+\hline
+DNC= QNC/TCU * 100 \\ 
+\hline
+\end{tabular}
+
+Densidade de defeitos Validação = Quantidade de defeitos / Tamanho do caso de uso * 100
+
+\textbf{Faixas}
+
+Definir faixas Desejável, Aceitável e Inaceitável em percentual
+
+\textbf{Densidade de Defeitos Ponderada}
+
+Questão a ser respondida - Qual a qualidade do produto? Mede os defeitos encontrados por gravidade e tamanho do sistema
+
+\textbf{Coleta de dados}
+
+Quando: A cada final de projeto;
+
+Como: Identificar quantos defeitos foram relatados por tipo de gravidade para determinado caso de uso. Identificando o tamanho, (medida usada pela instituição exemplo, ponto de função, ponto de caso de uso), desse caso de uso. 
+
+Passos: Ir na ferramenta de gestão de defeitos, coletar total de defeitos por gravidade para cada caso de uso, identificar o tamanho do caso de uso.
+
+\textbf{Análise de dados}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+DDP = (QD * PG /TCU +...+QD *PGn / TCU) + (QDn PG /TCU+...+ (QDn * PGn / TCU) ... *100 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Densidade de defeitos ponderada = Quantidade de defeitos (da gravidade) x Peso da gravidade / Tamanho do caso de uso. Esse cálculo se repete até abranger todas as gravidades. Os valores obtidos são somados e multiplicados por 100. É necessário que seja definido um peso para cada gravidade (Exemplo: Grande 3, Média 2, Pequeno 1). Faixas Definir faixas Desejável, Aceitável e Inaceitável em percentual
+
+\textbf{Índice de defeitos encontrados pelo usuário}
+
+Questão a ser respondida - Qual a eficácia dos testes? Mede os defeitos encontrados pelo cliente
+
+\textbf{Coleta de dados}
+
+Quando: No período de homologação 
+
+Como: Identificar quantos defeitos foram relatados pelo cliente para determinado caso de uso. Identificando o tamanho, (medida usada pela instituição exemplo, ponto de função, ponto de caso de uso), desse caso de uso. 
+
+Passos: Ir na ferramenta de gestão de defeitos, coletar total de defeitos relatados pelo cliente para cada caso de uso, identificar o tamanho do caso de uso.
+
+
+
+\textbf{Análise de dados}
+
+\begin{tabular}{|l|}
+\hline
+IDE = QDRPC/TCU * 100 \\ 
+\hline
+\end{tabular}
+
+Índice de defeitos encontrados = Quantidade de defeitos relatados pelo cliente/Tamanho do caso de uso * 100
+
+\textbf{Faixas}
+
+Definir faixas Desejável, Aceitável e Inaceitável em percentual
+
+\textbf{Densidade de não conformidades documentação (Verificação)}
+
+Questão a ser respondida - Qual a qualidade da documentação? Mede os defeitos encontrados por tamanho da documentação Coleta de dados Quando : A cada final de projeto Como : Identificar total de não conformidades relatadas para determinado caso de uso. Identificando o tamanho, (medida usada pela instituição exemplo, ponto de função, ponto de caso de uso), desse caso de uso. Passos: Ir na ferramenta de gestão de defeitos, coletar total de não conformidades para cada caso de uso, identificar o tamanho do caso de uso.
+
+\textbf{Análise de dados}
+
+\begin{tabular}{|l|}
+\hline
+DNC= QNC/TCU * 100 \\ 
+\hline
+\end{tabular}
+
+Densidade de Não Conformidade = Quantidade de não conformidades / Tamanho do caso de uso * 100
+
+\textbf{Faixas} Definir faixas Desejável, Aceitável e Inaceitável em percentual
+
+\textbf{Produtividade por Hora}
+
+Questão a ser respondida - Qual a produtividade da equipe? Mede a produtividade em horas por tamanho da funcionalidade
+
+\textbf{Coleta de dados}
+
+Quando: A cada fechamento de baseline Como: Identificar qual tamanho da funcionalidade e quantas horas investidas nos testes. Passos: Ir na ferramenta de gestão de produção, coletar total de horas investidas para cada  caso de uso, identificar o tamanho do caso de uso.
+
+\textbf{Análise de dados}
+
+\begin{tabular}{|l|}
+\hline
+PH = TCU / TI \\ 
+\hline
+\end{tabular}
+
+Produtividade Hora = Tamanho do caso de uso / Tempo Investido
+
+\textbf{Faixas}
+
+Definir faixas Desejável, Aceitável e Inaceitável em percentual
+
+\textbf{Índice de tratamento de defeitos por gravidade}
+
+Questão a ser respondida - Qual a quantidade de defeitos não corrigidos? Mede os defeitos não tratados por gravidade e tamanho do sistema
+
+Coleta de dados
+
+Quando: A cada final de projeto Como: Identificar quantos defeitos foram relatados e não tratados por tipo de gravidade para determinado caso de uso. Identificando o tamanho, (medida usada pela instituição exemplo, ponto de função, ponto de caso de uso), desse caso de uso. Passos: Ir na ferramenta de gestão de defeitos, coletar total de defeitos que não foram tratados (status novo, atribuído, em aberto) por gravidade para cada caso de uso, identificar o tamanho do caso de uso.
+
+\textbf{Análise de dados}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+IDNT = (QDNT * PG /TCU +...+ QDNT * PGn /TCU) + (QDNTn * PG / TCU+...+QDNTn * PGn / TCU)... * 100 \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Índice de Defeitos Não Tratados = Quantidade de defeitos não tratados (da gravidade) x Peso da gravidade / Tamanho do caso de uso. Esse cálculo se repete até abranger todas as gravidades. Os valores obtidos são somados e multiplicados por 100. É necessário que seja definido um peso para cada gravidade (Exemplo: Grande 3, Média 2, Pequeno 1).
+
+\textbf{Faixas}
+
+Definir faixas Desejável, Aceitável e Inaceitável em percentual
+
+\subsubsection{Armazenar dados de medição - MED3 }
+\label{sec:med3}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O objetivo desta prática é gerenciar e armazenar os dados de medição. O armazenamento dos dados de medição, especificações de medidas e análise de resultados possibilita o seu uso como dados históricos de um modo efetivo. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Os dados coletados serão armazenados em uma Planilha de Medição contendo todas essas fórmulas. Posteriormente a planilha deve ser submetida a ferramenta de gestão em uma pasta dedicada a essa etapa do processo.
+
+\textbf{Dependências}
+
+\begin{itemize}
+\item Relatórios de dados coletados;
+\end{itemize}
+
+\textbf{ Resultados Gerados }
+\begin{itemize}
+\item Consolidação das medições.
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas }
+\begin{itemize}
+\item Ferramenta de gestão de projetos;
+\end{itemize}
+
+\subsection{Integração contínua - INC}
+\label{sec:inc}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A Área de Processo em Integração Contínua (IC) promove a integração das tarefas realizadas pela equipe. A existência dessa Área de Processo é regida principalmente pelo trabalho em grupo e deve existir em torno de um sistema de controle centralizado de versão. \\
+\hline
+\end{tabular}
+\end{table}
+
+Segundo Martin Fowler \cite{Beck2001}, "Integração Contínua é uma prática de desenvolvimento de software onde os membros de um time integram seu trabalho frequentemente, geralmente cada pessoa integra pelo menos diariamente – podendo haver múltiplas integrações por dia. Cada integração é verificada por um build automatizado (incluindo testes) para detectar erros de integração o mais rápido possível. Muitos times acham que essa abordagem leva a uma significante redução nos problemas de integração e permite que um time desenvolva software coeso mais rapidamente."
+
+Além de uma integração entre equipes e engajamento da mesma, a Área de Processo em Integração Continua provê um feedback instantâneo, isso permite que a cada novo código-fonte enviado para o repositório central, novas builds (versões do software) são geradas automaticamente e então testadas. A integração Continua proporciona não só um rápido feedback como também uma comunicação automatizada e em tempo real para toda a equipe. Logo com a intenção de atender esses procedimentos repetitivos, o FreeTest propõe no minimo a execução das seguintes práticas especificas:
+
+\textbf{Práticas Especificas:}
+
+\begin{itemize}    
+    \item Gerar build Automatizado - INC1
+    \item Executar análise estática Automatizada – INC2
+    \item Executar conjunto de testes automatizados abrangentes – INC3
+    \item Executar criação de ambientes virtualizados de forma automatizada - INC4
+\end{itemize}
+
+\subsubsection{Gerar build Automatizado - INC1}
+\label{sec:inc1}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática define que o processo geração automática do build, permitindo qualquer pessoa compilar, testar e instalar novos builds a partir da Integração Continua. \\
+\hline
+\end{tabular}
+\end{table}
+
+A cada versão do código-fonte gerada é necessário que de forma sistemática sejam gerados os builds que deverão ser testados pela equipe de teste. A criação de builds e publicação/instalação destes em ambientes podem ocorrer (e o ideal é que sim) diversas vezes durante o ciclo de vida do projeto, essa atividade repetitiva é onerosa, portanto deve ser automatizada.
+
+Um ambiente de integração contínua pode facilmente automatizar a geração de builds em alto nível, possibilitando que qualquer membro da equipe, mesmo não técnico possa gerar builds de forma simples e rápida.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Código fonte;
+    \item Dependências e bibliotecas;
+    \item Banco de dados.
+\end{itemize}
+
+\textbf{ Resultados Gerados }
+\begin{itemize}
+    \item Build gerado;
+    \item Criação da versão.
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas }
+\begin{itemize}
+    \item Ferramenta de Integração Continua.
+\end{itemize}
+
+\subsubsection{Executar análise estática automatizada - INC2}
+\label{sec:inc2}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática permite que o conjunto de testes estáticos sejam executadas de forma automática a cada \textit{commit} de código no repositório. Com o auxilio de ferramentas especificas, essa atividade se torna totalmente automatizada. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+O nível de qualidade e legibilidade do código é fundamental em ambiente onde várias equipes trabalham no mesmo código fonte e fazem mudanças constantemente. Neste tipo de ambiente é necessário que certas convenções de codificação, padrões sejam seguidos, para que o código possa ser compreendido por todos os envolvidos no processo e que seja facilmente testado pela equipe. Manter e assegurar a qualidade do código fonte gerado é investir na qualidade do produto de software entregue.
+
+Desta maneira, a análise estática de código realizada de forma automatizada tem por finalidade realizar verificações nos a cada \textit{commits} ou geração de \textit{build} (depende de como for configurado no ambiente de IC). Logo as ferramentas de análise são responsáveis pela execução da análise do código linha por linha, tais ferramentas podem fornecer informações sobre, cobertura do código, complexidade do código, \textit{checkstyles}, problemas detectados etc. Os problemas no código podem ser bugs, alertas de erros comuns ou somente potenciais bugs, de acordo com a ferramenta empregada. Essa atividade é muito importante, pois além de ser totalmente automatizada, revela problemas ou futuros problemas antes mesmo da realização dos testes funcionais.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Código Fonte;
+\end{itemize}
+
+\textbf{ Resultados Gerados}
+\begin{itemize}
+    \item Relatório das análises;
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramentas de análise estática;
+\end{itemize}
+
+\subsubsection{Executar conjunto de testes automatizados abrangentes - INC3}
+\label{sec:inc3}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática consiste em realizar uma execução de scripts de testes abrangentes, realizando testes automatizados funcionais caixa preta ou caixa branca. Esta prática é complementar, ou seja, não garante que a funcionalidade/software está totalmente funcional, é necessário um conjunto de testes automatizados mais específicos. Pode-se criar \textit{scripts} para automação funcional do software; É possível também executar casos de teste unitário e/ou combinando as duas técnicas. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A execução dos testes é sem dúvida uma das partes mais importantes de um ambiente de IC. Então é importante que em ambientes de Integração Contínua os testes devam ser corretamente automatizados, ter uma boa cobertura e não promover falsos erros.
+
+Nesta prática especifica, o FreeTest recomenda algumas suites de teste que são bastante comuns em ambientes IC, sendo que cada uma tem seu próprio objetivo, abaixo citadas.
+
+\begin{itemize}
+	\item Testes Unitários: Esta é a \textit{suite} que deverá rodar primeiro, muitas vezes essa massa de testes é executada antes mesmo de adicionar as mudanças no repositório. Testes unitários são e devem ser, testes pontuais e bem concisos e são classes ou funções. Quando necessário acessar dados externos para validação de testes, algumas práticas comuns são o uso de "\textit{mocks}" e "\textit{stubs}"
+	\item Testes de Integração: Devem ser executados logo após os testes unitários. Testes de integração asseguram que partes do código/funcionalidades recém inseridas funcionam corretamente quando integradas. É altamente recomendável que esses testes sejam realizados em ambientes clonados, ou seja, muitos próximos aos ambientes de produção.
+	\item Testes de Sistema: São os testes que serão executados na aplicação de fato. Após a geração do \textit{build} e \textit{deploy} da aplicação, essa bateria de testes podem ser executadas afim de detectar problemas a nível de interação de tela. Evidentemente esse nível de teste é feito de forma automatizada e a execução dos \textit{scripts} é feita por parte do ambiente de IC.
+\end{itemize}
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Código Fonte;
+    \item Plugins e Frameworks;
+    \item Banco de dados;
+\end{itemize}
+
+\textbf{ Resultados Gerados}
+\begin{itemize}
+    \item Relatórios de Execuções;
+\end{itemize}
+
+\textbf{ Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramenta de Integração Contínua.
+\end{itemize}
+
+\subsubsection{Executar criação de ambientes virtualizados de forma automatizada - INC4}
+\label{sec:inc4}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática define o uso de ferramentas para manutenção da infraestrutura. De tal modo que, permite manter a infraestrutura de forma controlada, viabilizando a construção de ambientes consistentes, confiáveis e repetíveis de forma automática e gerando assim a base para se formar um pipeline de implantação confiável.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+A criação automatizada de ambientes virtuais nada mais é que usar das práticas de DevOps, especificamente dos conceitos de Infraestrutura como Código para responder à rápidas e flexíveis necessidades por ambientes de teste \cite{BRAGA2015}. Se tratando de um ambiente de IC, essa abordagem é muito interessante, pois possibilita que a própria ferramenta de IC realize essa tarefa de forma rápida e sob-demanda, por exemplo, essa prática pode ser muito utilizada para execução de testes de integração e de aceitação, no qual a própria ferramenta cria uma máquina virtual para testes, inicia os \textit{scripts} de teste de forma automatizada.
+
+Essa prática especifica é o marco inicial para outra atividade muito conhecido que é a Entrega Contínua (\textit{Continuous Delivery}) \cite{WOOTTON2013}. Com a criação de ambientes virtualizados para execução dos testes a organização pode também estender essa prática para a implantação de seus ambientes de produção. Por fim, essa prática, quando bem implementada, preconiza o processo de preparar e gerir os ambientes de testes corretos e instalar as versões corretas da aplicação e suas configurações \cite{humble2010}.
+
+Alguns padrões para se manter o processo de disponibilização dos ambientes de forma confiável podem ser vistos \cite{duvall2011}:
+
+\begin{itemize}
+    \item Provisionamento automático: Automatizar o processo de configuração de seu ambiente incluindo redes, serviços e infraestrutura;
+    \item Monitoramento dirigido por comportamento: Execução contínua de testes automáticos para verificar o comportamento da infraestrutura;
+    \item Sistemas imunes: Implantação de software enquanto conduz o monitoramento para reverter caso aconteça erros;
+    \item Ambientes bloqueados: Bloquear ambientes compartilhados de acessos indevidos praticando todo versionamento através de automação.;
+    \item Ambientes similares ao de produção: Ambientes de testes de destinos devem ser o mais próximo possível da produção;
+    \item Ambientes transitórios: Os ambientes devem ser capazes de serem criados, gerenciados e terminados facilmente;
+\end{itemize}
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Virtual Machine;
+    \item Containers de provisionamento.
+\end{itemize}
+
+\textbf{ Resultados Gerados}
+\begin{itemize}
+    \item Sucesso na criação do ambiente.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramenta de Integração Contínua.
+    \item Virtual Machine;
+\end{itemize}
+
+\subsection{Teste de Regressão - TRG}
+\label{sec:trg}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+ Teste de Regressão assegura que algo que foi desenvolvido em uma funcionalidade anterior ainda funciona corretamente na versão em produção. \\
+\hline
+\end{tabular}
+\end{table}
+
+Teste de regressão essencialmente valida se o que previamente funcionava está funcionando na versão mais atual, basicamente garante que mudanças no código não introduziram novos \textit{bugs} na aplicação. Essa modalidade de teste pode ser implementada em uma nova \textit{build}, simplesmente se houve uma correção simples no código ou se a correção gerou muito impacto em várias funcionalidades, neste último caso esse tipo de teste é mais recomendado.
+
+Quando há um grande número de dependências adicionadas em um novo código é essencial checar que o novo código inserido está de acordo com o código anterior e que não houve alterações no mesmo. Em ambientes de desenvolvimento ágil, por haver uma grande quantidade de builds geradas é importante que essa prática seja inserida tantas vezes quanto necessário, pois entende-se que a cada \textit{build} um novo código pode ser inserido ou modificado e o teste de regressão é importante para assegurar que o código fonte antigo ainda funciona corretamente.
+
+O FreeTest recomenda as seguintes práticas especificas para adequação à essa área de processo:
+
+\textbf{Práticas Especificas:}
+
+\begin{itemize}    
+    \item Preparar massa de teste - TRG1
+    \item Manter script de regressão - TRG2
+    \item Executar teste de regressão - TRG3
+    \item Encerrar teste de regressão - TRG4
+\end{itemize}
+
+\subsubsection{Preparar massa de teste - TRG1}
+\label{sec:trg1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A atividade de preparação da massa de teste consiste na criação ou ajuste dos dados que serão utilizados para a execução dos testes automatizados. Uma adequação nos dados deve ser realizada pelo profissional responsável para que seja garantido a máxima eficácia desses dados. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Por eficácia, entende-se uma maior probabilidade de provocar a revelação de defeitos e a detecção de falhas. Para fazer essa adequação, pode-se utilizar técnicas de derivação de casos de teste, tais como: análise de valor limite e partição de equivalência. Caso esses dados estejam em uma base de dados, um conhecimento prévio é necessário, para extrair ou inserir dados na respectiva base. É importante ressaltar que essas informações devem estar com tipos de dados compatíveis aos esperados pelo sistema, por exemplo, para um atributo data, deve-se ter massa de dados compatível com o tipo data, por exemplo.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisitos;
+    \item Matriz de Impacto dos Requisitos;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Massa de dados gerada.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Banco de Dados, XML, CSV, Arquivos de dados etc.
+\end{itemize}
+
+
+\subsubsection{Manter \textit{scripts} de regressão - TRG2}
+\label{sec:trg2}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essas manutenções nos \textit{scripts} garantem a integridade dos mesmos e uma execução sem interrupções.
+As manutenções nos \textit{scripts} de teste devem ser atividades corriqueiras na organização. Uma vez que o acúmulo dessa atividade pode dificultar a manutenção e/ou comprometer partes íntegras dos mesmos. \\
+\hline
+\end{tabular}
+\end{table}
+
+O FreeTest recomenda que sempre antes de realizar um teste de regressão verifique-se os \textit{scripts} e massas utilizadas, para que não ocorra quebra no fluxo normal da execução automatizada. Importante também manter a rastreabilidade do negócio entre os \textit{scripts} de regressão e os requisitos.
+
+A repetição da execução dos testes de maneira exaustiva, ou seja de todo o sistema, é extremamente onerosa. Isso ocorre diversas vezes por não se saber ao certo os impactos causados por determinadas mudanças, ou mesmo por haver algumas áreas não cobertas no produto sob teste. Como uma forma de diminuição desse custo de execução procura-se, sempre que possível, a utilização de testes automatizados. 
+
+Para a execução dessas ferramentas, são necessários \textit{scripts}. Esses \textit{scripts} são programas simples escritos em linguagens comerciais, que uma linguagem estruturada, que permite executar as ações previamente capturadas pelo usuário. Cada ferramenta tem sua própria linguagem e formas de capturar os elementos que interagem com o usuário, mas em linhas gerais, sempre que algum elemento alvo da automação é modificado é necessário alterar também o \textit{script} de teste. Essas manutenções nos \textit{scripts} garantem a integridade dos mesmos e uma execução sem interrupções.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Scripts de teste;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Scripts de teste versionados.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramenta de Gerência de Configuração.
+\end{itemize}
+
+\subsubsection{Executar teste de regressão - TRG3}
+\label{sec:trg3}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática representa de fato a execução do teste de regressão. Uma boa definição desta prática é definida por Muller \cite{muller2011} "Teste de regressão é o teste repetido de um programa que já foi testado, após sua modificação, para descobrir a existência de algum defeito introduzido ou não coberto originalmente como resultado da mudança".  \\
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática representa de fato a execução dos testes de regressão durante o ciclo de desenvolvimento. O teste de regressão, por ser um teste caro e demorado, normalmente, é executado por ferramentas de automação de teste. Este tipo de teste consiste em re-executar uma parte significativa ou todo o sistema de modo a verificar se não houve introdução de defeitos após correções no software. Em alguns casos, dependendo da tecnologia utilizada no desenvolvimento, uma única vírgula mal colocada ou faltante pode provocar falhas na execução do software e/ou acarretar comportamentos inadequados em partes já testadas do programa por exemplo. Para garantir que a correção de uma falha não irá provocar um comportamento inesperado, frequentemente é realizado o reteste de todo o sistema ou as partes mais propensas a erros.
+
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Scripts de teste;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Relatório de Execução.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramentas de apoio a regressão.
+\end{itemize}
+
+\subsubsection{Encerrar teste de regressão - TRG4}
+\label{sec:trg4}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+ Essa prática especifica consolida o termino dos testes de regressão.\\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Scripts de teste;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Relatório de Execução.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Ferramentas de apoio a regressão.
+\end{itemize}
+
+
+
+
+
+
+\section{Considerações Finais}
+\label{sec:consideracoesfinaiscap4}
+
+Neste capítulo, foi apresentado uma proposta de um novo processo para o Método FreeTest com a intenção de alinhar o FreeTest à realidade atual das Organizações. O processo proposto foi desenvolvido com base no conhecimento empírico dos envolvidos e de pesquisas elaboradas com embasamento do estado da prática e revisão da literatura. O novo processo possui como base de melhorias o MPT.Br, Metodologia Ágil e algumas boas práticas de DevOps. 
+
+Com a intenção de centralizar as informações inerentes ao processo de teste e facilitar a implantação e conhecimento sobre o FreeTest, uma \textit{Wiki} foi criada para manter todas informações sobre o processo proposto. Um software web também foi concebido para que toda solução deste trabalho fosse entregue "como um serviço", ou seja, a organização que desejar ter seu processo de teste, não precisará, instalar e implantar uma ferramenta para prover isso, basta acessar a ferramenta online modelar seu processo ou utilizar o processo proposto e com ajuda do guia de implantação poderá facilmente implantar as Áreas de Processo e Práticas Especificas em sua organização no momento que desejar.
+
+Em síntese foi apresentado a construção/melhoria de um processo de teste novo para o Método FreeTest, uma \textit{wiki} para manutenção do processo proposto e uma ferramenta que contempla a manutenção dos processos da empresa, de seu time de trabalho e por fim, um guia de implantação que será mostrado no capítulo \ref{sec:construcaoguiaimplantacao}.

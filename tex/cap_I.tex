@@ -1,0 +1,90 @@
+\chapter{Introdução}
+\label{cap:intro}
+
+Este capítulo introduz os passos iniciais realizados nesta pesquisa. Uma visão geral e estruturada desse trabalho é apresentado e por fim um direcionamento aos demais tópicos deste trabalho.
+
+\section{Problema e Justificativa}
+\label{cap:problema}
+
+No contexto mundial, as Micro Pequenas Empresas (MPEs) representam cerca de 99,2\% das empresas do mundo \cite{Laporte2010, Ramachandram2008}. No Brasil o crescimento em investimentos em Tecnologia da Informação (T.I.) tem sido grande, só no ano de 2013 foi constatado um aumento de 15,4\% em relação ao ano anterior \cite{SilvaDias2015}. Segundo dados da consultoria IDC \footnote{http://br.idclatin.com/} (\textit{International Data Corporation}), o mercado brasileiro de Tecnologia da Informação terá um crescimento na ordem de 2,6\% no ano de 2016. Apesar dos números de 2015 não terem sido efetivados, a consultoria acredita que haverá uma expansão nos investimentos em T.I. no Brasil. Sendo assim, o setor deverá manter um faturamento superior aos US\$ 60 bilhões, "mesmo diante de um cenário econômico adverso", afirma a empresa \cite{FelipeDreher2016}. De acordo com esses resultados, o Brasil se manteve em 1º lugar do ranking de investimento no setor de T.I. na América Latina, com 45\% dos investimentos, somando US\$ 59,9 bilhões \cite{FelipeDreher2016}.
+
+No ano de 2015 o Brasil possuía aproximadamente 13.950 empresas dedicadas ao desenvolvimento, produção, distribuição de software e de prestação de serviços, sendo aproximadamente 58\% das empresas de desenvolvimento e produção de software ou prestação de serviço \cite{abranet2016}. No cenário nacional a região sudoeste lidera o mercado brasileiro de T.I. com 60,44\% enquanto que as regiões, Sul (13,95\%), Norte (4,24\%), Nordeste (10,72\%) e Centro-Oeste (10,64\%) ocupam uma parcela não muito significativa (vide tabela \ref{tab:1.1}).
+
+\begin{table}[H]
+\centering
+\caption{Distribuição Regional do Mercado Brasileiro de T.I. (Fonte: IDC \cite{abes-software2016})}
+\label{tab:1.1}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Região}       & \textbf{Hardware} & \textbf{Software} & \textbf{Serviços} & \textbf{Total} 
+    \\ \hline
+\textbf{Norte}        & 5,22\%            & 3,06\%            & 2,94\%            & 4,24\%         
+    \\ \hline
+\textbf{Nordeste}     & 12,88\%           & 8,67\%            & 7,43\%            & 10,72\%        
+    \\ \hline
+\textbf{Sul}          & 14,6\%            & 13,18\%           & 13,11\%           & 13,95          
+    \\ \hline
+\textbf{Centro-Oeste} & 9,88\%            & 11,38\%           & 11,8\%            & 10,64\%        
+    \\ \hline
+\textbf{Sudeste}      & 57,42\%           & 63,71\%           & 64,72\%           & 60,44\%        
+    \\ \hline
+\end{tabular}
+\end{table}
+
+No estudo intitulado "Mercado Brasileiro de Software e Serviços" \cite{abes-software2016}, cerca de 94\% das empresas de T.I. são classificadas como Micro e Pequenas Empresas. Embora o mercado de Tecnologia da Informação seja dominado pelas MPEs segundo a Softex \cite{GuiaMPTbr} cerca de 40\% de novos produtos de software disponibilizados no mercado falham. Esse fato ocorre em grande parte porque as MPEs não aplicam investimentos em qualidade, especificamente em processos de desenvolvimento, teste de software, ferramentas, capacitação técnica e outros.
+
+Uma característica no contexto das empresas de T.I. é que durante vários anos a indústria desenvolveu software de forma prescritiva (sequencial e linear), ou seja, utilizou-se de práticas de desenvolvimento de software similarmente a outras atividades de áreas como a engenharia. Alguns modelos prescritivos são citados em Pressman \cite{PRESSMAN2011}, tais como o modelo em cascata, modelos incrementais, evolucionários e espirais. Todos estes modelos têm como característica principal o sequenciamento de fases e a prescrição de um conjunto de atividades, tarefas, produtos, mecanismos de garantia de qualidade e produto para cada projeto. 
+
+Durante muito tempo os modelos prescritivos atenderam às necessidades de negócio das empresas de T.I. contudo, hoje em dia, com necessidades de negócios das empresas mudando constantemente, implicando alterações constantes de requisitos os modelos prescritivos têm se tornado incompatíveis com o ecossistema das organizações de T.I. Diante dessas dificuldades dos modelos prescritivos atenderem as constantes mudanças foi proposto métodos mais ágeis, sendo a metodologia ágil, que teve como principal objetivo que as organizações de T.I. respondessem de forma dinâmica as constantes mudanças do negócio. Neste sentido, outro problema é que através do uso cada vez maior de técnicas ágeis e ambientes web escaláveis \footnote{https://pt.wikipedia.org/wiki/Escalabilidade} as organizações, especificamente equipe de desenvolvimento e requisitos, se tornaram mais eficientes e realizando entregas de software mais rápidas em um período de tempo menor. Contudo, isso acarretou uma sobrecarga para a equipe de operação/suporte pois com a geração de \textit{builds} muito maior que antes e a necessidade de por em produção os softwares desenvolvidos aumentou, assim surgiu outro problema não contemplado por esses métodos: Como realizar entregas constantes de software de forma efetiva, eficaz e que responda rapidamente às constantes mudanças dos requisitos?
+
+Para resolver esse novo gargalo entre o desenvolvimento do software e sua entrega surgiu o movimento DevOps \cite{Debois2008}, com o objetivo de romper as barreiras tradicionais entre as equipes de desenvolvimento e operação, promovendo o uso de colaboração constante entre os times e com o foco no negócio/requisitos e suas mudanças constantes. Desta maneira, com a ajuda de práticas DevOps o código produzido no desenvolvimento será implantado pela equipe de operação de forma rápida e previsível fornecendo um fluxo de trabalho com entregas contínuas de software, com isso é possível, por exemplo, realizar entregas diárias com o intuído de aumentar a confiabilidade, estabilidade, resistência e segurança do software entregue.
+
+% criar nome para a ferrramenta e inserir aqui
+
+Considerando a importância das MPEs no desenvolvimento de software no mercado nacional e global, a importância de métodos mais ágeis de desenvolvimento e teste de software, este trabalho desenvolveu e disponibilizou para a sociedade um conjunto, que contem um processo de teste mais ágil, evoluído a partir do Método FreeTest \cite{Camilo-junior2012} e MPT.Br \cite{GuiaMPTbr} que incluí práticas DevOps e \textit{frameworks} ágeis, uma plataforma web que possibilita a manutenção de processos de forma modelada e um guia de implantação que auxiliará as organizações na implantação do processo de teste proposto. O estudo, criação e disponibilização desse material será visto nas seções seguintes.
+
+\section{Relevância da Pesquisa}
+
+A relevância de se fazer pesquisas na área de teste de software é que o mercado de T.I. é cada vez mais emergente. Especificamente no contextos das MPEs de T.I. há uma carência muito grande em estudos na acadêmia no sentido de ajudar as organizações a resolverem problemas corriqueiros na área de desenvolvimento e qualidade do software, que concentre na preservação da entrega de software com valor e com abordagens baseadas em princípios \textit{lean} \footnote{https://en.wikipedia.org/wiki/Lean_software_development} e ágil.
+
+Com o propósito de atender às particularidades das MPEs, algumas iniciativas, inclusive nacionais de modelos de maturidade e processos de teste além de normas internacionais vêm sendo propostas, tais como, o próprio Método Freetest \cite{Camilo-junior2012} a Melhoria do Processo de Teste Brasileiro (MPT.Br) \cite{GuiaMPTbr} e a \textit{International Organization for Standardization} (ISO)/ \textit{International Electrotechnical Commission} (IEC)/ \textit{Institute of Electrical and Electronic Engineers} (IEEE) 29119-2 \cite{Standard2013}. No entanto, essas propostas de melhoria de processo não contemplam as novas necessidades das MPEs de T.I., como, por exemplo, processos mais dinâmicos, menos prescritivos, ou seja, mais ágeis. Outro fator que corroborou essa pesquisa é que não foram encontradas pesquisas que que auxiliem às organizações de maneira mais ampla, ofertando um processo, sugerindo ferramentas e disponibilizando um guia de apoio para implantação do processo de teste de forma fácil, \textit{As-a-Service} (como serviço) e gratuita.
+
+\section{Objetivos da Pesquisa}
+\label{cap:objetivos}
+
+Este trabalho propõe a melhoria do processo de teste de software do Método FreeTest \cite{Camilo-junior2012} e criação de um novo processo chamado FreeTest 2.0. Através do enfoque em práticas ágeis, técnicas DevOps, um processo de teste genérico e uma plataforma para modelagem dos processos da Organização. No que diz respeito ao processo uma \textit{wiki}, contendo o processo com suas Áreas de Processo e Práticas Especificas e lista de ferramentas de apoio será disponibilizada. 
+
+Por fim, como maior contribuição desse trabalho será disponibilizado para a comunidade um guia de implantação didático para que organizações que desejem implantar o processo, possam realizar a implantação passo-a-passo de forma intuitiva, rápida e com baixo custo. 
+
+Em síntese esse trabalho tem como objetivos específicos entregar:
+
+\begin{itemize}
+    \item Modelo de Processo de Teste de Software, chamado FreeTest 2.0 voltado para MPEs com enfoque em práticas ágeis e DevOps;
+    \item Ferramenta web contendo um processo de teste genérico e modelagem deste processo, bem como uma ferramenta que permitirá à organização modelar seus demais processos;
+    \item Guia de Implantação do processo. Consistirá em um guia de implantação, no formato \textit{"\textit{wizard}"} que através de uma interação com o usuário auxiliará na implantação do processo de teste na organização. 
+    \item Através do Guia de Implantação e do Arcabouço do processo será possível disponibilizar como serviço (\textit{As-a-Service}) uma plataforma/ferramenta \textit{online} para criação/manutenção dos processos de teste das organizações.
+\end{itemize}
+
+\section{Procedimentos Metodológicos}
+\label{sec:procedimentos}
+
+Como procedimentos metodológicos para se alcançar os resultados desta pesquisa foram realizadas revisões na literatura sobre o estado da prática de \textit{frameworks} de teste, processos de uso específicos em teste de software, métodos ágeis e DevOps no contexto da indústria e com aplicação prática. Sendo que para guiar os resultados das buscas, alguns instrumentos de revisão sistemática foram utilizados, apesar deste estudo não realizar uma revisão sistemática em si, a ajuda de alguns artefatos desta técnica foram muito úteis, principalmente para nortear os resultados e combiná-los com o conhecimento empírico dos autores. Abaixo a lista de perguntas que nortearam as buscas por literaturas utilizadas neste trabalho:
+
+\begin{itemize}
+    \item Q01 - Existem na literatura trabalhos de revisões sistemáticas sobre processos de teste de software?
+    \item Q02 - Quais são os processos, métodos e \textit{frameworks} de testes de software desenvolvidos nos últimos cinco anos?
+    \item Q03 - Quais trabalhos estão aplicando DevOps e Métodos Ágeis em processo de teste?
+\end{itemize}
+
+\section{Organização do Trabalho}
+\label{cap:estrutura}
+
+Além deste capítulo, que apresenta a definição do problema e a justificativa, a relevância da pesquisa, os objetivos e os procedimentos metodológicos, o presente trabalho está organizado da seguinte forma:
+
+\begin{itemize}
+\item Com intuito de realizar a fundamentação desta pesquisa, o \textbf{Capítulo \ref{sec:referencialteorico}} traz o referencial teórico com os conceitos de Teste de Software, DevOPS, Métodos Ágeis, Processos de Teste, Modelos de Processo e trabalhos relacionados.
+\item Buscando a originalidade e relevância desta pesquisa, o \textbf{Capítulo \ref{sec:revisao}} apresenta uma revisão da literatura sobre processos de teste especifico e ferramentas de amparo à implantação de processos.
+\item Com o propósito de alcançar os objetivos desta pesquisa, no \textbf{Capítulo \ref{sec:construcaoframeworkprocesso}} é apresentado a construção do \textit{framework} de processo.
+\item Com o propósito de alcançar os objetivos desta pesquisa, no \textbf{Capítulo \ref{sec:construcaoguiaimplantacao}} é apresentado o guia de implantação do processo.
+\item No \textbf{Capítulo \ref{sec:conclusaoetrabalhosfuturos}} são realizadas as conclusões finais deste trabalho e as sugestões para trabalhos futuros.
+\end{itemize}

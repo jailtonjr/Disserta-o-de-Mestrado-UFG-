@@ -1,0 +1,133 @@
+% ------------------------------
+%Exemplo de dissertação do INF-UFG com texto em portugues formatado com LaTeX
+%-----------------------------------------------------------------
+\documentclass[dissertacao]{inf-ufg}
+%Pacotes para tabelas longas e alinhamento vertical
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{graphicx}
+%Resolvendo problemas de acentuação
+%\usepackage[brazil]{babel}
+%\usepackage[utf8]{inputenc}
+
+% Opões da classe inf-ufg (ao usar mais de uma, separe por vírgulas)
+%   [tese]         -> Tese de doutorado.
+%   [dissertacao]  -> Dissertação de mestrado (padrão).
+%   [monografia]   -> Monografia de especializção.
+%   [relatorio]    -> Relatório final de graduação.
+%   [abnt]         -> Usa o estilo "abnt-alf" de citação bibliográfica.
+%   [nocolorlinks] -> Os links de navegação no texto ficam na cor preta.
+%                     Use esta opção para gerar o arquivo para impresso
+%                     da versão final do seu texto!!!
+
+%----------INICIO DO DOCUMENTO %
+
+\begin{document}
+
+%----------AUTOR, TÍULO E DATA DE DEFESA %
+\autor{Jailton Alkimin Louzada} % ()
+\autorR{Louzada, Jailton A} % (}
+
+\titulo{FreeTest 2.0: Uma Evolução do Método para Melhoria do Processo de Teste de Software em Micro, Pequenas Empresas e Startups Brasileiras}
+%\subtitulo{}
+
+\cidade{Goiânia} % Nome da cidade em foi desenvolvido o trabalho
+\dia{13} %
+\mes{10} % Data da apresenta�ão/defesa do trabalho
+\ano{2016} % Formato numérico: \dia{01}, \mes{01} e \ano{2009}
+
+%-------------------------------------------------------------- ORIENTADOR %
+\orientador{Dr. Celso Gonçalves Camilo Junior}
+\orientadorR{Camilo-Junior, Celso G}
+% Use os comandos a seguir se for Orientadora e nao Orientador.
+%\orientadora{Dra. Deller James Ferreira}%
+%\orientadoraR{Ferreira, Deller J}%Ferreira, Deller J
+
+\coorientador{Dr. Auri Marcelo Rizzo Vincenzi}%Dr. Sérgio Teixeira de Carvalho
+\coorientadorR{Vicenzi, Auri M R}%Carvalho, Sérgio T
+
+\coorientador{Dr. Cássio Leonardo Rodrigues}%Dr. Sérgio Teixeira de Carvalho
+\coorientadorR{Rodrigues, Cassio L}%Carvalho, Sérgio T
+
+% Use os comandos a seguir se for Co-orientadora e nao Coorientador.
+%\coorientadora{\textless Nome da Co-orientadora\textgreater}
+%\coorientadoraR{\textless Nome Reverso da Co-orientadora\textgreater}
+
+%-------------------------------------------------- INSTITUIÇÃO E PROGRAMA %
+\universidade{Universidade Federal de Goiás} % {Universidade Federal de Goiás}
+\uni{UFG} % UFG
+\unidade{Instituto de Informática}%Instituto de Informática
+%\departamento{INSTITUTO DE INFORMÁTICA} %Unidades com mais de um depto.
+
+\universidadeco{Universidade Federal de Goiás}%Universidade Federal de Goiás
+\unico{UFG}%UFG
+\unidadeco{Instituto de Informática}
+
+\programa{Ciência da Computação}% Computação
+\concentracao{Ciência da Computação}
+
+%-------------------------------------------------- ELEMENTOS PRÈ-TEXTUAIS %
+\capa    % Gera o modelo da capa externa do trabalho
+\publica % Gera a autorização para publicação em formato eletrônico
+\rosto   % Primeira folha interna do trabalho
+
+
+\input{./pre/pre_aprovacao}
+\input{./pre/pre_direitos}
+\input{./pre/pre_dedicatoria}
+\input{./pre/pre_agradecimentos}
+\input{./pre/pre_epigrafe}
+\input{./pre/pre_resumo}
+\input{./pre/pre_abstract}
+
+\tabelas[figtab]
+%Opçôs:
+%nada [] -> Gera apenas o sumário
+%fig     -> Gera o sumário e a lista de figuras
+%tab     -> Sumário e lista de tabelas
+%alg     -> Sumário e lista de algoritmos
+%cod     -> Sumário e lista de códigos de programas
+%
+% Pode-se usar qualquer combinação dessas opções.
+% Por exemplo:
+%  figtab       -> Sumário e listas de figuras e tabelas
+%  figtabcod    -> Sumário e listas de figuras, tabelas e
+%                  códigos de programas
+%  figtabalg    -> Sumário e listas de figuras, tabelas e algoritmos
+%  figtabalgcod -> Sumário e listas de figuras, tabelas, algoritmos e
+%                  códigos de programas
+%\input{./pre/pre_termos}
+%--------------------------------------------------------------- CAPÍTULOS %
+\input{./tex/cap_I}
+\input{./tex/cap_II}
+\input{./tex/cap_III}
+\input{./tex/cap_IV}
+\input{./tex/cap_V}
+\input{./tex/cap_VI}
+%\input{./tex/cap_VII}
+
+%------------------------------------------------------------ BIBLIOGRAFIA %
+\cleardoublepage
+\nocite{*} %%% Retire esta linha para gerar a bibliografia com apenas as
+           %%% referências usadas no seu texto!
+\arial
+\bibliography{./bib/modelo-tese} %%% Nomes dos seus arquivos .bib
+\label{ref-bib}
+
+%--------------------------------------------------------------- APÊDICES %
+\apendices
+
+%\input{./pos/apend_I}
+%\input{./pos/apend_II}
+%\input{./pos/apend_III}
+%\input{./pos/apend_IV}
+%\input{./pos/apend_V}
+%\input{./pos/apend_VI}
+%\input{./pos/apend_VII}
+
+\end{document}
+
+%------------------------------------------------------------------------- %
+%        F I M   D O  A R Q U I V O :  m o d e l o - t e s e . t e x       %
+%------------------------------------------------------------------------- %

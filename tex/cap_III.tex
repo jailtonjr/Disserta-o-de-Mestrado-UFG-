@@ -2118,13 +2118,14 @@ Essa prática representa de fato a execução dos testes de regressão durante o
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
- Essa prática especifica consolida o termino dos testes de regressão.\\
+Essa prática especifica consolida o termino dos testes de regressão. Esta prática é importante como indicador de finalização desta atividade, pois é importante que a equipe atenda os objetivos de qualidade da organização e que consiga entregar do software menos exposto a \textit{bugs} introduzidos durante correções. Esta Prática Especifica, tende a atender a pergunta: Quando finalizar os testes?\\
 \hline
 \end{tabular}
 \end{table}
 
+O encerramento dos testes de regressão depende do escopo das novas funcionalidades inseridas e do nível de confiabilidade em que a funcionalidade exerce sobre o software. Se o escopo da correção ou funcionalidade é grande então a área afetada poderá ser grande também, desta forma os testes deverão ser executados (preferivelmente) em toda a área impactada, incluindo a execução dos novos casos de teste. Essa decisão deve ser tomada em equipe juntamente com os responsáveis pelo desenvolvimento/correção da funcionalidade.
 
-
+Outro marco importante desta Prática Especifica é a consolidação dos dados e geração de métricas. É importante sempre coletar as informações geradas neste tipo de teste para tomadas de decisão, planejamento estratégico e diagnóstico da necessidade de automatização de algumas áreas do software. Por exemplo, ao ser observado que uma determinada área do software (Ocorre muito em software legado com arquiteturas monolíticas) sofre muitas correção/melhorias é importante que a equipe trace um planejamento estratégico para manutenção contínua dos testes nesta área, neste caso a automatização seria de grande ajuda.
 
 
 \textbf{Dependências}
@@ -2142,9 +2143,461 @@ Essa prática representa de fato a execução dos testes de regressão durante o
     \item Ferramentas de apoio a regressão.
 \end{itemize}
 
+\subsection{Teste de Desempenho - TPE}
+\label{sec:tpe}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+O teste de desempenho determina como o sistema executa certas ações em termos de resposta e estabilidade sobre certa carga de trabalho \cite{Molyneaux2009}. A área de processo de teste de desempenho tem como alvo identificar métricas importantes de desempenho do software visando monitorar por meio deste atributo a qualidade do software e tempo de resposta em determinadas circunstâncias.\\
+\hline
+\end{tabular}
+\end{table}
+
+O Teste de Desempenho é utilizado para avaliar de modo geral as características de desempenho do software. Existem várias características dentro deste contexto de desempenho que podem ser analisadas, dentre elas perfis de desempenho, fluxo de execução, tempo de resposta, confiabilidade e limites operacionais. Dentro destas características, existem técnicas que podem melhor ajudar a Organização a alcançar os objetivos de teste de forma mais eficaz \cite{Kruchten:2003:RUP:940320}.
+
+Além de tentar alcançar os objetivos de qualidade final necessários para o software, é importante que essa prática também seja inserida durante o ciclo de desenvolvimento do software propriamente dito, a intenção é que a arquitetura seja criada dentro dos padrões de qualidade necessários para o correto funcionamento do software em questão. A escolha da melhor abordagem de teste a ser utilizada e o escopo da aplicação dessa técnica depende muito do cenário e uso do software.
+
+O FreeTest recomenda as seguintes práticas especificas para adequação à essa área de processo:
+
+\textbf{Práticas Especificas:}
+
+\begin{itemize}    
+    \item Preparar ambiente de teste - TPE1
+    \item Manter \textit{script} de desempenho - TPE2
+    \item Executar teste de desempenho - TPE3
+    \item Encerrar teste de desempenho - TPE4
+\end{itemize}
+
+\subsubsection{Preparar ambiente de teste - TPE1}
+\label{sec:tpe1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Esta prática específica consiste na preparação do ambiente para realização dos testes de desempenho. A preparação de ambiente de teste é importante, pois o resultado da execução depende muito do ambiente de teste no qual os testes serão realizados. O ideal é que o ambiente de teste seja o mais próximo possível do ambiente de produção.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+O ambiente de teste de desempenho deve ser o mais próximo possível do ambiente de produção. Essa tarefa não é fácil e demanda muito conhecimento técnico, as vezes tornando-se uma tarefa que pode demorar dias e até semanas, por isso se faz importante o planejamento desta atividade de forma bem minuciosa.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisitos;
+    \item Matriz de Impacto dos Requisitos;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Massa de dados gerada;
+    \item Ambiente montado.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Nenhuma.
+\end{itemize}
+
+\subsubsection{Manter \textit{script} de desempenho - TPE2}
+\label{sec:tpe2}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Os \textit{scripts} de teste de automação devem ser versionados no repositório de teste e sempre que possível reaproveitados para novas baterias de teste. Esta prática é importante, pois mantém uma evolução dos \textit{scripts} utilizados e facilita seu reaproveitamento e evolução.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+Após a preparação da massas de testes, ambiente e criação dos \textit{scripts} que irão realizar a avaliação de desempenho da aplicação, deve-se criar uma prática de versioná-los. Sugere-se que estes \textit{scripts} deverão estar armazenados em um repositório específico, seguindo também uma nomenclatura padronizada.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Scripts.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Scripts versionados.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Repositório de versionamento.
+\end{itemize}
+
+\subsubsection{Executar teste de desempenho - TPE3}
+\label{sec:tpe1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+A execução dos testes de desempenho devem ser realizadas após ambiente e \textit{scripts} criados. O teste de desempenho deve identificar os gargalos do sistema no que diz respeito ao seus requisitos não funcionais e determinar e coletar outras informações como a infraestrutura necessária para a correta operação da aplicação.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+A execução dos testes de desempenho deve ser feita obedecendo os requisitos não funcionais do sistema, bem como os objetivos de teste. A intenção do teste de desempenho pode ser abrangente ou bem especifica, isso deverá estar totalmente alinhado aos objetivos de teste da organização bem como ao contexto da aplicação.
+
+Em softwares do tipo e-commerce, por exemplo, uma capacidade de tráfego baixo, não sendo capaz de atender as demandas da loja virtual podem levar o negócio ao fracasso, neste cenário mostra-se importante a necessidade de realizar testes de desempenho. Alguns benefícios do teste de desempenho podem ser vistos abaixo:
+
+\begin{itemize}
+	\item Redução do custo de mudanças e do sistema: Quando se sabe os reais motivos de um desempenho ruim, ou seja, se é do software ou da infraestrutura em que o mesmo se encontra hospedado, é possível reduzir custos com escolhas mais coerentes. E não somente investir em escalabilidade de hardware, ou seja, clareza na utilização dos recursos.
+	\item Identificação antecipada de problemas: O uso do teste de desempenho durante a confecção do sistema ajuda a detectar fragilidades e pontos de melhoria na arquitetura, guiando a equipe, a desde cedo atender os objetivos de desempenho.
+	\item Aumento dos lucros: Com testes de desempenho bem feitos é possível mitigar problemas futuros de acesso ao sistema, desta forma melhorando a capacidade de atender vários acessos simultâneos em uma aplicação.
+	\item Satisfação dos Clientes: Um software que não responde adequadamente as necessidades dos clientes por questões de desempenho gera insatisfação e uma má experiência do usuário.
+\end{itemize}
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisitos;
+    \item Scripts de Teste;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Relatório de desempenho;
+    \item Relatório de erros não funcionais.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item JMeter (somente para Java).
+\end{itemize}
+
+\subsubsection{Encerrar teste de desempenho - TPE4}
+\label{sec:tpe1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática especifica encerra os testes de desempenho. Tem como finalidade coletar os resultados gerados, relatar as lições aprendidas durante a atividade e usar os indicadores gerados para planejamento futuro.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+O encerramento desta atividade deve ser marcado pela consolidação de todos os dados gerados e histórico de execução das atividades do teste de desempenho durante todas as etapas. É importante que o encerramento desta atividade esteja alinhada com os objetivos de qualidade da Organização e que os resultados gerados nesta etapa sejam utilizados para o planejamento de novos projetos de teste.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Histórico de execução dos testes;
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Lições aprendidas;
+    \item Relatório final;
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Nenhuma.
+\end{itemize}
 
 
+\subsection{Testes Contínuos Automatizados - TCA}
+\label{sec:tca}
 
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Testes Contínuos representam a automação de teste a cada iteração. Em um ambiente onde as entregas são cada vez mais curtas há uma grande necessidade que haja mais ciclos de teste durante o projeto. Os testes contínuos representam a automação de testes em cada fase, de forma continua e integrada, por tanto, realizando uma rastreabilidade em cada fase e dos resultados \cite{humble2010}. \\
+\hline
+\end{tabular}
+\end{table}
+
+Com demandas mais frequentes de entrega de software e implantações sendo feitas com mais frequência, fica inviável realizar os testes de forma manual a cada entrega. A qualidade de software é uma área transversal a todo o projeto de desenvolvimento e deve ser realizada por toda a equipe, não somente por testadores, pensando nisso o contexto de Testes Contínuos aborda a integração entre as equipes de desenvolvimento e teste, colaborando na escrita de casos de teste automatizados durante o desenvolvimento e em alguns casos desenvolvendo casos de teste antes mesmo do desenvolvimento \cite{humble2010}.
+
+Testes Contínuos devem representar a automação de teste em cada fase e devem estar mais próximos do desenvolvimento do código. Essa prática especifica só faz sentido dentro do contexto de Integração Contínua, pois durante cada fase várias técnicas possíveis de teste podem ser executadas como etapas deste ambiente integrado e de forma automatizada. Num ambiente onde a fase de teste acontece paralelamente ao desenvolvimento, erros podem ser corrigidos mais rapidamente, pois não haverá necessidade de aguardar o ciclo de teste se encerrar para que haja correção dos mesmos. Para implantação desta Área de Processo alguns elementos chave são destacados \cite{ContinuousTestIT}:
+
+\begin{itemize}
+	\item Avaliação de Risco mais eficiente: Riscos devem ser mitigados, deficit técnicos devem ser detectados com antecedência e uma avaliação da qualidade deve ser feita constantemente.  
+	\item Rastreabilidade de Requisitos: Garantir que o que está sendo implementado está conforme o requisito especificado e rastreado.
+	\item Analises mais Avançadas: Com a utilização de análises estáticas, análise de impacto e avaliação de escopo/priorização para prevenção de defeitos.
+\end{itemize}
+
+
+O FreeTest recomenda as seguintes práticas especificas para adequação à essa área de processo:
+
+\textbf{Práticas Especificas:}
+
+\begin{itemize}    
+    \item Definição da abordagem de automação que será utilizada - TCA1
+    \item Criação dos \textit{scripts} de teste de aceitação - TCA2
+    \item Medir cobertura de testes - TCA3
+    \item Automatizar testes repetitivos - TCA4
+    \item Manter Infraestrutura de Versionamento de Ambientes - TCA5
+\end{itemize}
+
+\subsubsection{Definição da abordagem de automação que será utilizada - TCA1}
+\label{sec:tca1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática é importante para se definir arquitetura de automação que será utilizada, artefatos que serão gerados e escolher as abordagens automatizadas serão utilizadas no ambiente de teste continuo, testes unitários, funcionais etc. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+A escolha da melhor abordagem de automação está ligada a quais técnicas, padrões e ferramentas serão utilizadas no ambiente de teste contínuo. A ferramentas serão o componente mais importante para implantação desta prática, se a ferramenta aumenta as habilidades e produtividade da equipe, esta ferramenta será uma boa candidata.
+
+Algumas boas práticas para direcionar a Organização na escolha das melhores abordagens para criação dos testes contínuos são listadas:
+
+\begin{itemize}
+	\item Escolha da melhor ferramenta;
+	\item Pensamento orientado à automação;
+	\item Colaboração;
+	\item Resultados e métricas bem definidas.
+\end{itemize}
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Arquitetura do Sistema;
+    \item Ambientes de teste.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Padrões de automação;
+    \item Lista de Ferramentas;
+    \item Arquitetura.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Verificar Lista de Ferramentas de Automação.
+\end{itemize}
+
+\subsubsection{Automatizar \textit{suites} de teste contínuos - TCA2}
+\label{sec:tca2}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática específica sugere a automatização de \textit{suites} de modalidades especificas de teste com a intenção de garantir uma maior cobertura contra falhas e encontrar possíveis erros num estágio mais breve possível. Os testes contínuos estão mais próximos do código-fonte, podem ser realizados por várias técnicas de teste e fazem parte massivamente da Integração Contínua \cite{BRAGA2015}.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+Nos testes contínuos os erros podem ser corrigidos mais rapidamente, como essa prática ocorre ainda durante o ciclo de desenvolvimento e está totalmente automatizada toda vez que uma \textit{suite} de testes é executada e erros são evidenciados os desenvolvedores podem realizar as correções e então após o termino de toda a bateria de testes enviar o \textit{build} estável para a equipe de testes. No estudo "\textit{Reducing wasted development time via continuous testing}" \cite{salf2003} os autores evidenciam resultados de experimentos em que com o uso de testes contínuos o tempo de desenvolvimento foi reduzido em até 15\%.
+
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisitos do sistema (funcionais e não funcionais).
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item \textit{Suites} de teste automatizadas.
+
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Verificar Lista de Ferramentas de Automação/DevOps.
+\end{itemize}
+
+
+\subsubsection{Medir cobertura de testes - TCA3}
+\label{sec:tca3}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Com a maturidade nos processos e expertise da equipe na área de automação, é comum que a bateria de testes automatizados evolua. Neste cenário é importante que a a massa de testes automatizados cubra a maior quantidade de cenários/código possível, para essa prática pode-se utilizar a prática ET1 (seção \ref{sec:et1}) para levantamento dos cenários/casos de teste.
+É importante utilizar algum mecanismo para mediar a cobertura dos testes com a finalidade de validar tal cobertura com a Política de Teste da Empresa.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+As métricas de cobertura dos testes geram mais confiança por parte da equipe e da Organização na entrega do software estável e sem a presença de erros evidentes. Basicamente as métricas respondem à pergunta "Qual é a abrangência dos testes?", frequentemente a cobertura é realizada no código fonte, também conhecida como baseada em código, busca ver qual a abrangência dos testes em determinadas classes/módulos do sistema, ou no sistema como todo \cite{RUP940320}.
+
+Em um ambiente de Testes Contínuos a cobertura de código deve ser mais abrangente possível. As métricas de cobertura podem ser realizadas sob as técnicas de teste que a Organização utiliza, normalmente é feita nos casos de teste unitários. É importante que nas reuniões de acompanhamento do projeto e ao término de cada entrega os responsáveis façam um levantamento no código fonte em busca de sempre aumentar a \textit{suite} de testes, logo então aumentar a cobertura de testes.
+
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Requisitos do sistema (funcionais e não funcionais).
+    \item Código Fonte.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Relatório de cobertura de testes.
+
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Verificar Lista de Ferramentas de cobertura de teste.
+\end{itemize}
+
+
+\subsubsection{Manter ambientes de teste versionados - TCA4}
+\label{sec:tca3}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Os ambientes de teste representa a infraestrutura da Organização e os serviços que os apoiam, tais como servidores de DNS, \textit{firewalls}, roteadores, repositórios de controle de versão, armazenamento, aplicações de monitoramento, servidores de e-mail e assim por diante. Todo esse aparato de infraestrutura pode ser facilmente gerenciado, através da virtualização. Neste sentido é aconselhável manter todos os ambientes de teste armazenados, usando tanto \textit{private clouds} quanto \textit{public clouds} para manter todos os ambientes versionados, disponíveis, replicáveis e facilmente suscetíveis a mudanças, tudo isso podendo ser feito sob-demanda. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Manter os ambientes de teste versionados é uma boa prática, pois irá reduzir futuramente problemas como o retrabalho em se criar ambientes de teste toda vez que necessário. O versionamento dos ambientes em uma nuvem computacional além de incentivar o uso de virtualização, gera flexibilidade, rapidez e elasticidade na criação de novos ambientes de teste.
+
+Com o uso da infraestrutura como código, é possível que todo os ambientes de teste possam ser versionados em ferramentas de uso especifico para gerenciamento de configuração, desta maneira de forma controlada é possível construir/reutilizar ambientes de teste consistentes, confiáveis e repetíveis de forma automática. O uso de ambientes de teste virtualizados promove também o uso racional de recursos, desta maneira usando somente o que for consumir.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Aspectos infraestruturais do ambiente.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Ambientes de teste.
+
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Verificar lista de ferramentas para provisionamento de ambientes.
+\end{itemize}
+
+\subsection{Otimização do  Teste - OT}
+\label{sec:ot}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa Área de Processo tem como objetivo manter as práticas de teste de software em constante otimização. Com a constante evolução de novos métodos, ferramentas e técnicas é importante que a Organização mantenha-se alinhada às novas tendências tecnológicas e que a cultura da qualidade seja transversal a todas as equipes. \\
+\hline
+\end{tabular}
+\end{table}
+
+Essa Área de Processo tem como objetivo apoiar a Organização nas necessidades de definição e evolução dos processo de teste, bem como a melhoria da estrutura organizacional e evolução das técnicas de teste utilizadas.
+
+Assim como no MPT.BR \cite{GuiaMPTbr} essa AP também propõe a formação de um grupo gestor para assegurar a evolução contínua dos testes e a formalização de papéis bem definidos dentro da estrutura organizacional, desta maneira motivando a equipe em busca de aperfeiçoamento contínuo e com foco nas pessoas/equipe.
+
+
+O FreeTest recomenda as seguintes práticas especificas para adequação à essa área de processo:
+
+\textbf{Práticas Especificas:}
+
+\begin{itemize}    
+    \item Definir a estrutura organizacional do teste - OT1
+    \item Estabelecer um grupo de processo de teste de software - OT2
+    \item Definir melhoria contínua do processo de teste - OT3
+\end{itemize}
+
+\subsubsection{Definir a estrutura organizacional do teste - OT1}
+\label{sec:tca1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+ Essa prática especifica visa estabelecer de forma bem definida a estrutura organizacional dos testes na Organização.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+Segundo o MPT.Br \cite{GuiaMPTbr} "A estrutura do teste representa um arcabouço onde atividades para atingir os objetivos referentes ao teste são planejadas, executadas, monitoradas e controladas. Em uma organização a estrutura organizacional de teste corresponde aos relacionamentos efetivos da área de teste como um todo, compreendendo os recursos humanos envolvidos, os processos aplicados e a infraestrutura necessária para as atividades relacionadas ao teste. Um dos principais aspectos da estrutura organizacional do teste é a definição das áreas chave de responsabilidades incluindo o estabelecimento de linhas apropriadas de comunicação."
+
+A criação de papeis bem definidos, planos de carreira e atuação de forma independente dentro da equipe de desenvolvimento é importante para segurar a separação dos papeis exercidos por cada um dentro do time, e assim criando responsabilidades diante ao papel exercido e integridade da equipe de teste.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Sem dependências.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Descrição da estrutura organizacional;
+    \item Organograma.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Pode ser publicada na base de conhecimentos da organização.
+\end{itemize}
+
+\subsubsection{Estabelecer um grupo de processo de teste de software - OT2}
+\label{sec:ot2}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Prática especifica que visa a criação do grupo do processo de software para melhoria contínua do processo.\\ 
+\hline
+\end{tabular}
+\end{table}
+
+Essa prática especifica apoia na evolução constante do processo de teste, tanto no sentido de decisões de melhoria nos processos, quanto na escolha de técnicas, ferramentas e aquisição de conhecimento constante. Segundo o MPT.Br \cite{GuiaMPTbr} "para que o processo de teste seja efetivo na organização e possua uma evolução planejada e controlada, é fundamental que um Grupo de processo de teste de software seja estabelecido."
+
+Esse grupo de processo deve ser composto por pessoas chave dentro da Organização, normalmente analistas com mais experiência, a ideia é que esporadicamente o grupo se reúna para tomar decisões em que aspectos os processos podem ser melhorados e como essas melhorias irão impactar a Organização, em aspectos como: Melhoria na qualidade do software, eficiência dos processos, redução de custos, aquisição de conhecimento, ferramentas e etc. 
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Sem dependência.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Relatório de Reunião.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Os resultados e pautas das reuniões podem ser armazenados na base de conhecimento da Organização (\textit{Wiki}).
+\end{itemize}
+
+\subsubsection{Definir melhoria contínua do processo de teste - OT3}
+\label{sec:ot3}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{130mm}|}
+\hline
+Essa prática faz com que a equipe que cuida da estrutura organizacional do teste, mantenha sempre o processo de teste atualizado. Como a área de tecnologia é muito dinâmica e as empresas de TI tem suas necessidades em constante mudança é importante que o processo de teste esteja sempre atualizado, alinhado à essas mudanças e necessidades. \\ 
+\hline
+\end{tabular}
+\end{table}
+
+
+Através do grupo de processo de teste definido na prática específica \textbf{Estabelecer um grupo de processo de teste de software - OT2} (Seção \ref{sec:ot2}) a Organização terá sempre uma evolução constante de seus processos, ferramentas e técnicas. Essa prática deve ser alinhada ao planejamento estratégico da Organização, e sempre que possível haver reuniões de acompanhamento, avaliação de métricas de desempenho do processo e workshops com propostas para inserção de melhorias no processo de teste.
+
+Apesar de ser uma prática da equipe de teste é importante que integrantes de outros times façam parte das reuniões e tomadas de decisões, quanto mais uma equipe multidisciplinar melhor será a visão do processo como todo.
+
+\textbf{Dependências}
+\begin{itemize}
+    \item Sem Dependências.
+\end{itemize}
+
+\textbf{Resultados Gerados}
+\begin{itemize}
+    \item Relatório das reuniões e melhorias propostas.
+\end{itemize}
+
+\textbf{Ferramentas Relacionadas}
+\begin{itemize}
+    \item Os resultados e pautas das reuniões podem ser armazenadas em uma base de conhecimento (\textit{Wiki}).
+\end{itemize}
 
 
 \section{Considerações Finais}

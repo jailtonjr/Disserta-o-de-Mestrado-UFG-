@@ -418,37 +418,178 @@ O FreeTest orienta que ao finalizar os testes de regressão deve-se apresentar u
 
 Normalmente as ferramentas de automação utilizadas nos testes de regressão disponibilizam relatórios para as análises dos resultados, no entanto é responsabilidade da organização definir quais as métricas e indicadores serão mais adequados às suas necessidades.
 
+\subsection{Preparar ambiente de teste - TPE1}
+
+O ambiente de teste de desempenho deve ser o mais próximo possível do ambiente de produção. Essa tarefa não é fácil e demanda muito conhecimento técnico, as vezes tornando-se uma tarefa que pode demorar dias e até semanas, por isso se faz importante o planejamento desta atividade de forma bem minuciosa.
+
+Essa prática está ligada ao contexto de uso da aplicação, características técnicas e aos objetivos de teste que se desejam alcançar, porém o FreeTest lista alguns desafios que devem ser considerados para essa prática:
+
+\begin{itemize}
+	\item Infraestrutura de Servidor: Replicar o ambiente de produção para esse tipo de teste não é fácil. Demanda alto \textit{know-how} técnico, tempo e um custo adicional ao projeto.
+	\item Infraestrutura de Rede: Para suportar a quantidade requisições é importante prever que a infraestrutura de rede a ser utilizada nos testes suporte uma grande carga de requisições.
+	\item Tamanho do Banco de Dados: O tamanho do banco de dados pode impactar nos testes, desta forma é importante que o banco de dados, além de ser o mesmo utilizado pela produção, seja simulado no mesmo ambiente e de preferência com o mesmo tamanho.
+	\item Testes Geograficamente Distintos: É importante simular requisições de diferentes localizações. Para isso existem algumas ferramentas que emulam tal tipo de serviço.
+\end{itemize}
 
 
-\subsection{Executar análise estática automatizada - INC2}
+\subsection{Manter \textit{script} de desempenho - TPE2}
 
-\subsection{Executar análise estática automatizada - INC2}
+Os scripts de desempenho devem ser versionados em repositório de teste padrão e mantida uma nomenclatura adequada. Sempre que possível fazer uma rastreabilidade das funcionalidades que deverão sofrer o teste de desempenho com os \textit{scripts} que já foram gravados pra mesma.
 
-\subsection{Executar análise estática automatizada - INC2}
-
-\subsection{Executar análise estática automatizada - INC2}
+Em arquiteturas monolíticas, pode-se criar uma subdivisão e nomenclatura por funcionalidades, enquanto que para arquiteturas \textit{micro services} além dessa divisão, deve-se dividir por cada  serviço.
 
 
-\subsection{Executar análise estática automatizada - INC2}
+\subsection{Executar teste de desempenho - TPE3}
 
-\subsection{Executar análise estática automatizada - INC2}
+Antes de iniciar qualquer modalidade de teste de desempenho é necessário definir o escopo da sua aplicação em termos de desempenho. Alguns parâmetros são definidos abaixo para guiar a Organização nesta definição de abrangência dos testes e objetivos de qualidade a serem alcançados: 
 
-\subsection{Executar análise estática automatizada - INC2}
+Objetivos de Teste:
 
-\subsection{Executar análise estática automatizada - INC2}
+\begin{itemize}
+	\item Os objetivos de teste devem ser bem específicos e realistas;
+	\item Aspectos não funcionais e funcionais devem ser levados em consideração.
+\end{itemize}
 
-\subsection{Executar análise estática automatizada - INC2}
+Aspectos Funcionais:
 
-\subsection{Executar análise estática automatizada - INC2}
+\begin{itemize}
+	\item Carga: número de usuários;
+	\item Cobertura Funcional: Escolha de funcionalidades (regra dos 80/20);
+	\item Satisfação do usuário: Tempo resposta limite;
+\end{itemize}
+
+Parâmetros Técnicos:
+
+\begin{itemize}
+	\item Tipo de Arquitetura: Monolítica, \textit{Micro Services} e etc;
+	\item Infraestrutura: Aspectos de hardware em geral ou virtualização.
+\end{itemize}
 
 
-\subsection{Executar análise estática automatizada - INC2}
+Segundo o RUP (\textit{Rational Unified Process}) \cite{RUP940320} o teste de desempenho abrange os seguintes tipos de teste:
 
-\subsection{Executar análise estática automatizada - INC2}
+\begin{itemize}
+	\item Teste de avaliação de desempenho: Compara o desempenho de um objetivo do teste novo ou desconhecido em relação a um padrão de referência conhecido, como softwares ou medições existentes.
+    \item Teste de contenção: Verifica se o objetivo do teste pode tratar de forma aceitável as demandas de vários atores no mesmo recurso (registros de dados, memória e assim por diante).
+    \item Perfis de desempenho: Verifica a aceitabilidade do comportamento de desempenho do objetivo do teste através de configurações variáveis, enquanto as condições operacionais permanecem constantes.
+    \item Teste de carga: Verifica a aceitabilidade do comportamento de desempenho do objetivo do teste em condições operacionais variáveis (como número de usuários, número de transações, etc.), enquanto a configuração permanece constante.
+    \item Teste de stress: Verifica a aceitabilidade do comportamento de desempenho do objetivo do teste quando condições anormais ou extremas forem encontradas, como a redução dos recursos ou um número extremamente alto de usuários.
+\end{itemize}
 
-\subsection{Executar análise estática automatizada - INC2}
+\subsection{Encerrar teste de desempenho - TPE4}
 
-\subsection{Executar análise estática automatizada - INC2}
+
+Estando os testes de desempenho concluídos, seus resultados deverão ser compilados de forma a identificar os defeitos que eventualmente tenham ocorridos, bem como o plano de ação aplicado para resolução destes. Com isso haverá condições de se obter o nível de qualidade sobre o aspecto de desempenho da software.
+
+O FreeTest aconselha que os resultados gerados sejam versionados e utilizados como lições aprendidas durante o projeto. A disseminação dessas informações dentro da equipe é de suma importância para aumentar o engajamento e trazer confiança para a equipe.
+
+
+\subsection{Definição da abordagem de automação que será utilizada - TCA1}
+
+A escolha da melhor abordagem para realização dos testes contínuos automatizados é muito inerente às características da Organização. Não só no que diz respeito à linguagem(ens) utilizadas para codificação do software, \textit{know-how} e também limitações financeiras \cite{Castelo2015}.
+
+Há muitos aspectos que devem ser considerados na escolha da melhor abordagem para automação contínua, o FreeTest lista alguns:
+
+\begin{itemize}
+	\item Facilidade de Integração: A ferramenta deve integrar facilmente com todo o ecossistema de desenvolvimento. Neste sentido a ferramenta além de ter uma boa performance na execução dos casos de teste, deve ser compatível com a arquitetura, dar suporte à linguagem de programação que a empresa utiliza, ter uma linguagem \textit{script} de fácil entendimento e suporte na internet.
+	\item Performance: Como a ferramenta se comporta no ambiente de desenvolvimento com o tráfego de rede e o hardware, por exemplo. A correta avaliação da ferramenta pode possibilitar que a equipe execute testes até mesmo em ambientes virtuais sem nenhum problema.
+	\item Tipos de Teste: Tipos de teste que a ferramenta executa, pois dependendo dos tipos de teste que a ferramenta executa não atenderá o cenário da empresa.
+	\item Manutenção: Suporte da comunidade online é muito importante. Reduz a curva de conhecimento e feedback mais rápido para resolução de problemas e auxílio em dúvidas.
+	\item Custo: Automação por si só possui um custo elevado e mão de obra mais restrita, desta forma é bom analisar o custo de uma ferramenta antes da sua implantação.
+	\item \textit{Cross Browser} / \textit{Headless Browse}r: No contexto dos testes funcionais/testes de aceitação é muito importante validar se a ferramenta desejada suporta tecnologias \textit{Cross Browser}, que realiza os testes na tela ou se realiza os testes utilizando DOM do navegador, sem uma interface gráfica, somente requisições (\textit{Headless Browser}).
+\end{itemize}
+
+
+\subsection{Automatizar \textit{suites} de teste contínuos - TCA2}
+
+Testes Contínuos Automatizados envolvem uma séries de modalidades de teste, como técnicas, funcionais, performance, unidade, aceitação/integração e etc. O FreeTest recomenda que pelo menos a \textit{suite} de testes de aceitação e unidade sejam integrados ao \textit{pipeline} de teste. Outro fator de sucesso para a implantação desta prática é que a Organização precisa estar alinhada com uma mentalidade mais "agilista" e ter em mente que:
+
+\begin{itemize}
+	\item Os testes devem ser contínuos e devem ter seu espaço dentro do desenvolvimento do software;
+	\item Os ambientes de teste/produção devem ser executados automaticamente e de forma rápida;
+	\item Deve existir o máximo de cobertura de código;
+	\item Os dados de teste devem ser gerados sob demanda e num formato que atenda a execução dos casos de teste;
+	\item O software deve ter uma usabilidade permitindo que a equipe esteja familiarizada em pouco tempo;
+\end{itemize}
+
+\textbf{Automatizando Testes de Aceitação:}
+
+A \textit{suite} de testes de aceitação será executada a cada novo \textit{build} gerado com a intenção de validar se o \textit{build} é "testável" e então ser enviado para a equipe de teste. O teste de aceitação faz uma cobertura mais abrangente do \textit{build}, não tem a intenção ser minucioso/preciso. Estes casos de teste geralmente são o "\textit{core}" do sistema e quando executados e falhos retornam para o desenvolvedor para que sejam corrigidos, antes de enviar para a equipe de teste, evitando assim a entrega de builds instáveis para a equipe.
+
+Os \textit{scripts} criados para o teste de aceitação costumam avaliar primeiro a estabilidade da \textit{build} e então validam as integrações entre os códigos e por fim o funcionamento correto das funcionalidades a serem testadas. Essa prática é importante, pois é muito comum que as equipes trabalhem separadamente no mesmo módulo dos sistema. Todos os casos de teste criados devem ter resultados esperados, não é aconselhável mesclar códigos de módulos "instáveis", ou seja, não concluídos totalmente e é altamente recomendado que se tenha uma cobertura de teste o suficiente para abranger as funcionalidades mais críticas.
+
+Como automatizar todos os cenários possíveis para aceitação nem sempre é viável, aconselha-se que fazer um levantamento das funcionalidades mais críticas e principais do ponto de vista do negócio, então gravar os \textit{scripts} de aceitação. Em um ambiente de Testes Contínuos a execução dos \textit{scripts} de aceitação ocorrem normalmente dentro do ambiente de Integração Contínua e são executados logo após a geração do \textit{build}, os passos podem ser vistos a seguir:
+
+\begin{itemize}
+	\item Resultados dos testes de aceitação referente ao \textit{build} gerado;
+	\item Desenvolvedor responsável pelo \textit{build} análise os resultados;
+	\item Se houve falha no \textit{build} o responsável diagnostica a causa da falha;
+	\item Se a falha for relativa à um \textit{bug}, todos os dados relacionados ao erro são enviados para o desenvolvedor responsável;
+	\item O desenvolvedor responsável corrige o erro;
+	\item Após as correções o \textit{build} é novamente gerado e a suíte de testes executadas novamente até que todos os casos de testes passem e o \textit{build} estável é enviado para a equipe de qualidade.
+\end{itemize}
+
+\subsection{Medir cobertura de testes - TCA3}
+
+Uma Organização que aplica abordagens de testes contínuos sempre deve automatizar o máximo possível. Várias técnicas de testes por sua vez podem ser automatizadas, entre elas testes funcionais e unitários, contudo é importante que a automatização de novas funcionalidades seja constante, logo deve-se sempre que possível realizar medições para saber se o software possui uma "boa cobertura". O FreeTest recomenda algumas maneiras de se medir a cobertura do teste:
+
+\begin{itemize}
+    \item Cobertura dos testes por funcionalidade: Validar se para cada funcionalidade especificada no documento de requisitos há casos de teste cobrindo os cenários possíveis;
+    \item Cobertura de testes por Interface (GUI): Validar se todas as telas, botões, links e componentes de tela que revelam ações estão automatizados, ou seja, possui casos de teste para os mesmos?
+    \item Cobertura de Teste por estrutura: Analisar se existem casos de teste unitários o suficiente para cobrir o mínimo de cada trecho de código. Importante inserir na cobertura de estrutural as técnicas: \textit{Condition coverage, All-DU-paths coverage}, e \textit{Linear Code Sequence} e \textit{Jump (LCSAJ)}.
+
+\end{itemize}
+
+\subsection{Manter ambientes de teste versionados - TCA4}
+
+A realização desta prática está basicamente relacionada a escolha da ferramenta correta para manutenção e versionamento das máquinas virtuais utilizadas para realização dos testes. A sugestão para uso desses recursos depende das demandas e o contexto dos testes, sendo que o mais comum é Ambientes de Teste Permanentes e Temporários.
+
+\begin{itemize}
+    \item Ambientes de Teste Permanentes: Normalmente é uma versão minimalista do ambiente de produção e provavelmente será utilizado durante todo o ciclo de vida do ambiente de produção.
+    \item Ambientes de Teste Temporários: Ambientes que podem ser criados tanto pela equipe de desenvolvimento quanto por \textit{admins} para realização de testes pontuais. Ambientes temporários são bons para realizar testes em mudanças pontuais e interação rápida com a equipe de desenvolvimento, sendo que cada \textit{tester} pode criar seu ambiente de teste para determinadas demandas e realizar a bateria de testes diretamente com o desenvolvedor responsável.
+\end{itemize}
+
+\subsection{Definir a estrutura organizacional do teste - OT1}
+
+A estrutura organizacional é o sistema de tarefas e relacionamentos de autoridade que controla como a equipe de teste irá exercer suas atividades para atingir os objetivos do projeto. Essa estrutura define a hierarquia de como os papéis de teste devem interagir e se reportar, a definição de uma estrutura organizacional além de tornar claro para cada membro da equipe, o que fazer e para quem reportar e gera condições motivadores para a equipe.
+
+A definição da estrutura organizacional de teste deve ser realizada com base em aspectos, como estrutura física, normas, métodos, competências e sempre deve estar alinhada ao interesses da diretoria. Em empresas pequenas é normal que a equipe de teste seja integrada à equipe de desenvolvimento e reportem à um líder/gestor, mesmo neste ambiente quando há mais de um analista de teste é interessante que haja um responsável técnico pela área de testes, para que este consiga auxiliar e direcionar a equipe.
+
+O FreeTest não orienta alguma técnica especifica para escolha de papéis dentro da Organização, contudo para escolha de um líder de testes é aconselhável que o mesmo tenha as seguintes características:
+
+\begin{itemize}
+    \item Experiência;
+    \item Competência técnica;
+    \item Reconhecimento interno;
+    \item Personalidade agradável e comunicativa.
+\end{itemize}
+
+Uma sugestão de leitura é o \textit{SWECOM - Software Engineering Competency Model} \cite{swecom2017} que aborda um modelo de competências focado em todas as áreas da Engenharia de Software.
+
+\subsection{Estabelecer um grupo de processo de teste de software - OT2}
+
+Assim como no MPT.Br \cite{GuiaMPTbr} o FreeTest aconselha fortemente a criação de um Grupo de Processo de Teste, a intenção deste grupo é manter a evolução constante dos processos da Organização alinhado às novas tendências do mercado. O grupo de processo não será responsável somente a abordar melhorias no processo no ponto de vista técnico e ferramental, o grupo deverá sempre tentar alinhar às melhorias aos processos existentes, como desenvolvimento, requisitos, suporte e etc.
+
+A criação do grupo deve ser feita elegendo papeis multidisciplinares, a ideia é que o grupo promova as melhorias necessárias com uma visão sistêmica, desta maneira reduzindo impactos e gargalos no processo com relação a outros departamentos. Alguns papeis importantes que devem compor o grupo é listado a seguir \cite{GuiaMPTbr}:
+
+\begin{itemize}
+    \item Engenheiros de software;
+    \item Gerência da configuração; 
+    \item Gerência de projeto de desenvolvimento de software; 
+    \item Analistas de teste; 
+    \item Testadores; 
+    \item Gerentes de teste; 
+    \item Representantes dos clientes; 
+    \item Área de qualidade.
+\end{itemize}
+
+\subsection{Definir melhoria contínua do processo de teste - OT3}
+
+A manutenção/evolução contínua do processo de teste é importante para a Organização, quando o time focam esforços em objetivos comuns as mudanças ocorrerão não somente na empresa, mas também dentro do próprio time.
+
+O FreeTest recomenda que a melhoria contínua do processo de teste deverá olhar para frente, em busca de desempenhos significativos e mais altos alinhados com os demais processos da Organização. A melhoria contínua deverá ser uma abordagem sistemática, coordenada e baseada em prioridades, neste sentido os indicadores e métricas de teste recolhidos durante os projetos podem ser utilizados como base para um "norte" nos resultados que a organização deseja alcançar no futuro.
+
+Pode-se realizar reuniões de acompanhamento após o termino de cada projeto com o intuito de alinhar os resultados do projeto com a estratégia da Organização e então definir reuniões de melhorias para o processo caso seja necessário. Para isso é importante que cada integrante da equipe de teste mantenha um "diário de bordo" com informações importantes que aconteceram durante a execução do projeto e utilize essas informações para promoverem as mudanças necessárias.
 
 \section{Considerações Finais}
 \label{sec:consideracoesfinaisguiaimplantacao}

@@ -1,10 +1,10 @@
 \chapter{Construção do Processo FreeTest 2.0}
 \label{sec:construcaoframeworkprocesso}
 
-Neste capítulo é proposto uma série de melhorias no processo do Método FreeTest com base nas revisões da literatura (capítulo \ref{sec:revisao}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
+Neste capítulo é proposto uma série de melhorias no processo do Método FreeTest com base nas revisões da literatura (capítulo \ref{sec:referencialteorico}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
 
 \begin{itemize}
-    \item Na subseção \ref{sec:identificacaomelhoriasfreetest}, os estudos com embasamento teórico é mostrado com a intenção de evidenciar as possíveis melhorias para o novo processo;
+    \item Na subseção \ref{sec:identificacaomelhoriasfreetest}, os estudos com embasamento teórico são mostrados com a intenção de evidenciar as possíveis melhorias para o novo processo;
     \item Na subseção \ref{sec:melhoriaspropostas}, é elicitado as melhorias propostas para o novo processo do Método FreeTest;
     \item Na subseção \ref{sec:novoprocesso}, o novo processo é definido e sua estrutura geral é mostrada;
     \item Na subseção \ref{sec:areasdeprocessoepraticas}, são listados as Áreas de Processo (AP's) e Práticas Especificas (PE's) de forma detalhada;
@@ -15,7 +15,7 @@ Neste capítulo é proposto uma série de melhorias no processo do Método FreeT
 \section{Identificação de melhorias no Método FreeTest}
 \label{sec:identificacaomelhoriasfreetest}
 
-Para que essa pesquisa fosse conduzida e eventuais melhorias no processo do Método FreeTest fossem realizadas, foi necessário um estudo do estado da prática (capítulo \ref{sec:revisao}) de processos de teste já consolidados, artigos científicos, teses e dissertações que abordassem processos de teste com aplicação prática, estudo de caso e validações em ambientes controlados. Por fim, após essa análise dos estudos e utilizando o embasamento teórico do capítulo \ref{sec:referencialteorico}, foram realizadas análises comparativas entre o Método FreeTest, MPT.Br \cite{GuiaMPTbr}, Métodos Ágeis \cite{Beck2001} e adição de práticas especificas dentro do processo que são inerentes ao contexto de DevOps \cite{Debois2008}. 
+Para que essa pesquisa fosse conduzida e eventuais melhorias no processo do Método FreeTest fossem realizadas, foi necessário um estudo do estado da prática (capítulo \ref{sec:referencialteorico}) de processos de teste já consolidados, artigos científicos, teses e dissertações que abordassem processos de teste com aplicação prática, estudo de caso e validações em ambientes controlados. Diante disso, após essa análise dos estudos e utilizando o embasamento teórico do capítulo \ref{sec:referencialteorico}, foram realizadas análises comparativas entre o Método FreeTest, MPT.Br \cite{GuiaMPTbr}, Métodos Ágeis \cite{Beck2001} e adição de práticas especificas dentro do processo que são inerentes ao contexto de DevOps \cite{Debois2008}. 
 
 Com a finalidade de comparar os processos e sugerir adições ou remoções no mesmo, foi realizado um mapeamento de equivalência entre o Método FreeTest e MPT.Br exibido na tabela \ref{tab:4.1}, esse mapeamento mostra as práticas especificas existentes no MPT.Br que o FreeTest possui de forma equivalente. Uma tabela (\ref{tab:4.2}) que contém as atividades do FreeTest que não possuem equivalência com o MPT.Br também foi criada para contribuir na análise entre os dois processos.
 
@@ -102,7 +102,7 @@ Com a finalidade de comparar os processos e sugerir adições ou remoções no m
 
 Como observados na tabela \ref{tab:4.2} somente as práticas especificas do Método FreeTest que não possuem quaisquer equivalências com as práticas especificas do MPT.Br foram ressaltadas. Na tabela \ref{tab:4.1} as práticas especificas do MPT.Br que possuem equivalência com o FreeTest foram listadas, a intenção é que somente as práticas especificas do MPT.Br que não forem listadas sejam possíveis contribuições de melhoria ao novo processo proposto neste trabalho.
 
-Diante da revisão da literatura realizada no capítulo \ref{sec:revisao} e do referencial teórico no capítulo \ref{sec:revisao}, algumas propostas de mudança no processo foram elencadas de acordo com as boas práticas da Metodologia Ágil \cite{Beck2001,Debois2008} e Devops \cite{Howlett,Fitzgerald2014,Erich2014}, como pode ser visto a seguir:
+Diante da revisão da literatura e referencial teórico no capítulo \ref{sec:referencialteorico}, algumas propostas de mudança no processo foram elencadas de acordo com as boas práticas da Metodologia Ágil \cite{Beck2001,Debois2008} e Devops \cite{Howlett,Fitzgerald2014,Erich2014}, como pode ser visto a seguir:
 
 \begin{itemize}
     \item Testes Unitários (\textit{Unit Testing});
@@ -121,19 +121,19 @@ Na seção \ref{sec:melhoriaspropostas} será apresentado as melhorias propostas
 \label{sec:melhoriaspropostas}
 
 Para propor as melhorias para o novo processo do Método FreeTest foi necessário a elaboração de um mapeamento das equivalências identificadas entre as práticas especificas do Método FreeTest e MPT.Br, e revisão da literatura na perspectiva da Metodologia Ágil e das boas práticas empregadas no Devops (subseção \ref{sec:identificacaomelhoriasfreetest}).
-A abordagem utilizada para a tomada de decisão de quais práticas especificas seriam mantidas, incluídas ou removidas do novo processo do FreeTest foi o contexto no qual ele se emprega, ou seja, as Micro e Pequenas Empresas, sendo assim, alguns critérios de seleção foram adotados com base no conhecimento empírico do autor e da literatura \cite{JamesWhittakerJasonCarollo2012, Especialistas2015, Whittaker2009, ABESSofftware2014, FelipeDreher2016, Laporte2010, Ramachandram2008, SilvaDias2015}, para ajudar nas escolhas no contexto das MPE's:
+A abordagem utilizada para a tomada de decisão de quais práticas especificas seriam mantidas, incluídas ou removidas do novo processo do FreeTest foi o contexto no qual ele se emprega, ou seja, as Micro e Pequenas Empresas, sendo assim, alguns critérios de seleção foram adotados com base no conhecimento empírico do autor e da literatura \cite{JamesWhittakerJasonCarollo2012, Especialistas2015, Whittaker2009, ABESSofftware2014, FelipeDreher2016, Laporte2010, Ramachandram2008, SilvaDias2015}, para ajudar nas decisões no contexto das MPEs:
 
 \begin{itemize}
-\item Soluções de baixo custo de aquisição e implantação;
-\item Equipe enxutas. Por exemplo, muitas vezes o gestor gere tanto a equipe de teste quanto de desenvolvimento;
-\item Não existem politicas de teste ou organizacionais bem definidas;
-\item Não existe tanta burocracia e muitas pessoas tem pode de decisão;
-\item Projetos de software menores ou softwares de prateleira;
-\item Poucos recurso seniores, geralmente o sócio fundador é o que entende mais do software/código fonte;
-\item Comunicação mais ágil e pontual, sem muita formalização ou documentação;
-\item Baixa documentação de software e de requisitos;
-\item Baixo orçamento para aquisição de ferramentas de trabalho e licenças de software mais caras;
-\item Processos de desenvolvimento e teste não definidos, muitas vezes processos diferentes para clientes diferentes.
+    \item Soluções de baixo custo de aquisição e implantação;
+    \item Equipes enxutas. Por exemplo, muitas vezes o gestor gere tanto a equipe de teste quanto de desenvolvimento;
+    \item Não existem politicas de teste ou organizacionais bem definidas;
+    \item Não existe tanta burocracia e muitas pessoas tem pode de decisão;
+    \item Projetos de software menores ou softwares de prateleira;
+    \item Poucos recurso seniores, geralmente o sócio fundador é o que entende mais do software/código fonte;
+    \item Comunicação mais ágil e pontual, sem muita formalização ou documentação;
+    \item Baixa documentação de software e de requisitos;
+    \item Baixo orçamento para aquisição de ferramentas de trabalho e licenças de software mais caras;
+    \item Processos de desenvolvimento e teste não definidos, muitas vezes processos diferentes para clientes diferentes.
 \end{itemize}
 
 Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de melhoria a partir do MPT.Br para o novo processo proposto. É importante salientar que as práticas especificas avaliadas, tanto do processo MPT.Br e Método FreeTest sofreram uma avaliação do tipo, "Mantido", "Excluído" ou "Adicionado" como observado nas tabelas. 
@@ -255,16 +255,16 @@ Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de
 }
 \end{table}
 
-As tabelas \ref{tab:4.3} e \ref{tab:4.4} mostram as práticas especificas que foram mantidas, adicionadas ou removidas, com base nos critérios de tomada de decisão mencionados na subseção \ref{sec:melhoriaspropostas}, na análise do MPT.Br e os estudos realizados sobre Metodologia Ágil e Devops. Por fim, uma proposta para o novo processo foi definida no item \ref{sec:novoprocesso}.
+As tabelas \ref{tab:4.3} e \ref{tab:4.4} mostram as práticas especificas que foram mantidas, adicionadas ou removidas, com base nos critérios de tomada de decisão mencionados na subseção \ref{sec:melhoriaspropostas}, na análise do MPT.Br e os estudos realizados sobre Metodologia Ágil e Devops. Por fim, uma proposta para o novo processo foi definida na seção \ref{sec:novoprocesso}.
 
 \section{Definição do novo processo}
 \label{sec:novoprocesso}
 
-Com base nos esforços apontados na seção anterior, revisão da literatura e referencial teórico sobre Metodologia Ágil e Devops, um novo processo para o Método FreeTest será apresentado nessa seção. Devido ao perfil atual das MPE's foi necessário a junção de algumas práticas especificas citadas no MPT.Br, de modo que a sua execução por parte das MPE's fossem realizadas de forma mais fácil e menos onerosa. Outra decisão tomada foi a alteração do nível de maturidade de determinadas práticas especificas utilizadas tanto do MPT.Br quanto do antigo processo do FreeTest, a intenção foi mantê-los em um nível de maturidade que estivesse mais atrelado à situação atual das MPE's nacionais.
+Com base nos esforços apontados na seção anterior, revisão da literatura e referencial teórico sobre Metodologia Ágil e Devops, um novo processo para o Método FreeTest será apresentado nessa seção. Devido ao perfil atual das MPEs foi necessário a junção de algumas práticas especificas citadas no MPT.Br, de modo que a sua execução por parte das MPEs fossem realizadas de forma mais fácil e menos onerosa. Outra decisão tomada foi a alteração do nível de maturidade de determinadas práticas especificas utilizadas tanto do MPT.Br quanto do antigo processo do FreeTest, a intenção foi mantê-los em um nível de maturidade que estivesse mais atrelado à situação atual das MPEs nacionais \cite{Especialistas2015, SilvaDias2015}.
 
 Como é possível verificar na tabela \ref{tab:4.5}, a coluna "Nível de Maturidade Atual" mostra o nível de maturidade no qual a prática especifica corresponde nessa nova abordagem, "AP" é o nome da área de processo, "PE" é o nome da prática especifica, "Nível de Maturidade Anterior" é o nível de maturidade no qual a prática especifica tanto do MPT.Br quanto do FreeTest pertencia, e por fim as práticas especificas relacionadas à criação da nova prática. É importante salientar que nem todas práticas especificas abordadas no MPT.Br e na versão anterior do FreeTest foram mantidas para essa nova abordagem (vide seção \ref{sec:melhoriaspropostas}).
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \caption{Proposta para o novo processo: Readaptação com a junção de práticas especificas e alteração de nível de maturidade.}
 \label{tab:4.5}
@@ -309,9 +309,9 @@ Como é possível verificar na tabela \ref{tab:4.5}, a coluna "Nível de Maturid
 }
 \end{table}
 
-Como pode ser visto na tabela \ref{tab:4.5} a Área de Processos (AP) de Gerenciamento de Projetos de Teste (GPT), por exemplo, foi a que mais sofreu alterações. Como as MPE's possuem equipes reduzidas de teste, normalmente a gestão dos projetos de teste das MPE's ocorre juntamente com a gestão do projeto de desenvolvimento, é muito comum que para esse formato de equipe haja um gestor ou líder técnico que faça a gestão tanto das atividades de desenvolvimento quanto das atividades de teste. A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, contudo as Práticas Especificas (PE) do PET3 e PET4 do MPT.Br se transformaram em ET4, que consolida todas as tarefas de reportar e acompanhar incidentes.
+Como pode ser visto na tabela \ref{tab:4.5} a Área de Processos (AP) de Gerenciamento de Projetos de Teste (GPT), por exemplo, foi a que mais sofreu alterações. Como as MPEs possuem equipes reduzidas de teste, normalmente a gestão dos projetos de teste das MPEs ocorre juntamente com a gestão do projeto de desenvolvimento, é muito comum que para esse formato de equipe haja um gestor ou líder técnico que faça a gestão tanto das atividades de desenvolvimento quanto das atividades de teste. A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, contudo as Práticas Especificas (PE) do PET3 e PET4 do MPT.Br se transformaram em ET4, que consolida todas as tarefas de reportar e acompanhar incidentes.
 
-Uma mudança importante foi definir as atividades de revisão (AES), normalmente realizadas no nível três de maturidade do MPT.Br para o nível dois de maturidade do novo processo do FreeTest. Essa iniciativa surgiu, pois as atividades de revisão costumam ser de baixo custo e facilmente automatizadas (exemplo revisão de código), neste sentido são práticas especificas eficazes e que evidenciam erros numa fase bem primária da produção, ideal para o contexto das MPE's e como sugere a Metodologia Ágil.
+Uma mudança importante foi definir as atividades de revisão (AES), normalmente realizadas no nível três de maturidade do MPT.Br para o nível dois de maturidade do novo processo do FreeTest. Essa iniciativa surgiu, pois as atividades de revisão costumam ser de baixo custo e facilmente automatizadas (exemplo revisão de código), neste sentido são práticas especificas eficazes e que evidenciam erros numa fase bem primária da produção, ideal para o contexto das MPEs e como sugere a Metodologia Ágil.
 
 As práticas especificas que abordam automação dos testes também sofreram grande mudança, pois no MPT.Br elas são aplicadas no nível cinco de maturidade, contudo na proposta para o novo processo elas são sugeridas no nível três. Essa mudança foi proposta, pois a automação é uma prática muito recomendada e difundida, apesar de ser vista como uma prática muitas vezes cara e de retorno de investimento a médio/longo prazo, hoje em dia, com os avanços de ferramentas e técnicas de automação é possível a implantação de uma automação com baixo custo e muito eficiente \cite{BRAGA2015}.
 

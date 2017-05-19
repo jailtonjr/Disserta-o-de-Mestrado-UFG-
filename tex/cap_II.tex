@@ -1,13 +1,19 @@
 \chapter{Referencial Teórico}
 \label{sec:referencialteorico}
 
-Este capítulo apresenta o referencial teórico sobre Teste de Software, processos de teste mais consolidados e algumas técnicas reconhecidas e utilizadas amplamente pela comunidade acadêmica e Organizações.
+Este capítulo apresenta o referencial teórico sobre Teste de Software, Processos de Teste mais consolidados e algumas técnicas reconhecidas e utilizadas amplamente pela Comunidade Acadêmica e Indústria.
 
 Serão apresentados na seção \ref{sec:processotestedesoftware} os conceito sobre os processos de teste prescritivos e ágeis, tomando como referencial alguns processos mais conhecidos na acadêmia.
 
 Na seção \ref{sec:devops} apresentados conceitos e uma visão prática sobre DevOps e sua importância.
 
-E por fim, na seção \ref{sec:consideeracoesfinaiscap2} será descrito as considerações finais.
+A subseção \ref{sec:revisaoliteraturacap2} é apresentado uma revisão da literatura, utilizando algumas técnicas de revisão sistemática.
+
+Na seção \ref{sec:planejamentodapesquisa} é explanado toda a sistemática para realização da pesquisa do referencial teórico utilizado para este trabalho, bem como, strings de busca utilizadas, fontes de pesquisa e critérios de seleção dos estudos.
+
+A subseção \ref{sec:identificacaodosestudos} mostra os passos necessários para a identificação dos estudos. Enquanto que na seção \ref{sec:selecaodosestudos} os estudos selecionados são exibidos, após sofrer os critérios de inclusão e exclusão.
+
+Através dos resultados obtidos nas pesquisas, os trabalhos selecionados são discutidos na seção \ref{sec:discussoes}. Por fim, a conclusão deste capítulo é exposta na seção \ref{sec:conclusoescap2}.
 
 
 \section{Processo de Teste software}
@@ -31,7 +37,7 @@ Na história, o os softwares foram desenvolvidos de forma prescritiva, utilizand
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=.75\textwidth]{fig/figura21.png}
-\caption{Exemplo de Modelo de Processo Cascata. Conteúdo extraído da internet.}
+\caption{Exemplo de Modelo de Processo Cascata. (Fonte: Internet)}
 \label{fig:figure21}
 \end{figure}
 
@@ -39,7 +45,7 @@ Na história, o os softwares foram desenvolvidos de forma prescritiva, utilizand
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=.75\textwidth]{fig/figura22.png}
-\caption{Exemplo de Modelo de Processo incremental. Conteúdo extraído da internet.}
+\caption{Exemplo de Modelo de Processo incremental. (Fonte: Internet)}
 \label{fig:figure22}
 \end{figure}
 
@@ -59,10 +65,10 @@ Inspirado em resolver as dificuldade proporcionada pela metodologia tradicional 
 No contexto das metologias ágeis várias possíveis e prováveis divergências entre o negócio e o produto se tornaram mais fáceis de serem resolvidas através de técnicas de aproximação do cliente à equipe de desenvolvimento, proporcionando integração contínua, reuniões diárias e times pequenos porém multifuncionais. Após a fase de aceitação e adaptação das empresas às metodologias ágeis de desenvolvimento, os desenvolvedores, testadores e demais membros da equipe do projeto se agruparam em prol do objetivo de desenvolver software ágil que respondessem às necessidades do negócio. Porém, ainda nesse novo contexto, a equipe de operação continuou isolada trabalhando como um time a parte, recebendo os \textit{builds}, integrando-os e os colocando em produção. E elas estão sendo cada vez mais aceitas pielas organizações, pois estas vem descobrindo que os modelos tradicionais de desenvolvimento de software e de entrega não são suficientes. Os processos manuais são propensos a erros, quebras, desperdício e atraso de resposta às necessidades de negócios \cite{WOOTTON2013}. Como visto na figura \ref{fig:figure23} em um processo Ágil a organização está orientada à entrega do produto, neste caso as entregas parciais são realizadas em curtos prazos de tempo para que os clientes possam validar os resultados e o desenvolvimento do software esteja alinhado ao negócio.
 
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.75\textwidth]{fig/figura23.png}
-\caption{Exemplo de Modelo de Processo Ágil. Conteúdo extraído da internet.}
+\caption{Exemplo de Modelo de Processo Ágil. (Fonte: Internet)}
 \label{fig:figure23}
 \end{figure}
 
@@ -71,19 +77,20 @@ No contexto das metologias ágeis várias possíveis e prováveis divergências 
 
 O Termo DevOps teve sua origem em 2008 quando \textit{Patrick Debois} publicou um artigo intitulado "\textit{Agile and Operations Infrastrucuture: How Infra-gile Are You?}" \cite{Debois2008}. Onde demonstrava que a infraestrutura poderia também responder de forma ágil à mudanças de negócios, se adaptando e respondendo constantemente. Neste ano, durante uma conferência sobre práticas ágeis houve a apresentação "\textit{Agile Infrastructure}" de Debois e \textit{Andrew Shafer}, onde também foi criada a lista \textit{agile-sysadmin} na Europa focada na discussão de metodologias ágeis na infraestrutura. A partir desta lista, vários estudos e conferências surgiram, popularizando o termo. Até que em 2009 hove a conferência \textit{Velocity da O’Reilly} onde foi apresentado o trabalho "\textit{10+ Deploys Per Day: Dev and Ops Cooperation at Flickr}" por  John Allspaw e Paul Hammond demonstrando o estudo de caso sobre a implantação em uma empresa onde havia a prática da colaboração entre as equipes de desenvolvimento e operação em atendimento à dinâmica do mercado \cite{ALLSPAW2009}. A partir deste evento surgiu a ideia de criar um novo evento, o DevOpsDays, realizados em diversos países, a partir de iniciativas locais, disseminando essa nova cultura.
 
-Atualmente o termo DevOps é muito amplo, envolve inúmeras atividades e aspectos, como a automação, medição e o compartilhamento de conhecimentos \cite{huttermann2012} e pode se referir a qualquer prática que inova a interação entre desenvolvimento e operações. É uma abordagem baseada em princípios \textit{Lean} e Ágil - Consideradas práticas principais em DevOps - Em que as organizações e as equipes de desenvolvimento, operações e departamentos de controle de qualidade colaboraram para entregar software de forma contínua, permitindo a empresa aproveitar mais rapidamente as oportunidades de mercado e reduzir o tempo para obter o feedback do cliente. Na figura \ref{fig:figure24} é possível entender o funcionamento de um modelo de processo que utiliza DevOps, no qual uma quantidade grande de atividades corriqueiras são criadas e a integração entre operação, teste e desenvolvimento ocorre o tempo todo.
+Atualmente o termo DevOps é muito amplo, envolve inúmeras atividades e aspectos, como a automação, medição e o compartilhamento de conhecimentos \cite{huttermann2012} e pode se referir a qualquer prática que inova a interação entre desenvolvimento e operações. É uma abordagem baseada em princípios \textit{Lean} e Ágil \cite{BRAGA2015}. De tal maneira, que permite a Organização focar esforços no produto/cliente de maneira rápida, eficiente, de maneira contínua e com \textit{feedbacks} mais rápidos, onde, toda a equipe de desenvolvimento, qualidade e operação trabalha de forma colaborativa e simbiótica. Na figura \ref{fig:figure24} é possível entender o funcionamento de um modelo de processo que utiliza DevOps, no qual uma quantidade grande de atividades corriqueiras são criadas e a integração entre operação, teste e desenvolvimento ocorre o tempo todo de forma automatizada.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.75\textwidth]{fig/figura24.png}
-\caption{Exemplo de Modelo de Processo que utiliza DevOps. Conteúdo extraído da internet.}
+\caption{Exemplo de Modelo de Processo que utiliza DevOps. (Fonte: Internet)}
 \label{fig:figure24}
 \end{figure}
 
-Em resumo, na essência, o DevOps é um movimento cultural, focado na colaboração e do compartilhamento de conhecimentos entre as equipes. Uma organização pode possuir processos e ferramentas automatizadas muito eficientes, porém isso se torna inútil se as pessoas não as usarem de maneira correta. Construir uma cultura DevOps então é um passo principal para adoção de DevOps,as metas devem ser pautadas nos objetivos da organização ao invés dos objetivos de equipes separadas \cite{BRAGA2015}.
+Em resumo, segundo Braga \cite{BRAGA2015} o DevOps é um movimento cultural, focado na colaboração e do compartilhamento de conhecimentos entre as equipes. A Organização pode possuir processos e ferramentas automatizadas eficientes, contudo se torna inútil senão utilizada corretamente. 
+Por fim, construir uma cultura pautada nos objetivos da Organização ao invés dos objetivos da equipe separada é o que o DevOps preconiza.
 
 \section{Revisão da Literatura}
-\label{sec:revisao}
+\label{sec:revisaoliteraturacap2}
 
 Esta sessão apresenta uma revisão da literatura sobre quais são os processos, métodos, e \textit{frameworks} de teste existentes no ponto de vista acadêmico e da indústria. Esta pesquisa incide sobre os artigos científicos publicados nos últimos cinco anos, a partir de janeiro de 2010 a dezembro de 2015.
 
@@ -97,7 +104,7 @@ O principal objetivo desta revisão da literatura foi buscar pesquisas relaciona
 \item Q03 - Quais trabalhos estão aplicando DevOps e Métodos Ágeis em processo de teste?
 \end{itemize}
 
-Com o intuito de realizar uma busca e classificação da pesquisa com o propósito de responder as questões Q01, Q02 e Q03, cada referência incluída nesta revisão foi agrupada em dissertações e teses, Métodos e Processos já consolidados e artigos científicos. Ao final os as análises realizadas foram objetivas, neste caso são extraídos diretamente dos estudos ou resultados subjetivos que são obtidos por meio de conclusões e analises do revisor.
+Com o intuito de realizar uma busca e classificação da pesquisa com o propósito de responder as questões Q01, Q02 e Q03, cada referência incluída nesta revisão foi agrupada em dissertações e teses, métodos e processos já consolidados e artigos científicos. Ao final as análises realizadas foram objetivas, neste caso são extraídos diretamente dos estudos ou conhecimentos que foram obtidos por meio de conclusões e analises do revisor.
 
 Assim sendo, as pesquisas extraídas da revisão foram agrupadas da seguinte maneira:
 
@@ -117,7 +124,7 @@ Nas subseções seguintes, são abordadas de forma detalhada a metodologia utili
 
 Nesta seção são abordados a construção do protocolo de pesquisa, a seleção das fontes e os critérios de seleção dos estudos identificados na literatura.
 
-\subsection{Strings de busca}
+\subsection{\textit{Strings} de busca}
 \label{sec:stringdebusca}
 
 Para direcionar as buscas das evidências existentes na literatura, considerando as questões da pesquisa, foram definidas algumas palavras chaves para a elaboração de um protocolo adaptado para cada máquina de busca. A seguir a \textit{string} de busca criada e utilizada para cada máquina de busca respectivamente.
@@ -144,7 +151,7 @@ As buscas foram configuradas para trazer os resultados dos artigos em Língua In
 \subsection{Critérios de seleção dos estudos}
 \label{sec:criteriosdeselecao}
 
-Após a construção do protocolo e a escolha das máquinas de busca que fomentaram as pesquisa, os resultados obtidos foram analisados afim de evidenciar a sua relevância. Por fim, os critérios de seleção utilizados foram os seguintes.
+Após a construção do protocolo e a escolha das máquinas de busca que fomentaram a pesquisa, os resultados obtidos foram analisados afim de evidenciar a sua relevância. Por fim, os critérios de seleção utilizados foram os seguintes.
 
 \begin{enumerate}
 \item [i] Trabalhos com aplicação prática e/ou estudo de caso na indústria;
@@ -156,8 +163,8 @@ Após a construção do protocolo e a escolha das máquinas de busca que fomenta
 Alguns critérios de exclusão também foram definidos afim de alinhar os resultados encontrados com a finalidade desta pesquisa.
 
 \begin{enumerate} 
-\item [i] Artigos científicos que não abordam processos/métodos/\textit{frameworks} de teste de software;
-\item [ii] Pesquisas que não contenham estudos de caso e aplicações práticas;
+    \item [i] Artigos científicos que não abordam processos/métodos/\textit{frameworks} de teste de software;
+    \item [ii] Pesquisas que não contenham estudos de caso e aplicações práticas;
 \end{enumerate}
 
 \section{Identificação dos Estudos}
@@ -166,11 +173,11 @@ Alguns critérios de exclusão também foram definidos afim de alinhar os result
 A busca foi dividida em duas partes. Sendo a primeira parte a execução da \textit{string} nas máquinas de busca  em inglês, focadas para artigos científicos, a segunda etapa foi busca por dissertações e teses nacionais.
 
 \subsection{Primeira Execução}
-\label{primeiraexecucao}
+\label{sec:primeiraexecucao}
 
 Após a definição das \textit{strings} de busca na subseção \ref{sec:stringdebusca}, realizou-se a execução do protocolo P1 separando-o por fonte de pesquisa (subseção \ref{sec:fontesdapesquisa}). 
 
-Executando-se o protocolo P1 na primeira rodada, foram retornados 506 referências, das quais 112 artigos são oriundos da base \textit{IEEE Xplore Digital Library}, 20 foram da base da \textit{ACM}, 374 da \textit{Web of Sicience} (figura \ref{fig:figure31}).
+Executando-se o protocolo P1 na primeira rodada, foram retornados 506 referências, das quais 112 artigos são oriundos da base \textit{IEEE Xplore Digital Library}, 20 foram da base da \textit{ACM}, 374 da \textit{Web of Sicience}. A figura \ref{fig:figure31} mostra o gráfico com o percentual de resultados encontrados para cada fonte de pesquisa.
 
 \begin{figure}[!ht]
 \centering
@@ -181,7 +188,7 @@ Executando-se o protocolo P1 na primeira rodada, foram retornados 506 referênci
 
 \subsection{Segunda Execução}
 
-Na segunda execução, o objetivo foi buscar por teses e dissertações na Biblioteca Digital Brasileira de Teses e Dissertações (BDTD), que apresentassem pesquisas relacionadas a criação e aplicação  de processos de teste de software no contexto da indústria. Pesquisas, relacionadas à métodos ágeis e DevOps com aplicação prática foram no mercado também foram considerados.
+Na segunda execução, o objetivo foi buscar por teses e dissertações na Biblioteca Digital Brasileira de Teses e Dissertações (BDTD), que apresentassem pesquisas relacionadas a criação e aplicação  de processos de teste de software no contexto da indústria. Pesquisas, relacionadas à métodos ágeis e DevOps com aplicação prática mercado também foram considerados.
 
 Para a segunda execução foram retornados 1126 referências, todas elas, teses e dissertações nos últimos cinco anos. 
 
@@ -192,7 +199,7 @@ Na seleção dos estudos o objetivo é realizar uma categorização primária da
 
 \begin{table}[H]
 \centering
-\caption{Total de artigos identificados na pesquisa.}
+\caption{Total de artigos, teses e dissertações identificados na pesquisa.}
 \label{tab:3.1}
   \scalebox{0.75}{
 \begin{tabular}{|c|c|c|c|c|}
@@ -263,11 +270,11 @@ Os estudos aceitos e listados no item \ref{sec:estudosaceitos} serviram de embas
 \subsection{Teses e dissertações}
 \label{sec:tesesdissertacoes}
 
-O trabalho criação do arcabouço KITest (\textit{Knowledge and Improvement on Test}) \cite{Nina2011} que funciona como um conjunto de ferramentas e técnicas "para agregar o conhecimento em teste e disponibilizá-lo para a comunidade com a intenção de facilitar a sua transferência, a definição e a melhoria de processos de teste, com mais qualidade". 
+O trabalho criação do arcabouço \textbf{KITest: Um arcabouço de conhecimento e melhoria de processo de teste} \cite{Nina2011} que funciona como um conjunto de ferramentas e técnicas "para agregar o conhecimento em teste e disponibilizá-lo para a comunidade com a intenção de facilitar a sua transferência, a definição e a melhoria de processos de teste, com mais qualidade". 
 
 Com aplicação do conhecimento abordado na pesquisa, a ferramenta KITTool foi criada com a intenção de auxiliar no diagnóstico de processos e orientar possíveis melhorias. Um processo genérico foi modelado baseado nas práticas do TMMi em formato de mapa mental, denominado KITMap.
 
-O objetivo principal do arcabouço KITest é visto abaixo:
+O objetivo principal do arcabouço KITest (\textit{Knowledge and Improvement on Test}) é visto abaixo:
 
 \begin{itemize}
 \item Ter um módulo na criação do arcabouço KITest (\textit{Knowledge and Improvement on Test}) que funciona como um conjunto de ferramentas e técnicas "para agregar o conhecimento em teste e disponibilizá-lo para a comunidade com a intenção de facilitar a sua transferência, a definição e a melhoria de processos de teste, com mais qualidade".
@@ -279,14 +286,16 @@ O objetivo principal do arcabouço KITest é visto abaixo:
 
 Conclui-se que a proposta do arcabouço KiTest é interessante no ponto de vista de disseminação de conhecimento em teste de software e uma ferramenta para nortear empresas/instituições de T.I. a alcançarem a maturidade desejada em seus Processos de Teste. Embora segundo a própria autora é necessário a aplicação e validação prática do arcabouço, nos estudos realizados dentro de uma experimentação controlada os resultados foram satisfatórios. Por fim, o arcabouço lida mais com aquisição de conhecimento em teste de software, avaliação do processo de teste de instituições da T.I., fazendo-se necessário da existência de pesquisas que auxiliem não somente no alinhamento da maturidade da empresa, como também pesquisas que corroborem a implantação das áreas de processo necessárias para se alcançar tais níveis de maturidade.
 
-No trabalho "Um Arcabouço para Avaliação do Nível de Maturidade em Teste de Software para Micro e Pequenas Empresas" \cite{Araujo2013}, que apresenta um arcabouço validado na indústria para avaliação do nível de maturidade dos processos de teste das Micro e Pequenas Empresas com base nas boas práticas do TMMI. 
+No trabalho \textbf{Um Arcabouço para Avaliação do Nível de Maturidade em Teste de Software para Micro e Pequenas Empresas} \cite{Araujo2013}, que apresenta um arcabouço validado na indústria para avaliação do nível de maturidade dos processos de teste das Micro e Pequenas Empresas com base nas boas práticas do TMMI. 
 
 O autor utilizou da ajuda de questionários aplicados em diversas Micro e Pequenas Empresas do estado de Goiás para coletar dados inerentes à maturidade do processo de teste das empresas. Segundo o autor, o questionário evidenciou a carência das empresas do referido estado no sentido de boas práticas para o processo de teste. Todavia a pesquisa além de colaborar com uma métrica de maturidade dentro panorama do mercado de T.I pesquisado, ajudou a mostrar para as empresas a necessidade de melhorias.
 
-A pesquisa "Melhoria do Processo de Teste para as Micro e Pequenas Empresas Brasileiras" \cite{SilvaDias2015} compara os processos de teste existentes na indústria brasileira e propõe melhorias do ponto de vista dos estudos realizados. 
+A pesquisa \textbf{Melhoria do Processo de Teste para as Micro e Pequenas Empresas Brasileiras} \cite{SilvaDias2015} compara os processos de teste existentes na indústria brasileira e propõe melhorias do ponto de vista dos estudos realizados. 
 A autora realiza comparações com iniciativas nacionais, como o Método FreeTest e MPT.Br para propor um modelo de maturidade considerando as limitações das micro e pequenas empresas de desenvolvimento de software, e uma abordagem para implementar os processos de teste definidos nesse modelo.
 
 Apesar do levantamento \textit{in-loco} das informações de maturidade dos processos de teste de software das empresas e as propostas de melhoria para um processo, não houve validação prática do estudo. 
+
+Outro estudo que corroborou substancialmente este trabalho foi o \textbf{Um Panorama Sobre o Uso de Práticas DevOps nas Indústrias de Software} \cite{BRAGA2015}, no qual o autor realiza um mapeamento sistemático do uso de práticas de DevOps na indústria. O autor elicita as práticas mais comuns utilizadas pelas empresas, realiza uma pesquisa utilizando questionários no mercado brasileiro de T.I. e como propostas de trabalhos futuros evidência a importância da criação de um processo de desenvolvimento que utilize práticas específicas de DevOps como um nicho de pesquisa.
 
 \subsection{Processos de Teste MPT.Br e FreeTest}
 \label{processosteste}
@@ -318,17 +327,17 @@ O MPT.Br é dividido em Áreas de Processo (AP), Práticas Especificas e Prátic
     \hline
     \multicolumn{1}{|c|}{Nível de Maturidade} & \multicolumn{1}{c|}{Áreas de Processo} & \multicolumn{1}{c|}{Práticas Especificas} & \multicolumn{1}{c|}{Práticas Genéricas} \\ 
     \hline
-    \multicolumn{1}{|c|}{2*Nível 1} & \multicolumn{1}{c|}{GPT} & \multicolumn{1}{c|}{GPT1 a GPT20} & \multicolumn{1}{c|}{2*PG1 a PG6} \\ 
+    \multicolumn{1}{|c|}{Nível 1} & \multicolumn{1}{c|}{GPT} & \multicolumn{1}{c|}{GPT1 a GPT20} & \multicolumn{1}{c|}{PG1 a PG6} \\ 
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{PET} & \multicolumn{1}{c|}{PET1 a PET4} & \multicolumn{1}{c|}{} \\ 
     \hline
-    \multicolumn{1}{|c|}{3*Nível 2} & \multicolumn{1}{c|}{GRT} & \multicolumn{1}{c|}{GRT1 a GRT5} & \multicolumn{1}{c|}{3*PG7 a PG9} \\ 
+    \multicolumn{1}{|c|}{Nível 2} & \multicolumn{1}{c|}{GRT} & \multicolumn{1}{c|}{GRT1 a GRT5} & \multicolumn{1}{c|}{PG7 a PG9} \\ 
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{GRT} & \multicolumn{1}{c|}{GPT21 a GPT25} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{PET} & \multicolumn{1}{c|}{PET5 a PET6} & \multicolumn{1}{c|}{} \\ 
     \hline
-    \multicolumn{1}{|c|}{9*Nível 3} & \multicolumn{1}{c|}{FDT} & \multicolumn{1}{c|}{FDT1 a FDT4} & \multicolumn{1}{c|}{9*} \\ 
+    \multicolumn{1}{|c|}{Nível 3} & \multicolumn{1}{c|}{FDT} & \multicolumn{1}{c|}{FDT1 a FDT4} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{GDQ} & \multicolumn{1}{c|}{GDQ1 a GDQ3} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
@@ -346,7 +355,7 @@ O MPT.Br é dividido em Áreas de Processo (AP), Práticas Especificas e Prátic
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{PET} & \multicolumn{1}{c|}{GPT26 a GPT28} & \multicolumn{1}{c|}{} \\ 
     \hline
-    \multicolumn{1}{|c|}{4*Nível 4} & \multicolumn{1}{c|}{AQP} & \multicolumn{1}{c|}{AQP1 a AQP5} & \multicolumn{1}{c|}{4*} \\ 
+    \multicolumn{1}{|c|}{Nível 4} & \multicolumn{1}{c|}{AQP} & \multicolumn{1}{c|}{AQP1 a AQP5} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{GDD} & \multicolumn{1}{c|}{GDD1 a GDD3} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
@@ -354,7 +363,7 @@ O MPT.Br é dividido em Áreas de Processo (AP), Práticas Especificas e Prátic
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{OGT} & \multicolumn{1}{c|}{OGT11 e OGT12} & \multicolumn{1}{c|}{} \\ 
     \hline
-    \multicolumn{1}{|c|}{3*Nível 5} & \multicolumn{1}{c|}{AET} & \multicolumn{1}{c|}{AET1 a AET6} & \multicolumn{1}{c|}{3*} \\ 
+    \multicolumn{1}{|c|}{Nível 5} & \multicolumn{1}{c|}{AET} & \multicolumn{1}{c|}{AET1 a AET6} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
     \multicolumn{1}{|c|}{} & \multicolumn{1}{c|}{CEP} & \multicolumn{1}{c|}{CEP1 a CEP5} & \multicolumn{1}{c|}{} \\ 
     \cline{2-3}
@@ -364,21 +373,21 @@ O MPT.Br é dividido em Áreas de Processo (AP), Práticas Especificas e Prátic
 }
 \end{table}
 
-A escolha do MPT.Br como base para essa pesquisa se dá pelo fato de que além de ser uma iniciativa nacional amplamente utilizada por organizações e ser focado para o contexto de MPE's, o MPT.Br tem em sua estrutura dois componentes importantes: 
+A escolha do MPT.Br como base para essa pesquisa se dá pelo fato de que além de ser uma iniciativa nacional amplamente utilizada por Organizações e ser focado para o contexto de MPEs, o MPT.Br tem em sua estrutura dois componentes importantes: 
 
 \begin{itemize}
     \item Modelo de Referência: Que apresenta a estrutura do processo, em áreas, práticas (especificas e genéricas) do nível de maturidade;
     \item Modelo de Avaliação: Aborda os critérios necessários para se avaliar um processo de teste de uma organização;
 \end{itemize}
 
-O MPT.Br possui um guia de Referência e de Avaliação que são de suma importância para guiar a empresa na implantação do processo de teste. Com a ajuda do Guia de Avaliação é possível que de tempos em tempos a organização realiza avaliações de maturidade do seu processo e tome decisões para alcançar níveis mais altos ou ajustar alguma Área de Processo que não esteja como desejado. Apesar do MPT.Br ser proposto para organizações de todos os tamanhos e ser indicado para MPE's, o mesmo ainda possui muitas atividades que não estão totalmente alinhadas às necessidades de organizações menores ou que desejam usar Métodos Ágeis. Logo nota-se uma oportunidade de melhoria, no refinamento da estrutura do Guia de Referência e também na necessidade de uma organização manter sempre seu processo em um nível de maturidade desejado.
+O MPT.Br possui um guia de Referência e de Avaliação que são de suma importância para guiar a empresa na implantação do processo de teste. Com a ajuda do Guia de Avaliação é possível que de tempos em tempos a Organização realiza avaliações de maturidade do seu processo e tome decisões para alcançar níveis mais altos ou ajustar alguma Área de Processo que não esteja como desejado. Apesar do MPT.Br ser proposto para organizações de todos os tamanhos e ser indicado para MPEs, o mesmo ainda possui muitas atividades que não estão totalmente alinhadas às necessidades de Organizações menores ou que desejam usar Métodos Ágeis. Logo nota-se uma oportunidade de melhoria, no refinamento da estrutura do Guia de Referência e também na necessidade de uma organização manter sempre seu processo em um nível de maturidade desejado.
 
 \subsection{Método FreeTest}
 \label{freetest}
 
-O Método FreeTest \cite{Camilo-junior2012} surgiu como uma proposta completa para as Micro e Pequenas Empresas de T.I., pois desde a sua definição os autores do projeto se preocuparam com todas as necessidades que uma organização teria, neste caso, um processo enxuto, ferramentas, técnicas e base de conhecimento para auxiliar as organizações à alcançarem o seu objetivo de maturidade. O projeto nasceu a partir do Estudo e Definição de Processo de Teste de Software para MPE's de TI, através do programa PAPPE Integração apoiado pela Fundação de Amparo à Pesquisa do Estado de Goiás (FAPEG)/Financiadora de Estudos e Projetos (FINEP) e, pelos pesquisadores do Instituto de Informática da Universidade Federal de Goiás (UFG) em conjunto com Organizações de T.I. do estado de Goiás \cite{Camilo-junior2012a}.
+O Método FreeTest \cite{Camilo-junior2012} surgiu como uma proposta completa para as Micro e Pequenas Empresas de T.I., pois desde a sua definição os autores do projeto se preocuparam com todas as necessidades que uma Organização teria, neste caso, um processo enxuto, ferramentas, técnicas e base de conhecimento para auxiliar as organizações à alcançarem o seu objetivo de maturidade. O projeto nasceu a partir do Estudo e Definição de Processo de Teste de Software para MPEs de TI, através do programa PAPPE Integração apoiado pela Fundação de Amparo à Pesquisa do Estado de Goiás (FAPEG)/Financiadora de Estudos e Projetos (FINEP) e, pelos pesquisadores do Instituto de Informática da Universidade Federal de Goiás (UFG) em conjunto com Organizações de T.I. do estado de Goiás \cite{Camilo-junior2012a}.
 
-O FreeTest foi inspirado em modelos de maturidade como TMMI e MPT.Br. De forma geral o Método consiste em um conjunto de processos, ferramentas e conhecimento em teste de software que estabelece uma solução de fácil aplicação para MPE's que desejam ter um processo de teste definido e/ou melhorar seus processos e ferramentas. A estrutura do Método FreeTest é mostrado na tabela \ref{tab:3.4}.
+O FreeTest foi inspirado em modelos de maturidade como TMMI e MPT.Br. De forma geral o Método consiste em um conjunto de processos, ferramentas e conhecimento em teste de software que estabelece uma solução de fácil aplicação para MPEs que desejam ter um processo de teste definido e/ou melhorar seus processos e ferramentas. A estrutura do Método FreeTest é mostrado na tabela \ref{tab:3.4}.
 
 
 \begin{table}[H]
@@ -408,7 +417,7 @@ O FreeTest foi inspirado em modelos de maturidade como TMMI e MPT.Br. De forma g
     }
 \end{table}
 
-Como já mencionado o diferencial do Método FreeTest é sua abordagem enxuta e sua concepção. Para apoiar a rápida absorção das MPE's na implantação do Método FreeTest, três componentes foram construídos e distribuídos, que são:
+Como já mencionado o diferencial do Método FreeTest é sua abordagem enxuta e sua concepção. Para apoiar a rápida absorção das MPEs na implantação do Método FreeTest, três componentes foram construídos e distribuídos, que são:
 
 \begin{itemize}
     \item Manual de Instalação, apoia na instalação do arcabouço;
@@ -416,10 +425,10 @@ Como já mencionado o diferencial do Método FreeTest é sua abordagem enxuta e 
     \item Modelo de Processo, que consiste em toda a estrutura do FreeTest, com suas respectiva Áreas de Processos e práticas especificas.
 \end{itemize}
 
-O FreeTest assim como MPT.Br que são iniciativas nacionais de apoio a melhoria do processo de teste das organizações de T.I. do Brasil abordam muitos fatores relevantes para o crescimento da maturidade em teste de software das organizações. No entanto, observando o cenário das MPE's que normalmente operam com um baixo custo de investimento e possuem limitações de profissionais capacitados, observa-se a necessidade de uma ferramenta que auxilie integralmente a implantação do Processo e utilização de ferramentas. O FreeTest apesar de sua abordagem enxuta e oferta de ferramentas dentro do seu arcabouço, não apoia a implantação do processo de teste nas empresas, sendo muitas vezes necessário a contratação de profissionais qualificados para tal ou disponibilizar e mobilizar a organização para implantação do processo. Este estudo enxerga essa ausência, como uma oportunidade de pesquisa.
+O FreeTest assim como MPT.Br que são iniciativas nacionais de apoio a melhoria do processo de teste das Organizações de T.I. do Brasil abordam muitos fatores relevantes para o crescimento da maturidade em teste de software das organizações. No entanto, observando o cenário das MPEs que normalmente operam com um baixo custo de investimento e possuem limitações de profissionais capacitados, observa-se a necessidade de uma ferramenta que auxilie integralmente a implantação do processo e utilização de ferramentas. O FreeTest apesar de sua abordagem enxuta e oferta de ferramentas dentro do seu arcabouço, não apoia a implantação do processo de teste nas empresas, sendo muitas vezes necessário a contratação de profissionais qualificados para tal ou disponibilizar e mobilizar a organização para implantação do processo. Este estudo enxerga essa ausência, como uma oportunidade de pesquisa.
 
 \section{Conclusões}
-\label{conclusoes}
+\label{sec:conclusoescap2}
 
 Nas últimas décadas a comunidade científica tem tido um grande interesse em pesquisas sobre melhoria de processo de desenvolvimento de software. Neste entendimento, processos como ISO/IEC 12207 \cite{Mitasiunas2014}, RUP \cite{Veenendaal2012}, CMMI \cite{cmmi}, ProSoft \cite{Mitasiunas2014} o MPS.Br \cite{Softex}, e outros tem sido idealizados de modo a tentar reduzir os custos de produção das organizações e melhorar a eficiência das mesmas.
 
@@ -433,6 +442,4 @@ No estudo intitulado Modelos de Processo de Teste: Revisão Sistemática da Lite
     \item Nove modelos de processo de propósito especifico foram encontrados, sendo que, boa parte com foco em automação de teste de software, sistemas embarcados e Micro e Pequenas Empresas. Segundo o autor isso indica uma importante tendência de estudos \cite{Carlo2010}.
 \end{itemize}
 
-Outro estudo que corroborou substancialmente este trabalho foi o "Um Panorama Sobre o Uso de Práticas DevOps nas Indústrias de Software" \cite{BRAGA2015}, no qual o autor realiza um mapeamento sistemático do uso de práticas de DevOps na indústria. O autor elicita as práticas mais comuns utilizadas pelas empresas, realiza uma pesquisa utilizando questionários no mercado brasileiro de T.I. e como propostas de trabalhos futuros evidência a importância da criação de um processo de desenvolvimento que utilize práticas específicas de DevOps como um nicho de pesquisa.
-
-Por fim, através do embasamento nos estudos realizados e na carência de pesquisas que apoiem as atividades das MPE's no dia a dia, no sentido de obtenção de qualidade do produto de software desenvolvido, principalmente no que diz respeito de guiar as empresas na obtenção e manutenção de processos de teste de software ágeis e enxutos, a fim de, melhorar a qualidade do software produzido, principalmente no Brasil.
+Por fim, através do embasamento nos estudos realizados e na carência de pesquisas que apoiem as atividades das MPEs no dia a dia, no sentido de obtenção de qualidade do produto de software desenvolvido. Também no que diz respeito em guiar as empresas na obtenção e manutenção de processos de teste ágeis e enxutos, a fim de, melhorar a qualidade do software produzido, principalmente no Brasil, este trabalho propõe, com base em todo a revisão da literatura feita neste capítulo melhorar o Método FreeTest, afim de agregar novos conceitos e tendências do mercado emergente contemporâneo, e junto a essas melhorias disponibilizar um guia de implantação para o processo, acompanhado de ferramentas de apoio criadas e disponibilizadas para a comunidade.

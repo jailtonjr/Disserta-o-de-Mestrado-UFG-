@@ -1,9 +1,9 @@
 \chapter{Construção do Processo FreeTest 2.0}
 \label{sec:construcaoframeworkprocesso}
 
-Desde sua concepção o processo do Método FreeTest propõe práticas, abordagens e técnicas alinhadas com a demanda crescente da indústria de tecnologia e estado da prática da literatura. 
+Desde sua concepção o processo do Método FreeTest 1.0 propõe práticas, abordagens e técnicas alinhadas com a demanda crescente da indústria de tecnologia e estado da prática da literatura, com foco principal em Micro e Pequenas Empresas. 
 
-Numa visão geral, o FreeTest evoluiu de um modelo "Cascata-Ágil" (\textit{Fast Waterfall}) para um modelo "Ágil", contudo com uma integração contínua (\textit{Continuous Integration}) mais modesta \cite{sauceLabes2017}. Este capítulo propõe melhorar o processo, nomeando-o como, "\textbf{FreeTest 2.0}" e trazendo abordagens mais aderente às técnicas ágeis, integração contínua e inserindo práticas para um modelo de processo do tipo Entrega Contínua (\textit{"Continuous Delivery"}). As melhorias propostas neste capítulo são com base nas revisões da literatura (capítulo \ref{sec:referencialteorico}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
+Numa visão geral, o FreeTest 1.0 evoluiu de um modelo "Cascata-Ágil" (\textit{Fast Waterfall}) para um modelo "Ágil", contudo com uma Integração Contínua (\textit{Continuous Integration}) mais modesta \cite{sauceLabes2017}. Este capítulo propõe melhorar o processo, nomeando-o como, "\textbf{FreeTest 2.0}" e trazendo abordagens mais aderente às técnicas ágeis, integração contínua e inserindo práticas que contemplem um modelo de processo do tipo "Entrega Contínua" (\textit{Continuous Delivery}). As melhorias propostas neste capítulo são com base nas revisões da literatura (capítulo \ref{sec:referencialteorico}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
 
 \begin{itemize}
     \item Na subseção \ref{sec:identificacaomelhoriasfreetest}, os estudos com embasamento teórico são mostrados com a intenção de evidenciar as possíveis melhorias para o novo processo;
@@ -14,97 +14,59 @@ Numa visão geral, o FreeTest evoluiu de um modelo "Cascata-Ágil" (\textit{Fast
 \end{itemize}
 
 %Construção do processo FreeTest 2.0
-\section{Identificação de melhorias no Método FreeTest}
+\section{Identificação de melhorias no Método FreeTest 1.0}
 \label{sec:identificacaomelhoriasfreetest}
 
-Para que essa pesquisa fosse conduzida e eventuais melhorias no processo do Método FreeTest fossem realizadas, foi necessário um estudo do estado da prática (capítulo \ref{sec:referencialteorico}) de processos de teste já consolidados, artigos científicos, teses e dissertações que abordassem processos de teste com aplicação prática, estudo de caso e validações em ambientes controlados. Diante disto, após essa análise dos estudos e utilizando o embasamento teórico do capítulo \ref{sec:referencialteorico}, foram realizadas análises comparativas entre o Método FreeTest, MPT.Br \cite{GuiaMPTbr}, Métodos Ágeis \cite{Beck2001} e adição de práticas especificas dentro do processo que são inerentes ao contexto de DevOps \cite{Debois2008}. 
+Para que essa pesquisa fosse conduzida e eventuais melhorias no processo do Método FreeTest 1.0 fossem realizadas, foi necessário um estudo do estado da prática (capítulo \ref{sec:referencialteorico}) de processos de teste já consolidados, artigos científicos, teses e dissertações que abordassem processos de teste com aplicação prática, estudo de caso e validações em ambientes controlados. Diante disto, após essa análise dos estudos e utilizando o embasamento teórico do capítulo \ref{sec:referencialteorico}, foram realizadas análises comparativas entre o Método FreeTest 1.0, MPT.Br \cite{GuiaMPTbr}, Métodos Ágeis \cite{Beck2001} e adição de práticas especificas dentro do processo, que são inerentes ao contexto de DevOps \cite{Debois2008}. 
 
-Com a finalidade de comparar os processos e sugerir adições ou remoções no mesmo, foi realizado um mapeamento de equivalência entre o Método FreeTest e MPT.Br exibido na tabela \ref{tab:4.1}, esse mapeamento mostra as práticas especificas existentes no MPT.Br que o FreeTest possui de forma equivalente. Uma tabela (\ref{tab:4.2}) que contém as atividades do FreeTest que não possuem equivalência com o MPT.Br também foi criada para contribuir na análise entre os dois processos.
+Com a finalidade de comparar os processos e sugerir adições ou remoções no mesmo, foi realizado um mapeamento de equivalência entre o Método FreeTest 1.0 e MPT.Br exibido na tabela \ref{tab:4.1}, esse mapeamento mostra as práticas especificas existentes no FreeTest 1.0 que o MPT.Br possui de forma equivalente. Uma tabela (\ref{tab:4.2}) que contém as atividades do FreeTest 1.0 que não possuem equivalência com o MPT.Br também foi criada para contribuir na análise entre os dois processos.
 
 \begin{table}[!ht]
 \centering
-\caption{Equivalência entre MPT.Br e FreeTest.}
+\caption{Mapeamento de equivalências entre o FreeTest 1.0 e MPT.Br}
 \label{tab:4.1}
-  \scalebox{0.75}{
-    \begin{tabular}{|l|l|l|}
-    \hline
-    \multicolumn{2}{|c|}{MPT.Br} & \multicolumn{1}{c|}{FreeTest} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Práticas Especificas} & \multicolumn{1}{c|}{Equivalente?} \\ 
-    \hline
-    \multicolumn{1}{|c|}{GPT – Gerência de Projetos de Teste} & GPT11 – Planejar o ambiente de teste para o projeto & \multicolumn{1}{c|}{Sim} \\ 
-    \hline
-    \multicolumn{1}{|c|}{PET – Projeto e Execução de Teste} & PET2 – Executar casos de teste & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & PET3 – Reportar incidentes & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & PET4 – Acompanhar incidentes & \multicolumn{1}{c|}{Sim} \\ 
-    \hline
-    \multicolumn{1}{|c|}{FDT – Fechamento do Teste} & FDT4 – Consolidar dados de teste & \multicolumn{1}{c|}{Sim} \\ 
-    \hline
-    \multicolumn{1}{|c|}{TDA – Teste de Aceitação} & TDA5 – Preparar ambiente para aceitação & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & TDA6 – Conduzir testes de aceitação & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & TDA7 – Avaliar condições de aceitação & \multicolumn{1}{c|}{Sim} \\ 
-    \hline
-    \multicolumn{1}{|c|}{TES – Teste Estático} & TES1 – Identificar produtos de trabalho e tipos de revisão & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & TES2 – Definir critérios de revisões & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & TES3 – Conduzir revisões & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & TES4 – Analisar dados de revisões & \multicolumn{1}{c|}{Sim} \\ 
-    \hline
-    \multicolumn{1}{|c|}{AET – Automação da Execução do Teste} & AET3 – Definir um \textit{framework} para automação de teste & \multicolumn{1}{c|}{Sim} \\ 
-    \cline{2-3}
-     & AET4 – Gerenciar incidentes de teste automatizado & \multicolumn{1}{c|}{Sim} \\ 
-    \hline
-    \end{tabular}
-}
+\begin{tabular}{|c|l|l|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{FreeTest 1.0}}             & \multicolumn{2}{c|}{\textbf{MPT.Br}}           \\ \hline
+\textbf{AP}          & \multicolumn{1}{c|}{\textbf{PE}} & \multicolumn{1}{c|}{\textbf{AP}} & \textbf{PE} \\ \hline
+GPT                  & GPT1                             & \multirow{2}{*}{GPT}             & GPT14       \\ \cline{1-2} \cline{4-4} 
+\multirow{3}{*}{TFU} & TFU1                             &                                  & GPT11       \\ \cline{2-4} 
+                     & TFU2                             & PET                              & PET2 a PET4 \\ \cline{2-4} 
+                     & TFU3                             & FDT                              & FDT4        \\ \hline
+\multirow{2}{*}{TRQ} & TRQ1                             & \multirow{2}{*}{TES}             & TES1 a TES3 \\ \cline{2-2} \cline{4-4} 
+                     & TRQ2                             &                                  & TES4        \\ \hline
+\multirow{3}{*}{TDA} & TDA1                             & \multirow{3}{*}{TDA}             & TDA5        \\ \cline{2-2} \cline{4-4} 
+                     & TDA2                             &                                  & TDA6        \\ \cline{2-2} \cline{4-4} 
+                     & TDA3                             &                                  & TDA7        \\ \hline
+\end{tabular}
 \end{table}
 
 
 \begin{table}[!ht]
 \centering
-\caption{Práticas especificas do Método FreeTest que NÃO possuem equivalência com o MPT.Br.}
+\caption{Práticas especificas do Método FreeTest 1.0 que não possuem equivalência com o MPT.Br.}
 \label{tab:4.2}
-  \scalebox{0.75}{
-    \begin{tabular}{|l|l|l|}
-    \hline
-    \multicolumn{2}{|c|}{MPT.Br} & \multicolumn{1}{c|}{FreeTest} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Práticas Especificas} & \multicolumn{1}{c|}{Equivalente?} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Teste de regressão} & Preparar massa de teste (TRG1) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Manter \textit{script} de regressão (TRG2) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Executar teste de regressão (TRG3) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Encerrar teste de regressão (TRG4) & \multicolumn{1}{c|}{Não} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Integração contínua} & Elaborar código (INC1) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Elaborar \textit{script} BDD (INC2) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Montar \textit{build} (INC3) & \multicolumn{1}{c|}{Não} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Teste de desempenho} & Preparar massa de teste (TPE1) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Manter \textit{script} de desempenho (TPE2) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Executar teste de desempenho (TPE3) & \multicolumn{1}{c|}{Não} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Encerrar teste de desempenho (TPE4) & \multicolumn{1}{c|}{Não} \\ 
-    \hline
-    \end{tabular}
-}
+\begin{tabular}{|c|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{FreeTest 1.0}}                                     \\ \hline
+Área de Processo                     & \multicolumn{1}{c|}{Práticas Especificas} \\ \hline
+\multirow{4}{*}{Teste de regressão}  & Preparar massa de teste (TRG1)            \\ \cline{2-2} 
+                                     & Manter \textit{script} de regressão (TRG2)         \\ \cline{2-2} 
+                                     & Executar teste de regressão (TRG3)        \\ \cline{2-2} 
+                                     & Encerrar teste de regressão (TRG4)        \\ \hline
+\multirow{3}{*}{Integração contínua} & Elaborar código (INC1)                    \\ \cline{2-2} 
+                                     & Elaborar \textit{script} BDD (INC2)                \\ \cline{2-2} 
+                                     & Montar \textit{build} (INC3)                       \\ \hline
+\multirow{4}{*}{Teste de desempenho} & Preparar massa de teste (TPE1)            \\ \cline{2-2} 
+                                     & Manter \textit{script} de desempenho (TPE2)        \\ \cline{2-2} 
+                                     & Executar teste de desempenho (TPE3)       \\ \cline{2-2} 
+                                     & Encerrar teste de desempenho (TPE4)       \\ \hline
+\end{tabular}
 \end{table}
 
-Como observados na tabela \ref{tab:4.2} somente as práticas especificas do Método FreeTest que não possuem quaisquer equivalências com as práticas especificas do MPT.Br foram ressaltadas. Na tabela \ref{tab:4.1} as práticas especificas do MPT.Br que possuem equivalência com o FreeTest foram listadas, a intenção é que somente as práticas especificas do MPT.Br que não forem listadas sejam possíveis contribuições de melhoria ao novo processo proposto neste trabalho.
+Como observados na tabela \ref{tab:4.2} somente as Práticas Especificas (PE) e Áreas de Processo (AP) do Método FreeTest 1.0 que não possuem quaisquer equivalências com as práticas especificas do MPT.Br foram ressaltadas. Na tabela \ref{tab:4.1} as práticas especificas do FreeTest 1.0 que possuem equivalência com o MPT.Br foram listadas, a intenção é que somente as práticas especificas do MPT.Br que não foram listadas sejam possíveis contribuições de melhoria ao FreeTest 2.0.
 
-Diante da revisão da literatura e referencial teórico no capítulo \ref{sec:referencialteorico}, algumas propostas de mudança no processo foram elencadas de acordo com as boas práticas da Metodologia Ágil \cite{Beck2001,Debois2008} e Devops \cite{Howlett,Fitzgerald2014,Erich2014}, como pode ser visto a seguir:
+Diante da revisão da literatura e referencial teórico no capítulo \ref{sec:referencialteorico}, algumas propostas de mudança no processo foram elencadas de acordo com as boas práticas da Metodologia Ágil \cite{Beck2001,Debois2008} e Devops \cite{Howlett,Fitzgerald2014,Erich2014}, como as listadas a seguir:
 
 \begin{itemize}
     \item Testes Unitários (\textit{Unit Testing});
@@ -122,8 +84,8 @@ Na seção \ref{sec:melhoriaspropostas} será apresentado as melhorias propostas
 \section{Melhorias propostas para o processo}
 \label{sec:melhoriaspropostas}
 
-Para propor as melhorias para o novo processo do Método FreeTest foi necessário a elaboração de um mapeamento das equivalências identificadas entre as práticas especificas do Método FreeTest e MPT.Br, e revisão da literatura na perspectiva da Metodologia Ágil e das boas práticas empregadas no Devops (subseção \ref{sec:identificacaomelhoriasfreetest}).
-A abordagem utilizada para a tomada de decisão de quais práticas especificas seriam mantidas, incluídas ou removidas do novo processo do FreeTest foi o contexto no qual ele se emprega, ou seja, as Micro e Pequenas Empresas, sendo assim, alguns critérios de seleção foram adotados com base no conhecimento empírico do autor e da literatura \cite{JamesWhittakerJasonCarollo2012, Especialistas2015, Whittaker2009, ABESSofftware2014, FelipeDreher2016, Laporte2010, Ramachandram2008, SilvaDias2015}, para ajudar nas decisões no contexto das MPEs:
+Para propor as melhorias para o processo do Método FreeTest 2.0 foi necessário a elaboração de um mapeamento das equivalências identificadas entre as práticas especificas do Método FreeTest 1.0 e MPT.Br, e revisão da literatura na perspectiva da Metodologia Ágil e das boas práticas empregadas no Devops (subseção \ref{sec:identificacaomelhoriasfreetest}).
+A abordagem utilizada para a tomada de decisão de quais práticas especificas seriam mantidas, incluídas ou removidas para o processo do FreeTest 1.0 foi o contexto no qual ele se emprega, ou seja, as Micro e Pequenas Empresas, sendo assim, alguns critérios de seleção foram adotados com base no conhecimento empírico do autor e da literatura \cite{JamesWhittakerJasonCarollo2012, Especialistas2015, Whittaker2009, ABESSofftware2014, FelipeDreher2016, Laporte2010, Ramachandram2008, SilvaDias2015}, para ajudar nas decisões no contexto das MPEs:
 
 \begin{itemize}
     \item Soluções de baixo custo de aquisição e implantação;
@@ -138,11 +100,11 @@ A abordagem utilizada para a tomada de decisão de quais práticas especificas s
     \item Processos de desenvolvimento e teste não definidos, muitas vezes processos diferentes para clientes diferentes.
 \end{itemize}
 
-Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de melhoria a partir do MPT.Br para o processo FreeTest 2.0. É importante salientar que as práticas especificas avaliadas, tanto do processo MPT.Br e Método FreeTest sofreram uma avaliação do tipo, "Mantido", "Excluído" ou "Adicionado" como observado nas tabelas. 
+Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de melhoria a partir do MPT.Br e FreeTest 1.0 para o processo FreeTest 2.0. É importante salientar que as práticas especificas avaliadas, tanto do processo MPT.Br e Método FreeTest 1.0 sofreram uma avaliação do tipo, "Mantido", "Excluído" ou "Adicionado" como observado nas tabelas. 
 
 \begin{table}[!ht]
 \centering
-\caption{Sugestões de Melhoria para o novo processo a partir do MPT.Br}
+\caption{Sugestões de melhoria para o FreeTest 2.0 a partir do MPT.Br}
 \label{tab:4.3}
 \scalebox{0.75}{
     \begin{tabular}{|l|l|l|}
@@ -205,115 +167,114 @@ Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de
     \cline{2-3}
     \multicolumn{1}{|c|}{} & TDA7 – Avaliar condições de aceitação & \multicolumn{1}{c|}{Mantido} \\ 
     \hline
-    \multicolumn{1}{|c|}{TES} & TES1 – Identificar produtos de trabalho e tipos de revisão & \multicolumn{1}{c|}{Mantido} \\ 
+    \multicolumn{1}{|c|}{TES} & TES1 – Identificar produtos de trabalho e tipos de revisão & \multicolumn{1}{c|}{Excluído} \\ 
     \cline{2-3}
-    \multicolumn{1}{|c|}{} & TES2 – Definir critérios de revisões & \multicolumn{1}{c|}{Mantido} \\ 
+    \multicolumn{1}{|c|}{} & TES2 – Definir critérios de revisões & \multicolumn{1}{c|}{Excluído} \\ 
     \cline{2-3}
-    \multicolumn{1}{|c|}{} & TES3 – Conduzir revisões & \multicolumn{1}{c|}{Mantido} \\ 
+    \multicolumn{1}{|c|}{} & TES3 – Conduzir revisões & \multicolumn{1}{c|}{Excluído} \\ 
     \cline{2-3}
-    \multicolumn{1}{|c|}{} & TES4 – Analisar dados de revisões & \multicolumn{1}{c|}{Mantido} \\ 
+    \multicolumn{1}{|c|}{} & TES4 – Analisar dados de revisões & \multicolumn{1}{c|}{Excluído} \\ 
     \hline
-    \multicolumn{1}{|c|}{AET} & AET3 – Definir um framework para automação de teste & \multicolumn{1}{c|}{Mantido} \\ 
+    \multicolumn{1}{|c|}{AET} & AET3 – Definir um \textit{framework} para automação de teste & \multicolumn{1}{c|}{Adicionado} \\ 
     \cline{2-3}
-    \multicolumn{1}{|c|}{} & AET4 – Gerenciar incidentes de teste automatizado & \multicolumn{1}{c|}{Mantido} \\ 
-    \hline
-    \end{tabular}
-}
-\end{table}
-
-
-\begin{table}[!ht]
-\centering
-\caption{Melhorias promovidas para o novo processo nas práticas do FreeTest}
-\label{tab:4.4}
-  \scalebox{0.75}{
-    \begin{tabular}{|l|l|l|}
-    \hline
-    \multicolumn{1}{|c|}{Área de Processo} & \multicolumn{1}{c|}{Prática Especifica} & \multicolumn{1}{c|}{Ação} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Teste de regressão} & Preparar massa de teste (TRG1) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Manter script de regressão (TRG2) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Executar teste de regressão (TRG3) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Encerrar teste de regressão (TRG4) & \multicolumn{1}{c|}{Mantida} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Integração contínua} & Elaborar código (INC1) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Elaborar script BDD (INC2) & \multicolumn{1}{c|}{Removida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Montar build (INC3) & \multicolumn{1}{c|}{Mantida} \\ 
-    \hline
-    \multicolumn{1}{|c|}{Teste de desempenho} & Preparar massa de teste (TPE1) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Manter script de desempenho (TPE2) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Executar teste de desempenho (TPE3) & \multicolumn{1}{c|}{Mantida} \\ 
-    \cline{2-3}
-    \multicolumn{1}{|c|}{} & Encerrar teste de desempenho (TPE4) & \multicolumn{1}{c|}{Mantida} \\ 
+    \multicolumn{1}{|c|}{} & AET4 – Gerenciar incidentes de teste automatizado & \multicolumn{1}{c|}{Adicionado} \\ 
     \hline
     \end{tabular}
 }
 \end{table}
 
-As tabelas \ref{tab:4.3} e \ref{tab:4.4} mostram as práticas especificas que foram mantidas, adicionadas ou removidas, com base nos critérios de tomada de decisão mencionados na subseção \ref{sec:melhoriaspropostas}, na análise do MPT.Br e os estudos realizados sobre Metodologia Ágil e Devops. Por fim, uma proposta para o novo processo foi definida na seção \ref{sec:novoprocesso}.
-
-\section{Definição do novo processo}
-\label{sec:novoprocesso}
-
-Com base nos esforços apontados na seção anterior, revisão da literatura e referencial teórico sobre Metodologia Ágil e Devops, um novo processo para o Método FreeTest será apresentado nesta seção. Devido ao perfil atual das MPEs foi necessário a junção de algumas práticas especificas citadas no MPT.Br, de modo que a sua execução por parte das MPEs fossem realizadas de forma mais fácil e menos onerosa. Outra decisão tomada foi a alteração do nível de maturidade de determinadas práticas especificas utilizadas tanto do MPT.Br quanto do antigo processo do FreeTest, a intenção foi mantê-los em um nível de maturidade que estivesse mais atrelado à situação atual das MPEs nacionais \cite{Especialistas2015, SilvaDias2015}.
-
-Como é possível verificar na tabela \ref{tab:4.5}, a coluna "Nível de Maturidade Atual" mostra o nível de maturidade no qual a prática especifica corresponde no processo FreeTest 2.0, "AP" é o nome da área de processo, "PE" é o nome da prática especifica, "Nível de Maturidade Anterior" é o nível de maturidade no qual a prática especifica tanto do MPT.Br quanto do FreeTest pertencia, e por fim as práticas especificas relacionadas à criação da nova prática. É importante salientar que nem todas práticas especificas abordadas no MPT.Br e na versão anterior do FreeTest foram mantidas para essa nova abordagem (vide seção \ref{sec:melhoriaspropostas}).
 
 \begin{table}[H]
 \centering
-\caption{Proposta para o novo processo: Readaptação com a junção de práticas especificas e alteração de nível de maturidade.}
+\caption{Melhorias promovidas para o FreeTest 2.0 a partir das práticas do FreeTest 1.0}
+\label{tab:4.4}
+\begin{tabular}{|c|l|c|}
+\hline
+\textbf{Área de Processo}                                 & \multicolumn{1}{c|}{\textbf{Prática Especifica}} & \textbf{Ação}                 \\ \hline
+\multirow{4}{*}{Teste de regressão}                       & Preparar massa de teste (TRG1)                   & Mantida                       \\ \cline{2-3} 
+                                                          & Manter script de regressão (TRG2)                & Mantida                       \\ \cline{2-3} 
+                                                          & Executar teste de regressão (TRG3)               & Mantida                       \\ \cline{2-3} 
+                                                          & Encerrar teste de regressão (TRG4)               & Mantida                       \\ \hline
+\multirow{3}{*}{Integração contínua}                      & Elaborar código (INC1)                           & Mantida                       \\ \cline{2-3} 
+                                                          & Elaborar script BDD (INC2)                       & Excluído                      \\ \cline{2-3} 
+                                                          & Montar build (INC3)                              & Mantida                       \\ \hline
+\multirow{4}{*}{Teste de desempenho}                      & Preparar massa de teste (TPE1)                   & Mantida                       \\ \cline{2-3} 
+                                                          & Manter script de desempenho (TPE2)               & Mantida                       \\ \cline{2-3} 
+                                                          & Executar teste de desempenho (TPE3)              & Mantida                       \\ \cline{2-3} 
+                                                          & Encerrar teste de desempenho (TPE4)              & Mantida                       \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Teste de Requisito}} & Realizar verificação (TRQ1)                      & \multicolumn{1}{l|}{Excluído} \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                    & Encerrar verificação (TRQ2)                      & \multicolumn{1}{l|}{Excluído} \\ \hline
+\end{tabular}
+\end{table}
+
+Diante dos estudos realizados no capítulo \ref{sec:referencialteorico} e com base nos critérios de análise elencados no inicio desta seção, as tabelas \ref{tab:4.3} e \ref{tab:4.4} mostram os resultados das contribuições para a melhoria do FreeTest 2.0 na perspectiva do MPT.Br e FreeTest 1.0. Conforme já mencionado, além dos critérios de análise baseado no contexto e visita às MPEs, foram utilizados critérios que corroboram com o uso de Metodologias Ágeis (seção \ref{sec:identificacaomelhoriasfreetest}). 
+
+Na seção \ref{sec:novoprocesso} será exibido a consolidação dos estudos sobre as contribuições do MPT.Br e FreeTest 1.0 para a proposta final do processo do FreeTest 2.0 e por fim a junção de práticas especificas extraídas dos estudos sobre Metodologias Ágeis e DevOps.
+
+
+\section{Definição do FreeTest 2.0}
+\label{sec:novoprocesso}
+
+Com base nos esforços apontados na seção anterior, revisão da literatura, observações em algumas MPEs e referencial teórico sobre Metodologia Ágil e Devops, um novo processo para o Método FreeTest será apresentado nesta seção. Devido ao perfil atual das MPEs foi necessário a junção de algumas práticas especificas citadas no MPT.Br, de modo que a sua execução por parte das MPEs fossem realizadas de forma mais fácil e menos onerosa. Outra decisão tomada foi a alteração do nível de maturidade de determinadas práticas especificas utilizadas, tanto do MPT.Br quanto do FreeTest 1.0, a intenção foi mantê-los em um nível de maturidade que estivesse mais atrelado à situação atual das MPEs nacionais \cite{Especialistas2015, SilvaDias2015} e os estudos realizados.
+
+Como é possível verificar na tabela \ref{tab:4.5}, que mostra o resultado das análises e contribuições do MPT.BR e FreeTest 1.0 para o FreeTest 2.0, a coluna "Nível de Maturidade FreeTest 2.0" mostra o nível de maturidade no qual a prática especifica corresponde no processo FreeTest 2.0, "AP" é o nome da área de processo, "PE" é o nome da prática especifica, "Nível de Maturidade da Fonte" é o nível de maturidade no qual a prática especifica tanto do MPT.Br quanto do FreeTest 1.0 pertencia, e por fim as práticas especificas relacionadas à criação da nova prática. É importante salientar que nem todas práticas especificas abordadas no MPT.Br e no FreeTest 1.0 foram mantidas para essa nova abordagem (vide seção \ref{sec:melhoriaspropostas}).
+
+
+\begin{table}[H]
+\centering
+\caption{Proposta para o FreeTest 2.0: Readaptação com a junção de práticas especificas e alteração de nível de maturidade.}
 \label{tab:4.5}
-  \scalebox{0.75}{
+\scalebox{0.70}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{\begin{tabular}[c]{@{}c@{}}Nível de \\ Maturidade\\ Atual\end{tabular}} & \textbf{AP}                   & \textbf{PE} & \textbf{Origem}   & \textbf{\begin{tabular}[c]{@{}c@{}}Nível de \\ Maturidade\\ Anterior\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Práticas \\ Relacionadas\end{tabular}} \\ \hline
-\multirow{9}{*}{\textbf{1}}                                                     & \multirow{6}{*}{\textbf{GPT}} & GPT1        & MPT.Br            & 1                                                                           & GPT1, GPT3                                                                \\ \cline{3-6} 
-                                                                                &                               & GPT2        & MPT.Br            & 1                                                                                  & GPT4                                                                      \\ \cline{3-6} 
-                                                                                &                               & GPT3        & MPT.Br            & 1                                                                                  & GPT5,GPT11, GPT12                                                         \\ \cline{3-6} 
-                                                                                &                               & GPT4        & MPT.Br            & 1                                                                                  & GPT3, GPT7                                                                \\ \cline{3-6} 
-                                                                                &                               & GPT5        & MPT.Br            & 1                                                                                  & GPT9                                                                      \\ \cline{3-6} 
-                                                                                &                               & GPT6        & MPT.Br            & 1                                                                                  & GPT16                                                                     \\ \cline{2-6} 
-                                                                                & \multirow{3}{*}{\textbf{ET}}  & ET1         & MPT.Br            & 1                                                                                  & PET1                                                                      \\ \cline{3-6} 
-                                                                                &                               & ET3         & MPT.Br            & 1                                                                                  & PET2                                                                      \\ \cline{3-6} 
-                                                                                &                               & ET4         & MPT.Br            & 1                                                                                  & PET3, PET4                                                                \\ \hline
-\multirow{5}{*}{\textbf{2}}                                                     & \multirow{2}{*}{\textbf{RR}}  & RR1         & \textbf{FreeTest} & 2                                                                                  & TES1, TES2, TES3                                                          \\ \cline{3-6} 
-                                                                                &                               & RR3         & \textbf{FreeTest} & 2                                                                                  & TES4                                                                      \\ \cline{2-6} 
-                                                                                & \multirow{3}{*}{\textbf{AES}} & AES1        & MPT.Br            & 3                                                                                  & TES1, TES2                                                                \\ \cline{3-6} 
-                                                                                &                               & AES2        & MPT.Br            & 3                                                                                  & TES3                                                                      \\ \cline{3-6} 
-                                                                                &                               & AES3        & MPT.Br            & 3                                                                                  & TES5                                                                      \\ \hline
-\multirow{7}{*}{\textbf{3}}                                                     & \multirow{3}{*}{\textbf{AET}} & AET1        & MPT.Br            & 5                                                                                  & AET2                                                                      \\ \cline{3-6} 
-                                                                                &                               & AET2        & MPT.Br            & 5                                                                                  & AET3                                                                      \\ \cline{3-6} 
-                                                                                &                               & AET3        & MPT.Br            & 5                                                                                  & AET4                                                                      \\ \cline{2-6} 
-                                                                                & \textbf{GCT}                  & GCT1        & MPT.Br            & 4                                                                                  & OGT11, OGT12                                                              \\ \cline{2-6} 
-                                                                                & \multirow{3}{*}{\textbf{MED}} & MED1        & MPT.Br            & 3                                                                                  & MAT1                                                                      \\ \cline{3-6} 
-                                                                                &                               & MED2        & MPT.Br            & 3                                                                                  & MAT4                                                                      \\ \cline{3-6} 
-                                                                                &                               & MED3        & MPT.Br            & 3                                                                                  & MAT5                                                                      \\ \hline
-\multirow{9}{*}{\textbf{4}}                                                     & \textbf{INC}                  & INC1        & \textbf{FreeTest} & 4                                                                                  & INC3                                                                      \\ \cline{2-6} 
-                                                                                & \multirow{4}{*}{\textbf{TRG}} & TRG1        & \textbf{FreeTest} & 3                                                                                  & TRG1                                                                      \\ \cline{3-6} 
-                                                                                &                               & TRG2        & \textbf{FreeTest} & 3                                                                                  & TRG2                                                                      \\ \cline{3-6} 
-                                                                                &                               & TRG3        & \textbf{FreeTest} & 3                                                                                  & TRG3                                                                      \\ \cline{3-6} 
-                                                                                &                               & TRG4        & \textbf{FreeTest} & 3                                                                                  & TRG4                                                                      \\ \cline{2-6} 
-                                                                                & \multirow{4}{*}{\textbf{TEP}} & TPE1        & \textbf{FreeTest} & 5                                                                                  & TPE1                                                                      \\ \cline{3-6} 
-                                                                                &                               & TPE2        & \textbf{FreeTest} & 5                                                                                  & TPE2                                                                      \\ \cline{3-6} 
-                                                                                &                               & TPE3        & \textbf{FreeTest} & 5                                                                                  & TPE3                                                                      \\ \cline{3-6} 
-                                                                                &                               & TPE4        & \textbf{FreeTest} & 5                                                                                  & TPE4                                                                      \\ \hline
-\multirow{3}{*}{\textbf{5}}                                                     & \multirow{3}{*}{\textbf{OT1}} & OT1         & MPT.Br            & 4                                                                                  & OGT1                                                                      \\ \cline{3-6} 
-                                                                                &                               & OT2         & MPT.Br            & 4                                                                                  & OGT2                                                                      \\ \cline{3-6} 
-                                                                                &                               & OT3         & MPT.Br            & 4                                                                                  & OGT6                                                                      \\ \hline
+\textbf{\begin{tabular}[c]{@{}c@{}}Nível de \\ Maturidade \\ FreeTest 2.0\end{tabular}} & \textbf{AP}          & \textbf{PE} & \textbf{Origem} & \textbf{\begin{tabular}[c]{@{}c@{}}Nível de \\ Maturidade\\  da Fonte\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Práticas \\ Relacionadas\end{tabular}} \\ \hline
+\multirow{9}{*}{1}                                                                      & 
+\multirow{6}{*}{GPT} & GPT1        & MPT.Br          & 1                                                                                   & GPT1, GPT3                                                                \\ \cline{3-6} 
+                                                                                        &                      & GPT2        & MPT.Br          & 1                                                                                   & GPT4                                                                      \\ \cline{3-6} 
+                                                                                        &                      & GPT3        & MPT.Br          & 1                                                                                   & GPT5,GPT11, GPT12                                                         \\ \cline{3-6} 
+                                                                                        &                      & GPT4        & MPT.Br          & 1                                                                                   & GPT3, GPT7                                                                \\ \cline{3-6} 
+                                                                                        &                      & GPT5        & MPT.Br          & 1                                                                                   & GPT9                                                                      \\ \cline{3-6} 
+                                                                                        &                      & GPT6        & MPT.Br          & 1                                                                                   & GPT16                                                                     \\ \cline{2-6} 
+& \multirow{3}{*}{ET}  
+    &     ET1 & MPT.Br & 1 & PET1 \\ \cline{3-6}
+    &   & ET2 & DevOps/FreeTest 1.0 & 1 & TFU1 \\ \cline{3-6} 
+    &   & ET3 & MPT.Br & 1 & PET2  \\ \cline{3-6} 
+    &   & ET4 & MPT.Br & 1 & PET3, PET4 \\ \cline{3-6}
+    &   & ET5 & MPT.Br & 1 & PET3, FDT4 \\ \hline
+\multirow{3}{*}{2}
+
+& \multirow{3}{*}{AES} 
+    & AES1 & MPT.Br & 3 & TES1, TES2                                                                \\ \cline{3-6} 
+                                                                                        &                      & AES2        & MPT.Br          & 3                                                                                   & TES3                                                                      \\ \cline{3-6} 
+                                                                                        &                      & AES3        & MPT.Br          & 3                                                                                   & TES5                                                                      \\ \hline
+\multirow{7}{*}{3}                                                                      & \multirow{3}{*}{AET} & AET1        & MPT.Br          & 5                                                                                   & AET2                                                                      \\ \cline{3-6} 
+                                                                                        &                      & AET2        & MPT.Br          & 5                                                                                   & AET3                                                                      \\ \cline{3-6} 
+                                                                                        &                      & AET3        & MPT.Br          & 5                                                                                   & AET4                                                                      \\ \cline{2-6} 
+                                                                                        & GCT                  & GCT1        & MPT.Br          & 4                                                                                   & OGT11, OGT12                                                              \\ \cline{2-6} 
+                                                                                        & \multirow{3}{*}{MED} & MED1        & MPT.Br          & 3                                                                                   & MAT1                                                                      \\ \cline{3-6} 
+                                                                                        &                      & MED2        & MPT.Br          & 3                                                                                   & MAT4                                                                      \\ \cline{3-6} 
+                                                                                        &                      & MED3        & MPT.Br          & 3                                                                                   & MAT5                                                                      \\ \hline
+\multirow{9}{*}{4}                                                                      & INC                  & INC1        & FreeTest 1.0    & 4                                                                                   & INC3                                                                      \\ \cline{2-6} 
+                                                                                        & \multirow{4}{*}{TRG} & TRG1        & FreeTest 1.0    & 3                                                                                   & TRG1                                                                      \\ \cline{3-6} 
+                                                                                        &                      & TRG2        & FreeTest 1.0    & 3                                                                                   & TRG2                                                                      \\ \cline{3-6} 
+                                                                                        &                      & TRG3        & FreeTest 1.0    & 3                                                                                   & TRG3                                                                      \\ \cline{3-6} 
+                                                                                        &                      & TRG4        & FreeTest 1.0    & 3                                                                                   & TRG4                                                                      \\ \cline{2-6} 
+                                                                                        & \multirow{4}{*}{TEP} & TPE1        & FreeTest 1.0    & 5                                                                                   & TPE1                                                                      \\ \cline{3-6} 
+                                                                                        &                      & TPE2        & FreeTest 1.0    & 5                                                                                   & TPE2                                                                      \\ \cline{3-6} 
+                                                                                        &                      & TPE3        & FreeTest 1.0    & 5                                                                                   & TPE3                                                                      \\ \cline{3-6} 
+                                                                                        &                      & TPE4        & FreeTest 1.0    & 5                                                                                   & TPE4                                                                      \\ \hline
+\multirow{3}{*}{5}                                                                      & \multirow{3}{*}{OT1} & OT1         & MPT.Br          & 4                                                                                   & OGT1                                                                      \\ \cline{3-6} 
+                                                                                        &                      & OT2         & MPT.Br          & 4                                                                                   & OGT2                                                                      \\ \cline{3-6} 
+                                                                                        &                      & OT3         & MPT.Br          & 4                                                                                   & OGT6                                                                      \\ \hline
 \end{tabular}
 }
 \end{table}
 
-Na tabela \ref{tab:4.5} a Área de Processos (AP) de Gerenciamento de Projetos de Teste (GPT), por exemplo, foi a que mais sofreu alterações. Como as MPEs possuem equipes reduzidas de teste, normalmente a gestão dos projetos de teste das MPEs ocorre juntamente com a gestão do projeto de desenvolvimento, é muito comum que para esse formato de equipe haja um gestor ou líder técnico que faça a gestão tanto das atividades de desenvolvimento quanto das atividades de teste. A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, contudo as Práticas Especificas (PE) do PET3 e PET4 do MPT.Br se transformaram em ET4, que consolida todas as tarefas de reportar e acompanhar incidentes.
+Analisando os resultados preliminares sugeridos para o FreeTest 2.0, exibidos na tabela \ref{tab:4.5} a AP de Gerenciamento de Projetos de Teste (GPT), por exemplo, foi a que mais sofreu alterações. Como as MPEs possuem equipes reduzidas de teste, normalmente a gestão dos projetos de teste ocorre juntamente com a gestão do projeto de desenvolvimento. Desta forma, foi necessário adicionar algumas práticas especificas oriundas do MPT.Br, principalmente como apoio ao planejamento do projeto, neste caso as práticas especificas GPT1, GPT2, GPT3, GPT4 e GPT5 que contribuem para a análise de risco, definição de estratégias de teste, escopo de testes e geram insumos para a criação de cronogramas, alocação de recursos humanos e monitoramento do projeto. Tais práticas, podem ser realizadas com o apoio do gerente de projetos e/ou líder técnico da equipe de teste, no entanto, se realizado por toda a equipe no inicio e durante o projeto, a execução desta prática torna a equipe mais engajada e cria responsabilidades mútuas à todos os envolvidos. 
 
-Uma mudança importante foi definir as atividades de revisão (AES), normalmente realizadas no nível três de maturidade do MPT.Br para o nível dois de maturidade do FreeTest 2.0. Essa iniciativa surgiu, pois as atividades de revisão costumam ser de baixo custo e facilmente automatizadas (exemplo revisão de código), neste sentido são práticas especificas eficazes e que evidenciam erros numa fase bem primária da produção, ideal para o contexto das MPEs e como sugere a Metodologia Ágil.
+A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, no entanto, foram acrescentadas algumas práticas especificas como, ET1 e ET4 oriundas do MTB.Br, que apoiam na identificação de casos de teste e reportar e acompanhar incidentes, respectivamente. Sendo a última, uma junção de duas práticas especificas, PET3 e PET4 do MPT.Br. Outra contribuição para a AP de Execução de Testes foi a introdução de uma nova abordagem para a criação/atualização de ambientes de teste, agora com o uso de boas práticas em DevOps, com o foco em criação da infraestrutura de testes virtualizadas e "como serviço", com a proposta de economizar em recursos computacionais e manter os ambientes de testes versionados, já que poderão ser mantidos em \textit{containers} \cite{BRAGA2015}.
+
+Uma mudança importante foi definir as atividades de revisão (AES), normalmente realizadas no nível três de maturidade do MPT.Br para o nível dois de maturidade do FreeTest 2.0. Essa iniciativa surgiu, pois as atividades de revisão costumam ser de baixo custo e facilmente automatizadas (exemplo revisão de código), neste sentido são práticas especificas eficazes e que evidenciam erros numa fase primária de codificação, ideal para o contexto das MPEs e como sugere a Metodologia Ágil \cite{Beck2001}. A área de processo de Teste de Aceite (TDA) foi mantida conforme estava no FreeTest 1.0, exceto pela alteração da prática especifica TDA1, de criação/atualização de ambiente de aceitação, que passou por melhorias com a inserção de práticas sugeridas pelo DevOps \cite{Howlett}. E por fim, o nível dois de maturidade do FreeTest 2.0 agora aborda também a AP de Teste de Regressão (TRG), que se manteve da mesma forma que na versão anterior, contudo antes era proposta no nível três de maturidade e agora é indicada no nível dois.
 
 As práticas especificas que abordam automação dos testes também sofreram grande mudança, pois no MPT.Br elas são aplicadas no nível cinco de maturidade, contudo na proposta para o novo processo elas são sugeridas no nível três. Essa mudança ocorreu, pois a automação é uma prática muito recomendada e difundida, apesar de ser vista como uma prática muitas vezes onerosa e de retorno de investimento a médio/longo prazo, hoje em dia, com os avanços de ferramentas e técnicas de automação é possível a implantação de uma automação com baixo custo e muito eficiente \cite{BRAGA2015}.
 

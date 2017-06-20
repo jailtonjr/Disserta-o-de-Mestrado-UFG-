@@ -3,7 +3,7 @@
 
 Desde sua concepção o processo do Método FreeTest 1.0 propõe práticas, abordagens e técnicas alinhadas com a demanda crescente da indústria de tecnologia e estado da prática da literatura, com foco principal em Micro e Pequenas Empresas. 
 
-Numa visão geral, o FreeTest 1.0 evoluiu de um modelo “Cascata-Ágil“ (\textit{Fast Waterfall}) para um modelo “Ágil“, contudo com uma Integração Contínua (\textit{Continuous Integration}) mais modesta \cite{sauceLabes2017}. Este capítulo propõe melhorar o processo, nomeando-o como, “\textbf{FreeTest 2.0}“ e trazendo abordagens mais aderente às técnicas ágeis, integração contínua e inserindo práticas que contemplem um modelo de processo do tipo “Entrega Contínua“ (\textit{Continuous Delivery}). As melhorias propostas neste capítulo são com base nas revisões da literatura (capítulo \ref{sec:referencialteorico}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
+Numa visão geral, o FreeTest 1.0 evoluiu de um modelo “Cascata-Ágil” (\textit{Fast Waterfall}) para um modelo “Ágil”, contudo com uma Integração Contínua (\textit{Continuous Integration}) mais modesta \cite{sauceLabes2017}. Este capítulo propõe melhorar o processo, nomeando-o como, “FreeTest 2.0” e trazendo abordagens mais aderente às técnicas ágeis, integração contínua e inserindo práticas que contemplem um modelo de processo do tipo “Entrega Contínua” (\textit{Continuous Delivery}). As melhorias propostas neste capítulo são com base nas revisões da literatura (capítulo \ref{sec:referencialteorico}) e conhecimento empírico dos pesquisadores. Este capítulo está organizado da seguinte forma:
 
 \begin{itemize}
     \item Na subseção \ref{sec:identificacaomelhoriasfreetest}, os estudos com embasamento teórico são mostrados com a intenção de evidenciar as possíveis melhorias para o novo processo;
@@ -20,7 +20,7 @@ Para que essa pesquisa fosse conduzida e eventuais melhorias no processo do Mét
 
 Com a finalidade de comparar os processos e sugerir adições ou remoções no mesmo, foi realizado um mapeamento de equivalência entre o Método FreeTest 1.0 e MPT.Br exibido na tabela \ref{tab:4.1}, esse mapeamento mostra as práticas especificas existentes no FreeTest 1.0 que o MPT.Br possui de forma equivalente. Uma tabela (\ref{tab:4.2}) que contém as atividades do FreeTest 1.0 que não possuem equivalência com o MPT.Br também foi criada para contribuir na análise entre os dois processos.
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \caption{Mapeamento de equivalências entre o FreeTest 1.0 e MPT.Br}
 \label{tab:4.1}
@@ -41,7 +41,7 @@ GPT                  & GPT1                             & \multirow{2}{*}{GPT}  
 \end{table}
 
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \caption{Práticas especificas do Método FreeTest 1.0 que não possuem equivalência com o MPT.Br.}
 \label{tab:4.2}
@@ -99,7 +99,7 @@ A abordagem utilizada para a tomada de decisão de quais práticas especificas s
     \item Processos de desenvolvimento e teste não definidos, muitas vezes processos diferentes para clientes diferentes.
 \end{itemize}
 
-Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de melhoria a partir do MPT.Br e FreeTest 1.0 para o processo FreeTest 2.0. É importante salientar que as práticas especificas avaliadas, tanto do processo MPT.Br e Método FreeTest 1.0 sofreram uma avaliação do tipo, “Mantido“, “Excluído“ ou “Adicionado“ como observado nas tabelas. 
+Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de melhoria a partir do MPT.Br e FreeTest 1.0 para o processo FreeTest 2.0. É importante salientar que as práticas especificas avaliadas, tanto do processo MPT.Br e Método FreeTest 1.0 sofreram uma avaliação do tipo, “Mantido”, “Excluído” ou “Adicionado” como observado nas tabelas. 
 
 \begin{table}[!ht]
 \centering
@@ -208,7 +208,7 @@ Nas tabelas \ref{tab:4.3} e \ref{tab:4.4} é possível observar as sugestões de
 
 Com base nos critérios de análise elencados no inicio desta seção, as tabelas \ref{tab:4.3} e \ref{tab:4.4} mostram os resultados das contribuições para a melhoria do FreeTest 2.0 na perspectiva do MPT.Br e FreeTest 1.0. Conforme já mencionado, além dos critérios de análise baseado no contexto e visita a algumas MPEs, foram utilizados critérios que corroboram com o uso de Metodologias Ágeis e DevOps (seção \ref{sec:identificacaomelhoriasfreetest}). Devido ao perfil atual das MPEs foi necessário a junção de algumas práticas especificas citadas no MPT.Br, de modo que a sua execução por parte das MPEs fossem realizadas de forma mais fácil e menos onerosa. Outra decisão tomada foi a alteração do nível de maturidade de determinadas práticas especificas utilizadas, tanto do MPT.Br quanto do FreeTest 1.0, a intenção foi mantê-los em um nível de maturidade que estivesse mais atrelado à situação atual das MPEs nacionais \cite{Especialistas2015, SilvaDias2015} e dos estudos realizados.
 
-Como é possível verificar na tabela \ref{tab:4.5}, que mostra o resultado das análises e contribuições do MPT.Br, FreeTest 1.0, Métodos Ágeis e DevOps para o FreeTest 2.0, a coluna “Nível de Maturidade FreeTest 2.0“ mostra o nível de maturidade no qual a prática especifica corresponde no processo FreeTest 2.0, “AP“ é o nome da área de processo, “PE“ é o nome da prática especifica, “Nível de Maturidade da Fonte“ é o nível de maturidade (quando havia) no qual a prática especifica tanto do MPT.Br quanto do FreeTest 1.0 pertencia, e por fim as práticas especificas (quando havia) relacionadas à criação da nova prática. É importante salientar que nem todas práticas especificas abordadas no MPT.Br e no FreeTest 1.0 foram mantidas para essa nova abordagem (vide tabelas \ref{tab:4.3} e \ref{tab:4.4}).
+Como é possível verificar na tabela \ref{tab:4.5}, que mostra o resultado das análises e contribuições do MPT.Br, FreeTest 1.0, Métodos Ágeis e DevOps para o FreeTest 2.0, a coluna “Nível de Maturidade FreeTest 2.0” mostra o nível de maturidade no qual a prática especifica corresponde no processo FreeTest 2.0, “AP” é o nome da área de processo, “PE” é o nome da prática especifica, “Nível de Maturidade da Fonte” é o nível de maturidade (quando havia) no qual a prática especifica tanto do MPT.Br quanto do FreeTest 1.0 pertencia, e por fim as práticas especificas (quando havia) relacionadas à criação da nova prática. É importante salientar que nem todas práticas especificas abordadas no MPT.Br e no FreeTest 1.0 foram mantidas para essa nova abordagem (vide tabelas \ref{tab:4.3} e \ref{tab:4.4}).
 
 \begin{table}[H]
 \centering
@@ -269,7 +269,7 @@ Como é possível verificar na tabela \ref{tab:4.5}, que mostra o resultado das 
 
 Analisando os resultados sugeridos para o FreeTest 2.0, exibidos na tabela \ref{tab:4.5} a AP de Gerenciamento de Projetos de Teste (GPT), por exemplo, foi a que mais sofreu alterações. Como as MPEs possuem equipes reduzidas de teste, normalmente a gestão dos projetos de teste ocorre juntamente com a gestão do projeto de desenvolvimento. Desta forma, foi necessário adicionar algumas práticas especificas oriundas do MPT.Br, principalmente como apoio ao planejamento do projeto, neste caso as práticas especificas GPT1, GPT2, GPT3, GPT4 e GPT5 que contribuem para a análise de risco, definição de estratégias de teste, escopo de testes e geram insumos para a criação de cronogramas, alocação de recursos humanos e monitoramento do projeto. Tais práticas, podem ser realizadas com o apoio do gerente de projetos e/ou líder técnico da equipe de teste, no entanto, se realizado por toda a equipe no inicio e durante o projeto, a execução desta prática torna a equipe mais engajada e cria responsabilidades mútuas à todos os envolvidos. 
 
-A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, no entanto, foram acrescentadas algumas práticas especificas como, ET1 e ET4 oriundas do MTB.Br, que apoiam na identificação de casos de teste e reportar e acompanhar incidentes, respectivamente. Sendo a última, uma junção de duas práticas especificas, PET3 e PET4 do MPT.Br. Outra contribuição para a AP de Execução de Testes foi a introdução de uma nova abordagem para a criação/atualização de ambientes de teste, agora com o uso de boas práticas em DevOps, com o foco em criação da infraestrutura de testes virtualizadas e “como serviço“, com a proposta de economizar em recursos computacionais e manter os ambientes de testes versionados, já que poderão ser mantidos em \textit{containers} \cite{BRAGA2015}.
+A AP de Execução de Testes (ET) não sofreu alterações de nível de maturidade, no entanto, foram acrescentadas algumas práticas especificas como, ET1 e ET4 oriundas do MTB.Br, que apoiam na identificação de casos de teste e reportar e acompanhar incidentes, respectivamente. Sendo a última, uma junção de duas práticas especificas, PET3 e PET4 do MPT.Br. Outra contribuição para a AP de Execução de Testes foi a introdução de uma nova abordagem para a criação/atualização de ambientes de teste, agora com o uso de boas práticas em DevOps, com o foco em criação da infraestrutura de testes virtualizadas e “como serviço”, com a proposta de economizar em recursos computacionais e manter os ambientes de testes versionados, já que poderão ser mantidos em \textit{containers} \cite{BRAGA2015}.
 
 Uma mudança importante foi definir as atividades de Análise Estática (AES), normalmente realizadas no nível três de maturidade do MPT.Br para o nível dois de maturidade do FreeTest 2.0. Essa iniciativa surgiu, pois as atividades de revisão costumam ser de baixo custo e facilmente automatizadas (exemplo, análise estática de código), neste sentido são práticas especificas eficazes e que evidenciam erros numa fase primária de codificação, ideal para o contexto das MPEs e como sugere a Metodologia Ágil \cite{Beck2001}. A área de processo de Teste de Aceite (TDA) foi mantida conforme estava no FreeTest 1.0, exceto pela alteração da prática especifica TDA1, de criação/atualização de ambiente de aceitação, que passou por melhorias com a inserção de práticas sugeridas pelo DevOps \cite{Howlett}. E por fim, o nível dois de maturidade do FreeTest 2.0 agora aborda também a AP de Teste de Regressão (TRG), que se manteve da mesma forma que na versão anterior, contudo antes era proposta no nível três de maturidade e agora é indicada no nível dois.
 
@@ -281,7 +281,7 @@ O nível quatro de maturidade aborda as APs de Integração Contínua (INC) e Te
 
 Por fim, no nível cinco de maturidade houve uma mudança total com relação a versão do FreeTest 1.0, duas APs foram propostas para o nível cinco, Testes Contínuos Automatizados (TCA) e Otimização do Teste (OT). A prática de Testes Contínuos Automatizados é uma tendência na indústria, embora grandes Organizações já a utilizam a algum tempo \cite{JamesWhittakerJasonCarollo2012}, somente agora nos últimos cinco anos esta prática se popularizou, e tem mostrado grandes resultados positivos. Essa área de processo permite que uma série de testes automatizados (unidade, funcional, desempenho etc.) sejam executados paralelamente, durante cada mudança feita no código-fonte, através de um ambiente de integração contínua, possibilitando \textit{feedback} instantâneo e evidenciando riscos associados ao negócio \cite{BRAGA2015}. A Otimização dos Testes (OT) que também compõe o nível cinco de maturidade é responsável manter a parte institucional dos testes na Organização. É uma área de processo que assegura a definição formal de uma equipe de teste e mantém a cultura e processo de teste em constante evolução.
 
-Por fim, o novo processo proposto possui uma estrutura similar aos processos revisados na literatura, neste caso possui níveis de maturidade que vão de 1 (um) a 5 (cinco), Áreas de Processo (AP) que por sua vez agrupam suas Práticas Especificas (PE) respectivas. Uma visão geral da estrutura do processo para o FreeTest 2.0 pode ser visto na tabela \ref{tab:4.6}. 
+Com o intuito de tornar a aplicação prática deste processo mais didática um \textit{case} hipotético de execução e resultados do processo foi elaborado e pode ser consultado no apêndice \ref{sec:caseexecucaofreetest20}. O novo processo possui uma estrutura similar aos processos revisados na literatura, sendo níveis de maturidade que vão de 1 (um) a 5 (cinco), Áreas de Processo (AP) que por sua vez agrupam suas Práticas Especificas (PE) respectivas. Uma visão geral da estrutura do processo para o FreeTest 2.0 pode ser visto na tabela \ref{tab:4.6}. 
 
 Na seção \ref{sec:areasdeprocessoepraticas} são listadas todas as áreas de processos e descrição detalhada de cada prática especifica do FreeTest 2.0.
 
@@ -296,7 +296,7 @@ Na seção \ref{sec:areasdeprocessoepraticas} são listadas todas as áreas de p
     \hline
         \multirow{11}{*}{1}&
         \multirow{6}{*}{Gerência de Projetos de Teste (GPT)}& 
-        Realizar Análise de Risco e Definir estratégia de teste - GPT1\\ 
+        Realizar Análise de risco e definir estratégia de teste - GPT1\\ 
     \cline{3-3}
         & \multicolumn{1}{c|}{}& 
         Definir escopo de trabalho para o projeto - GPT2\\
@@ -420,7 +420,7 @@ Na seção \ref{sec:areasdeprocessoepraticas} são listadas todas as áreas de p
 \label{sec:gerenciadeprojetosdeteste}
 
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -446,7 +446,7 @@ O FreeTest 2.0 recomenda as seguintes práticas especificas para adequação à 
 \subsubsection{Realizar análise de risco e definir estrategia de teste - GPT1}
 \label{sec:gpt1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -481,7 +481,7 @@ Os riscos em um projeto de teste normalmente surgem por duas causas básicas, cu
 \subsubsection{Definir escopo de trabalho para o projeto – GPT2}
 \label{sec:gpt2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -512,7 +512,7 @@ Essa prática é naturalmente exercida no momento prévio da criação dos crono
 \subsubsection{Estabelecer estimativas de tempo para realização de tarefas, criação de artefatos e preparação dos ambientes de trabalho – GPT3}
 \label{sec:gpt3}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -652,7 +652,7 @@ O monitoramento do projeto é necessário para acompanhar, revisar e regular o p
 \subsection{Execução dos Testes Funcionais - ET}
 \label{sec:et0}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -679,7 +679,7 @@ Por fim, no encerramento dos testes, todas as informações da execução dos te
 \subsubsection{Identificar casos de teste – ET1}
 \label{sec:et1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -710,7 +710,7 @@ Independente do nível de formalismo, casos de teste devem ser identificados, pr
 \subsubsection{Criar/atualizar ambiente de teste - ET2}
 \label{sec:et2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -721,7 +721,7 @@ A criação/atualização de ambiente é de suma importância para a realizaçã
 
 A forma que como os ambientes são criados está muito ligado ao perfil da organização, muitas vezes a criação de ambientes depende muito de um departamento específico (Infraestrutura, Suporte ou Operação) que supervisiona, cria e mantêm ambientes e a infraestrutura técnica de apoio necessária a toda a organização.
 
-Atualmente com o avanço das tecnologias e com a necessidade de se manter e criar ambientes de teste e produção rapidamente, o conceito DevOps vem ganhando força. DevOps propõe o rompimento de “barreiras“ tradicionais entre o desenvolvimento/teste e operação, incentivando o uso de colaboração constante entre os times. Nesse cenário é possível que as tarefas de criação e manutenção de tais ambientes sejam de responsabilidade da equipe de desenvolvimento/teste e não mais de uma equipe especializada, tornando a criação e manutenção de tais ambientes mais rápida e fidedignas aos requisitos funcionais e não funcionais.
+Atualmente com o avanço das tecnologias e com a necessidade de se manter e criar ambientes de teste e produção rapidamente, o conceito DevOps vem ganhando força. DevOps propõe o rompimento de “barreiras” tradicionais entre o desenvolvimento/teste e operação, incentivando o uso de colaboração constante entre os times. Nesse cenário é possível que as tarefas de criação e manutenção de tais ambientes sejam de responsabilidade da equipe de desenvolvimento/teste e não mais de uma equipe especializada, tornando a criação e manutenção de tais ambientes mais rápida e fidedignas aos requisitos funcionais e não funcionais.
 
 \textbf{Dependências}
 \begin{itemize}
@@ -743,7 +743,7 @@ Atualmente com o avanço das tecnologias e com a necessidade de se manter e cria
 \subsubsection{Executar os testes - ET3}
 \label{sec:et3}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -777,7 +777,7 @@ A execução dos testes é a tarefa mais evidente no processo de teste. É tamb�
 \subsubsection{Reportar e acompanhar incidentes - ET4}
 \label{sec:et4}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -810,7 +810,7 @@ Incidentes podem ser descobertos durante a fase de desenvolvimento, do teste e n
 \subsubsection{Encerrar teste - ET5}
 \label{sec:et5}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -840,7 +840,7 @@ Essa tarefa determina o marco de encerramento da atividade de teste. No encerram
 % \subsection{Revisão dos Requisitos - RR}
 % \label{sec:revrequisitos}
 
-% \begin{table}[!ht]
+% \begin{table}[H]
 % \centering
 % \begin{tabular}{|p{130mm}|}
 % \hline
@@ -861,7 +861,7 @@ Essa tarefa determina o marco de encerramento da atividade de teste. No encerram
 % \subsubsection{Realizar verificação - RR1}
 % \label{sec:realverificacao}
 
-% \begin{table}[!ht]
+% \begin{table}[H]
 % \centering
 % \begin{tabular}{|p{130mm}|}
 % \hline
@@ -899,7 +899,7 @@ Essa tarefa determina o marco de encerramento da atividade de teste. No encerram
 % \subsubsection{Relatar e acompanhar inconsistências - RR2}
 % \label{sec:rr2}
 
-% \begin{table}[!ht]
+% \begin{table}[H]
 % \centering
 % \begin{tabular}{|p{130mm}|}
 % \hline
@@ -928,7 +928,7 @@ Essa tarefa determina o marco de encerramento da atividade de teste. No encerram
 % \subsubsection{Encerrar verificação - RR3}
 % \label{sec:rr3}
 
-% \begin{table}[!ht]
+% \begin{table}[H]
 % \centering
 % \begin{tabular}{|p{130mm}|}
 % \hline
@@ -957,7 +957,7 @@ Essa tarefa determina o marco de encerramento da atividade de teste. No encerram
 \subsection{Teste de aceite - TDA}
 \label{sec:tda}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -981,7 +981,7 @@ Essa prática garante a entrega de valor ao cliente, reduzindo a possibilidade d
 \subsubsection{Criar/Atualizar ambiente de teste - TDA1}
 \label{sec:tda1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1012,7 +1012,7 @@ Hoje em dia com técnicas mais avançadas é possível que os ambientes sejam vi
 \subsubsection{Executar teste de aceite - TDA2}
 \label{sec:tda2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1050,7 +1050,7 @@ Dependendo da forma como o ambiente de teste de aceite foi construído, os \text
 \subsubsection{Encerrar teste de aceite - TDA3}
 \label{sec:tda3}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1115,7 +1115,7 @@ As principais características de revisões e análise estática de código:
 \subsubsection{Identificar produtos de trabalho, tipos e critérios de revisão - AES1}
 \label{sec:aes1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1141,7 +1141,7 @@ Essa prática consiste em identificar os produtos de trabalhos/artefatos que nec
 \subsubsection{Conduzir revisão de código - AES2}
 \label{sec:aes2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1231,7 +1231,7 @@ Recomendamos fortemente que a análise estática seja feita de forma automatizad
 \subsection{Teste de Regressão - TRG}
 \label{sec:trg}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1409,7 +1409,7 @@ O ato de automatizar casos de teste é definido pela criação de scripts de tes
 \subsubsection{Definir critérios para seleção de casos de teste para automação - AET1}
 \label{sec:aet1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1582,7 +1582,7 @@ A escolha das técnicas que vão dar suporte a todos os processos de automação
 \subsubsection{ Gerenciar incidentes de teste automatizado - AET3}
 \label{sec:aet3}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1614,7 +1614,7 @@ Essa prática é importante, pois muitas vezes vários erros são relatados dura
 % \subsubsection{Automatizar a execução dos testes automatizados - AET4}
 % \label{sec:aet4}
 
-% \begin{table}[!ht]
+% \begin{table}[H]
 % \centering
 % \begin{tabular}{|p{130mm}|}
 % \hline
@@ -1646,7 +1646,7 @@ Essa prática é importante, pois muitas vezes vários erros são relatados dura
 \subsection{ Gerência de Configuração de Teste - GCT }
 \label{sec:gct}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1673,7 +1673,7 @@ A gerência de configuração em teste de software consiste em um conjunto de at
 \subsubsection{ Versionar Artefatos/scripts/planos/infraestrutura de teste - GCT1 }
 \label{sec:gct1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1710,7 +1710,7 @@ O Freetest 2.0 aconselha o versionamento dos seguintes artefatos:
 \subsubsection{Criar \textit{baseline} dos artefatos/scripts/planos já testados - GCT2 }
 \label{sec:gct2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1739,7 +1739,7 @@ Criar linha de base dos artefatos, scripts e planos já executados durante o pro
 \subsubsection{Versionar ambientes de teste – GCT3 }
 \label{sec:gct3}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1770,7 +1770,7 @@ O FreeTest 2.0 incentiva o uso de técnicas de virtualização de ambientes na n
 \subsection{Medição - MED}
 \label{sec:med}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1797,7 +1797,7 @@ A gestão eficiente de projetos de teste demanda uma série de informações que
 \subsubsection{Definir objetivos de medição de teste - MED1}
 \label{sec:med1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1827,7 +1827,7 @@ O objetivo da medição não se resume a obtenção de dados quantitativos relac
 \subsubsection{Coletar, analisar e comunicar dados de medição - MED2}
 \label{sec:med2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1891,7 +1891,7 @@ Passos: Ir na ferramenta de gestão de defeitos, coletar total de defeitos por g
 
 \textbf{Análise de dados}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -1978,7 +1978,7 @@ Quando: A cada final de projeto Como: Identificar quantos defeitos foram relatad
 
 \textbf{Análise de dados}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2015,7 +2015,7 @@ Definir faixas Desejável, Aceitável e Inaceitável em percentual
 \subsubsection{Armazenar dados de medição - MED3 }
 \label{sec:med3}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2045,7 +2045,7 @@ Os dados coletados serão armazenados em uma Planilha de Medição contendo toda
 \subsection{Integração Contínua - INC}
 \label{sec:inc}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2070,7 +2070,7 @@ Além de uma integração entre equipes e engajamento da mesma, a Área de Proce
 \subsubsection{Gerar \textit{build} automatizado - INC1}
 \label{sec:inc1}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2104,7 +2104,7 @@ Um ambiente de integração contínua pode facilmente automatizar a geração de
 \subsubsection{Executar análise estática automatizada - INC2}
 \label{sec:inc2}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2150,7 +2150,7 @@ A execução dos testes é sem dúvida uma das partes mais importantes de um amb
 Nesta prática especifica, o FreeTest 2.0 recomenda algumas \textit{suites} de teste que são bastante comuns em ambientes IC, sendo que cada uma tem seu próprio objetivo, abaixo citadas.
 
 \begin{itemize}
-	\item Testes Unitários: Esta é a \textit{suite} que deverá rodar primeiro, muitas vezes essa massa de testes é executada antes mesmo de adicionar as mudanças no repositório. Testes unitários são e devem ser, testes pontuais e bem concisos e são classes ou funções. Quando necessário acessar dados externos para validação de testes, algumas práticas comuns são o uso de “\textit{mocks}“ e “\textit{stubs}“
+	\item Testes Unitários: Esta é a \textit{suite} que deverá rodar primeiro, muitas vezes essa massa de testes é executada antes mesmo de adicionar as mudanças no repositório. Testes unitários são e devem ser, testes pontuais e bem concisos e são classes ou funções. Quando necessário acessar dados externos para validação de testes, algumas práticas comuns são o uso de “\textit{mocks}” e “\textit{stubs}“
 	\item Testes de Integração: Devem ser executados logo após os testes unitários. Testes de integração asseguram que partes do código/funcionalidades recém inseridas funcionam corretamente quando integradas. É altamente recomendável que esses testes sejam realizados em ambientes clonados, ou seja, muitos próximos aos ambientes de produção.
 	\item Testes de Sistema: São os testes que serão executados na aplicação de fato. Após a geração do \textit{build} e \textit{deploy} da aplicação, essa bateria de testes podem ser executadas afim de detectar problemas a nível de interação de tela. Evidentemente esse nível de teste é feito de forma automatizada e a execução dos \textit{scripts} é feita por parte do ambiente de IC.
 \end{itemize}
@@ -2220,7 +2220,7 @@ Alguns padrões para se manter o processo de disponibilização dos ambientes de
 \subsection{Teste de Desempenho - TPE}
 \label{sec:tpe}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2378,7 +2378,7 @@ O encerramento desta atividade deve ser marcado pela consolidação de todos os 
 \subsection{Testes Contínuos Automatizados - TCA}
 \label{sec:tca}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{130mm}|}
 \hline
@@ -2463,7 +2463,7 @@ Essa prática específica sugere a automatização de \textit{suites} de modalid
 \end{tabular}
 \end{table}
 
-Nos testes contínuos os erros podem ser corrigidos mais rapidamente, como essa prática ocorre ainda durante o ciclo de desenvolvimento e está totalmente automatizada toda vez que uma \textit{suite} de testes é executada e erros são evidenciados os desenvolvedores podem realizar as correções e então após o termino de toda a bateria de testes enviar o \textit{build} estável para a equipe de testes. No estudo “\textit{Reducing wasted development time via continuous testing}“ \cite{salf2003} os autores evidenciam resultados de experimentos em que com o uso de testes contínuos o tempo de desenvolvimento foi reduzido em até 15\%.
+Nos testes contínuos os erros podem ser corrigidos mais rapidamente, como essa prática ocorre ainda durante o ciclo de desenvolvimento e está totalmente automatizada toda vez que uma \textit{suite} de testes é executada e erros são evidenciados os desenvolvedores podem realizar as correções e então após o termino de toda a bateria de testes enviar o \textit{build} estável para a equipe de testes. No estudo “\textit{Reducing wasted development time via continuous testing}” \cite{salf2003} os autores evidenciam resultados de experimentos em que com o uso de testes contínuos o tempo de desenvolvimento foi reduzido em até 15\%.
 
 
 \textbf{Dependências}
@@ -2497,7 +2497,7 @@ Com a maturidade nos processos e expertise da equipe na área de automação, é
 \end{tabular}
 \end{table}
 
-As métricas de cobertura dos testes geram mais confiança por parte da equipe e da Organização na entrega do software estável e sem a presença de erros evidentes. Basicamente as métricas respondem à pergunta “Qual é a abrangência dos testes?“, frequentemente a cobertura é realizada no código fonte, também conhecida como baseada em código, busca ver qual a abrangência dos testes em determinadas classes/módulos do sistema, ou no sistema como todo \cite{RUP940320}.
+As métricas de cobertura dos testes geram mais confiança por parte da equipe e da Organização na entrega do software estável e sem a presença de erros evidentes. Basicamente as métricas respondem à pergunta “Qual é a abrangência dos testes?”, frequentemente a cobertura é realizada no código fonte, também conhecida como baseada em código, busca ver qual a abrangência dos testes em determinadas classes/módulos do sistema, ou no sistema como todo \cite{RUP940320}.
 
 Em um ambiente de Testes Contínuos a cobertura de código deve ser mais abrangente possível. As métricas de cobertura podem ser realizadas sob as técnicas de teste que a Organização utiliza, normalmente é feita nos casos de teste unitários. É importante que nas reuniões de acompanhamento do projeto e ao término de cada entrega os responsáveis façam um levantamento no código fonte em busca de sempre aumentar a \textit{suite} de testes, logo então aumentar a cobertura de testes.
 
@@ -2677,6 +2677,6 @@ Apesar de ser uma prática da equipe de teste é importante que integrantes de o
 \section{Considerações Finais}
 \label{sec:consideracoesfinaiscap4}
 
-Neste capítulo, foi apresentado uma proposta para o processo FreeTest 2.0. Com a intenção de alinhar o Método FreeTest à realidade atual das Organizações o processo proposto foi desenvolvido com base no conhecimento empírico dos envolvidos e de pesquisas elaboradas com embasamento do estado da prática e revisão da literatura. O novo processo possui como base de melhorias o MPT.Br, Metodologia Ágil e algumas boas práticas de DevOps. 
+Neste capítulo, foi apresentado uma proposta para o processo FreeTest 2.0. Com a intenção de alinhar o Método FreeTest 1.0 à realidade atual das Organizações e demandas reais do mercado. O processo proposto foi desenvolvido com base no conhecimento empírico dos envolvidos e de pesquisas elaboradas com embasamento do estado da prática e revisão da literatura. O novo processo possui como base de melhorias o MPT.Br, Metodologia Ágil e algumas boas práticas de DevOps. 
 
-Com a intenção de centralizar as informações inerentes ao novo processo de teste e facilitar a implantação e conhecimento sobre o Método FreeTest, uma \textit{Wiki} foi criada e sua estrutura é explanada na seção \ref{sec:wikiprocesso}. Um software web (\textit{Gestor de Processos}) também foi concebido para que toda solução deste trabalho fosse entregue “como um serviço“, ou seja, a Organização que desejar ter seu processo de teste, não precisará, instalar e implantar uma ferramenta para prover isto, basta acessar a ferramenta online modelar seu processo ou utilizar o processo FreeTest 2.0, através do Gestor de Processos (seção \ref{sec:gestordeprocessos}) e com ajuda do FreeTest Wizard (Guia de Implantação que será visto no capítulo \ref{sec:construcaoguiaimplantacao}) poderá facilmente implantar as Áreas de Processo e Práticas Especificas em sua Organização no momento que desejar.
+Com a intenção de centralizar as informações inerentes ao novo processo de teste e facilitar a implantação e conhecimento sobre o Método FreeTest 2.0, uma \textit{Wiki} foi criada e sua estrutura será explanada na seção \ref{sec:wikiprocesso}. Uma ferramenta web chamada (\textit{Gestor de Processos}) também foi concebida para que toda solução deste trabalho fosse entregue “como um serviço”, ou seja, a Organização que desejar ter seu processo de teste, não precisará, instalar uma ferramenta para prover isto, basta acessar a ferramenta online modelar seu processo ou utilizar o processo FreeTest 2.0. Logo, através do Gestor de Processos (seção \ref{sec:gestordeprocessos}) e com ajuda do FreeTest Wizard (Guia de Implantação que será visto no capítulo \ref{sec:construcaoguiaimplantacao}) será possível para as Organizações implantar as áreas de processo e práticas especificas que desejar.

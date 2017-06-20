@@ -13,27 +13,26 @@ Este capítulo é destinado a explanar como o Guia de Implantação foi criado. 
 \section{Considerações Iniciais}
 \label{sec:consideracoesiniciais}
 
-Como mencionado no capítulo anterior, um dos componentes do \textit{framework} FreeTest é o guia de implantação, que consiste em um guia para implantação que viabiliza a utilização do Método FreeTest de forma fácil, objetiva e de modo \textit{As-a-Service}.
+% Como mencionado no capítulo anterior, um dos componentes do \textit{framework} FreeTest é o guia de implantação, que consiste em um guia para implantação que viabiliza a utilização do Método FreeTest de forma fácil, objetiva e de modo \textit{As-a-Service}.
+A intenção do guia de implantação é guiar as Organizações na implantação do processo do Freetest 2.0. O guia de implantação apoia de forma fácil, prática e intuitiva na implantação inicial do processo, sugere ferramentas de apoio à implantação das práticas especificas e aborda técnicas aplicáveis no contexto da literatura e da indústria para se atingir os objetivos das práticas especificas que forem implantadas.
 
-A intenção primária do guia de implantação é guiar as Organizações na implantação do processo do Método Freetest. Além da ferramenta de processo e modelagem dos mesmos, o guia de implantação corrobora de forma fácil, prática e intuitiva a implantação inicial do processo, sugere ferramentas de apoio à implantação da prática especifica em questão e ainda aborda técnicas aplicáveis no contexto da literatura e de mercado para se atingir os objetivos das Práticas Especificas que forem implantadas.
-
-O software criado para ser o guia de implantação aborda critérios iniciais para implantação do processo, contudo pela sua concepção, é possível que Organizações possam realizar a manutenção do guia e dos processos, podendo assim evoluir e/ou estender o processo da forma que desejarem e customizada à suas necessidades.
+Uma ferramenta de apoio à implantação foi criada. O software criado para apoiar o guia de implantação aborda critérios iniciais para implantação do processo, contudo pela sua concepção, é possível que Organizações possam realizar a manutenção do guia e dos processos, podendo assim evoluir e/ou estender o processo da forma que desejarem e customizada à suas necessidades. O software será apresentado na seção \ref{sec:oguiadeimplantacao} do capítulo \ref{sec:ferramentas}, que aborda a construção das ferramentas.
 
 \section{Estrutura do Guia de Implantação}
 \label{sec:estruturaguiaimplantacao}
 
 O guia de implantação aborda conhecimentos empíricos dos autores, juntamente com conhecimento cientifico obtido nas revisões da literatura, embasamento teórico, além de boas práticas da engenharia de software e áreas afins. As contribuições de como implantar uma prática especifica seguem vinculadas a cada prática especifica respectiva, deste modo, Organizações que desejam implantar uma prática especifica qualquer conseguirá encontrar as informações relevantes e de auxilio à implantação da tal prática neste guia.
 
-As informações de como implantar a prática especifica podem ser encontradas diretamente na seção da prática especifica, na \textit{wiki} deste trabalho \footnote{http://wiki.freetestframework.com}. Como pode ser visto na figura \ref{fig:fig51} a seção de como implantar a prática especifica está vinculada a parte informativa da mesma.
+As informações de como implantar a prática especifica podem ser encontradas diretamente na seção da prática especifica, na \textit{wiki} deste trabalho. Como pode ser visto na figura \ref{fig:fig51} a seção de como implantar a prática especifica está vinculada a parte informativa da mesma.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.90\textwidth]{fig/figura51.png}
-\caption{Estrutura do guia de implantação: "Como implantar essa prática?"}
+\caption{Estrutura do guia de implantação: “Como implantar essa prática?”}
 \label{fig:fig51}
 \end{figure}
 
-A seguir nas próximas subseções podem ser vistos as instruções/sugestões de como implantar todas as práticas especificas sugeridas pelo FreeTest.
+A seguir nas próximas subseções podem ser vistos as instruções/sugestões de como implantar todas as práticas especificas sugeridas pelo FreeTest 2.0.
 
 \subsection{Realizar análise de risco e definir estratégia de teste – GPT1}
 \label{sec:guiagpt1}
@@ -48,7 +47,7 @@ Para realização de uma análise de riscos eficiente e definição de qual ser�
 \item O risco não está sendo tratado pelo plano de gerência de projeto de software?
 \end{itemize}
 
-Se a resposta para as perguntas acima foi um "Sim", os riscos devem ser registrados com as seguintes informações:
+Se a resposta para as perguntas acima foi um “Sim”, os riscos devem ser registrados com as seguintes informações:
 
 \begin{itemize}
 \item Risco;
@@ -184,12 +183,12 @@ A criação de ambientes como mencionado anteriormente é inerente a forma de co
 A criação de ambientes como mencionado anteriormente é inerente a forma de como a organização trabalha. No entanto, o FreeTest aconselha fortemente a criação de ambientes virtualizados, pois além de mais versáteis, menor custo é possível realizar o seu versionamento. Através do versionamento de ambientes é possível realizar rollbacks do ambiente de forma mais ágil e flexível. Essa agilidade e flexibilidade na criação de ambientes torna as tarefas corriqueiras mais fáceis de serem realizadas, dessa forma fluindo melhor o processo e cumprindo melhor os prazos do projeto.
 
 
-\subsection{Executar os Testes - ET3}
+\subsection{Executar os testes - ET3}
 \label{sec:guiaet3}
 
 Se tratando de uma prática trivial e bem relacionada ao perfil do testador o FreeTest recomenda que para a implantação bem-sucedida dessa prática a organização ofereça treinamentos regulares sobre as novas funcionalidades e negócio do sistema à sua equipe. A capacitação técnica do testador é muito importante, portanto é aconselhável que o mesmo sempre se recicle com treinamentos, certificações e workshops.
 
-\subsection{Reportar e Acompanhar Incidentes - ET4}
+\subsection{Reportar e acompanhar incidentes - ET4}
 \label{sec:guiaet4}
 
 Não existe uma maneira “mais correta” de reportar um incidente, contudo seguem algumas informações importantes que se deve ter no relato de um incidente:
@@ -210,7 +209,7 @@ Não existe uma maneira “mais correta” de reportar um incidente, contudo seg
     \item Comentários gerais, tais como outras áreas que podem ser afetadas por uma mudança resultante de um incidente;
     \item Histórico de mudanças, como a sequência de ações tomadas pela equipe envolvida no projeto com respeito ao isolamento do incidente, reparo e confirmação da resolução;
     \item Referências, incluindo a identificação da especificação do caso de teste que revelou o problema;
-    \item A estrutura de um relatório de incidente pode ser encontrada no "\textit{Standard for Software Test Documentation}" (IEEE Std. 829-1998) \cite{ieee829}.
+    \item A estrutura de um relatório de incidente pode ser encontrada no “\textit{Standard for Software Test Documentation}” (IEEE Std. 829-1998) \cite{ieee829}.
 \end{itemize}
 
 \subsection{Encerrar teste - ET5}
@@ -220,24 +219,24 @@ O FreeTest recomenda o uso de uma base de conhecimento para manutenção das inf
 
 O uso de ferramentas para manutenção da base histórica é altamente recomendado. Pode-se ainda incluir relatos de acontecimentos peculiares ao projeto, informações sobre fatos que geraram algum transtorno e como resolvê-los, por exemplo, informações sobre dependências de bibliotecas de terceiros, configurações de ambientes e etc.
 
-\subsection{Realizar verificação - RR1}
-\label{sec:guiarr1}
+% \subsection{Realizar verificação - RR1}
+% \label{sec:guiarr1}
 
-O FreeTest recomenda que as revisões aconteçam de forma intercalada quando forem realizadas por profissionais que desempenham o papel de analista de requisitos e teste, e quando os papéis de analista requisito e teste forem feitos por pessoas diferentes a sugestão é que o testador que for fazer a revisão do requisito seja o mesmo que for testar o software. Desta maneira o testador estará munido de mais informações sobre os requisitos.
+% O FreeTest recomenda que as revisões aconteçam de forma intercalada quando forem realizadas por profissionais que desempenham o papel de analista de requisitos e teste, e quando os papéis de analista requisito e teste forem feitos por pessoas diferentes a sugestão é que o testador que for fazer a revisão do requisito seja o mesmo que for testar o software. Desta maneira o testador estará munido de mais informações sobre os requisitos.
 
-É Fundamental fazer um checklist com os principais erros e pontos relevantes. A criação de um checklist pode direcionar as revisões, tornando mais fácil e prático as sessões de revisão dos requisitos. A criação do checklist vai de acordo com as necessidades da organização, geralmente voltado para os erros mais comuns cometidos.
+% É Fundamental fazer um checklist com os principais erros e pontos relevantes. A criação de um checklist pode direcionar as revisões, tornando mais fácil e prático as sessões de revisão dos requisitos. A criação do checklist vai de acordo com as necessidades da organização, geralmente voltado para os erros mais comuns cometidos.
 
-\subsection{Relatar e acompanhar inconsistências - RR2}
-\label{sec:guiarr2}
+% \subsection{Relatar e acompanhar inconsistências - RR2}
+% \label{sec:guiarr2}
 
-O relato das inconsistências pode ser realizado utilizando uma ferramenta de bug tracker ou até mesmo inserindo comentários no texto revisado.
+% O relato das inconsistências pode ser realizado utilizando uma ferramenta de bug tracker ou até mesmo inserindo comentários no texto revisado.
 
-\subsection{Encerrar verificação - RR3}
-\label{sec:guiarr3}
+% \subsection{Encerrar verificação - RR3}
+% \label{sec:guiarr3}
 
-Aconselha o uso de uma ferramenta para o relato das inconsistências encontradas. As mesmas serão mantidas a título de base histórica para melhoramento continuo das atividades.
+% Aconselha o uso de uma ferramenta para o relato das inconsistências encontradas. As mesmas serão mantidas a título de base histórica para melhoramento continuo das atividades.
 
-\subsection{Criar/Atualizar ambiente de teste - TDA1}
+\subsection{Criar/atualizar ambiente de teste - TDA1}
 \label{sec:guiatda1}
 
 A recomendação mais importante é que o ambiente de testes seja mais fiel ao ambiente de produção, pois assim, problemas relacionados com ambientes serão evidenciados durante os testes de aceite. O teste de aceitação é uma atividade muito importante para a entrega do software com qualidade e valor ao cliente, portante é importante que o mesmo seja feito de forma adequada e simulando aspectos e comportamentos que o ambiente do cliente proporciona.
@@ -252,142 +251,28 @@ O teste de aceitação tem como objetivo confirmar se o sistema está funcionand
 
 Aconselha o uso de uma ferramenta para o relato das inconsistências encontradas. As mesmas serão mantidas a título de base histórica para melhoramento continuo das atividades.
 
-% Identificar produtos de trabalho, tipos e critérios de revisão
-% O ideal é que a organização realize a análise estática de código e revisão em pares de todo o código fonte possível. O critério de escolha para realização das revisões está muito relacionado ao perfil da equipe e efetivo de pessoas.
-% A revisão em pares por ser uma prática mais “cara” pode ser reduzida a partes específicas do código, geralmente partes mais críticas e que contem mais lógicas de negócio. Outra maneira efetiva de escolher o que revisar é indicando analistas seniores para realizar o levantamento das áreas críticas do sistema, geralmente onde há muita dependência entre códigos fontes e/ou há muita regra de negócio.
-% O FreeTest recomenda o uso de checklists de “boas práticas” contendo os critérios de revisão para orientar as sessões de revisão. Esse checklist é importante, pois guiará mais facilmente as revisões, principalmente quando o revisor não conhece bem os critérios usados para a revisão de código da organização.
-
 \subsection{Identificar produtos de trabalho, tipos e critérios de revisão - AES1}
 \label{sec:guiaaes1}
+
+O ideal é que a organização realize a análise estática de código e revisão em pares de todo o código fonte possível. O critério de escolha para realização das revisões está muito relacionado ao perfil da equipe e efetivo de pessoas.
+
+A revisão em pares por ser uma prática mais “cara” pode ser reduzida a partes específicas do código, geralmente partes mais críticas e que contem mais lógicas de negócio. Outra maneira efetiva de escolher o que revisar é indicando analistas seniores para realizar o levantamento das áreas críticas do sistema, geralmente onde há muita dependência entre códigos fontes e/ou há muita regra de negócio. O FreeTest recomenda o uso de \textit{checklists} de “boas práticas” contendo os critérios de revisão para orientar as sessões de revisão. Esse checklist é importante, pois guiará mais facilmente as revisões, principalmente quando o revisor não conhece bem os critérios usados para a revisão de código da organização.
+
+\subsection{Conduzir revisão de código - AES2}
+\label{sec:guiaaes2}
 
 O FreeTest recomenda que o código escrito por um desenvolvedor, antes de ser enviado para o ambiente de produção, seja revisado por outro membro da equipe. Essas revisões podem ser feitas de diversas maneiras, como, por exemplo, programação em pares, ou mesmo realizando uma leitura/revisão sistemática do código. Após a revisão o revisor destaca todos as inconsistências encontrados e envia ao autor original do código. O autor do código avalia os comentários recebidos e eventualmente realiza as correções no código-fonte.
 Uma boa dica para realizar a revisão é que desenvolvedores mais seniores o façam, pois como conhecem mais o software e regras de negócio poderão facilmente encontrar inconformidades e orientar os demais membros da equipe para as eventuais correções.
 A melhor forma de se implantar essa prática é utilizando ferramentas de versionamento de código. É possível através delas inserir comentários nos códigos/artefatos e solicitar que demais membros da equipe façam as correções. É interessante também utilizar esses ambientes para definir os critérios de aceite das revisões, por exemplo, o código só será aceito (entrará em produção) se for analisado por mais de dois desenvolvedores e que um deles seja sênior.
 
-\subsection{Conduzir revisão de código - AES2}
+\subsection{Realizar análises estáticas automatizadas - AES3}
+\label{sec:guiaes3}
 
 A análise estática de código feita de forma automática depende basicamente de ferramentas. A escolha da ferramenta é algo muito inerente a Organização e está relacionada as tecnologias utilizadas. A escolha correta das ferramentas ajudarão a equipe a encontrar inconsistências precoces referentes às regras de estilo e erros comuns.
 Para implantação dessa prática a equipe pode definir em processo que essa tarefa entra como um critério de qualidade da organização, sendo necessário que toda vez que um código fonte for desenvolvido ele deverá passar pelas ferramentas de Análise Estática. O FreeTest disponibiliza uma lista de ferramentas para o uso dessa prática, contudo o uso e implantação da mesma é responsabilidade da Organização. Segue uma lista de
 
-\subsection{Definir critérios para seleção de casos de teste para automação - AET1}
-
-Como já mencionado anteriormente quanto maior a automatização dos casos de teste, melhor. No entanto, quando não é possível automatizar todos os cenários é essencial que se tenha um critério de seleção para quais casos de teste automatizar. O critério de escolha está muito ligado às regras de negócio do produto, cliente e particularidades do projeto, tecnologias e etc. Todavia o FreeTest recomenda algumas práticas a serem tomadas para facilitar a escolha dos casos de teste passíveis de automação.
-
-\subsection{Definir um \textit{framework} para automação de teste - AET2}
-
-A escolha do aparato técnico necessário para se implementar um ambiente automatizado está ligado, principalmente às tecnologias e recursos da organização. O FreeTest recomenda o uso de algumas ferramentas amplamente utilizadas no mercado, no entanto a escolha de qual ferramenta utilizar é de decisão final da empresa. Todavia recomendamos alguns critérios a serem analisados na escolha:
-
-\begin{itemize}
-\item Usabilidade – A grande distinção entre as ferramentas de automação com relação a sua usabilidade está se a mesma disponibiliza uma interface/IDE para criação dos scripts de forma mais alto nível ou se, somente é possível a escrita de scripts diretamente.
-\item Expertise da equipe – A ferramenta a ser escolhida é conhecida por algum membro da equipe? Caso não haja um conhecimento na ferramenta poderá ser investido tempo/dinheiro na aprendizagem da mesma.
-\item Suporte – O suporte da ferramenta é algo importante. Mesmo sendo uma ferramenta open-source é importante se a comunidade mantém uma rede que dá suporte a ferramenta, se existem fóruns especializados de ajuda, ou até mesmo, criação de plugins.
-\item Tecnologia e propósito especifico – Ferramentas podem atender propósitos específicos, como performance, segurança, carga e etc, então é bom alinhar a escolha da ferramenta com a necessidade da organização. Outro fator trivial à análise do framework de automação é com relação a linguagem de programação que a mesma atende, ou seja, Java, Python, C etc.
-\end{itemize}
-
-\subsection{Gerenciar incidentes de teste automatizado - AET3}
-
-Essa atividade é importante, se tratando principalmente de empresas com um baixo nível de maturidade com o processo de automação de testes. No incio a infraestrutura de automação é prematura e muitos erros e ausências de validações podem ocorrer, pensando nisso é importante que haja um controle mais rigoroso sobre os erros evidenciados pela arquitetura de automação.
-No entanto, se tratando de erros encontrados é muito importante que a própria arquitetura de automação faça os relatos dos erros de forma automática, na verdade esse é um resultado comum de várias ferramentas no mercado. Contudo caso a arquitetura seja criada a partir do zero, como é o caso de organizações que optam por usar tecnologias \textit{open-source}, seguem algumas informações importantes para que o relato das inconsistências sejam efetivos.
-
-\subsection{Automatizar a execução dos testes Automatizados - AET4}
-
-A melhor maneira de implantar essa prática é dispor de ferramentas de automatização de tarefas e integração entre as mesmas, neste caso ferramentas de Integração Contínua. O FreeTest recomenda o uso de algumas ferramentas, no entanto, não se limita a elas. Essa prática normalmente é transversal a todas as áreas do ciclo de desenvolvimento de software, não somente ao teste, e deve ser encorajada para as demais áreas, para que se tenha o máximo de aproveitamento desse tipo de prática de trabalho.
-
-\subsection{Versionar Artefatos/scripts/planos/infraestrutura de Teste - GCT1}
-
-A Gerência de Configuração só é factível com o uso de ferramentas de versionamento. O FreeTest indica o uso de algumas ferramentas, no entanto, quais artefatos versionar é relativo as necessidades da organização. Como já mencionado indicamos o versionamento dos artefatos básicos de projeto de teste, scripts de automação e quando a organização utiliza a infraestrutura como serviço é interessante que haja o versionamento dos ambientes base.
-
-\subsection{Criar baseline dos artefatos/scripts/planos já testados - GCT2}
-
-Uma boa prática para criação das baselines é alinhar as nomenclaturas e padrões utilizados na etapa de desenvolvimento. Então neste caso, caso seja gerado no desenvolvimento a versão 1.1 do software onde contemplará todo o código fonte e artefatos relacionados ao desenvolvimento, na etapa de teste todos os artefatos e scripts de teste também deverão ser versionados e definidos uma baseline ao final de cada etapa.
-
-Com o uso de ferramentas apropriadas para a criação e versionamento dos ambientes de teste pode-se definir uma rotina de versionamento, ou seja, de tempos em tempos os ambientes serão versionados. Os ambientes podem ser versionados antes do início dos testes, para garantir uma cópia padrão com aquela versão do software e após o encerramento dos testes, contendo uma versão final do software.
-
-\subsection{Definir Objetivos de Medição de Teste - MED1}
-
-A melhor maneira de definir quais objetivos de teste usar é buscar as necessidades de informação da organização. Em organizações menores geralmente é muito importante conhecimento sobre efetividade dos testes e quantidade de bugs encontrados nos clientes, o FreeTest indica algumas métricas que podem ser utilizadas para medição:
-
-\begin{itemize}
-\item Quantidade de Bugs Encontrados;
-\item Medir cobertura de testes;
-\item Quantificar erros encontrados no cliente;
-\item Efetividade dos testes;
-\item Tempo planejado versus tempo executado de atividades;
-\item Feedback de cliente (pós implantação).
-\end{itemize}
-
-\subsection{Coletar, analisar e comunicar dados de medição - MED2}
-
-Uma coleta efetiva de métricas está atrelada às informações que essa organização gera e os objetivos de medição que ela define. Neste caso é importante sempre coletar e analisar métricas que são possíveis de se extrair resultados efetivos para a organização. A escolha da melhor técnica para análise dos dados coletados para medição vai de encontro aos objetivos que a organização definiu. No entanto, o FreeTest recomenda alguns métodos já conhecidos na literatura.
-
-\subsection{Armazenar dados de medição - MED3}
-
-O armazenamento das medições deve ser realizado sempre ao final da sua coleta com a finalidade de garantir base histórica e informações de desempenho do projeto de teste. Uma rotina importante a ser feita sempre que necessário consolidar e armazenar as medições são as seguintes:
-
-\begin{itemize}
-\item Revisão dos dados coletados;
-\item Utilizar o padrão organizacional de armazenamento das informações;
-\item Disponibilizar o acesso as informações somente a equipe apropriada;
-\end{itemize}
-
-\subsection{Gerar build Automatizado - INC1}
-
-Considerando que o ambiente de integração contínua já está em ativo funcionamento é interessante que se determine uma nomenclatura para a geração das builds e que a mesma seja feita de forma automática. É interessante que plugins de comunicação sejam instalados para o envio de e-mail na equipe, desta forma, toda vez que um build for gerado os interessados serão comunicados.
-
-O procedimento básico para criação de builds e aconselhado pelo Freetest baseia-se nos seguintes passos:
-
-\begin{itemize}
-    \item O desenvolvedor implementa o código (seja uma correção, melhoria ou novo código);
-    \item Realiza os testes caixa branca e revisões de código necessárias;
-    \item Envia o código para sua branch no repositório principal;
-    \item Notifica os interessados, neste caso os testadores também;
-    \item Por sua vez o testador gera o build através da integração contínua;
-    \item Finalmente os testes são realizados e os erros relatados.
-\end{itemize}
-
-Perceba que além da automatização de uma tarefa recorrente, que é a geração do build, a equipe ganha com feedback automático e obviamente com tempo. Algumas recomendações importantes podem ser seguidas para a geração de builds em ambientes de Integração Continua:
-
-\begin{itemize}
-	\item Focar no desenvolvimento de pequenas alterações do que em grandes alterações no código. Quando for necessário alterar uma grande parte do código, desmembrá-la o máximo possível;
-	\item Criar uma massa de testes abrangente. Construa essa massa de teste, pouco a pouco, não é necessário escrever testes para todo o código em um único dia.
-	\item Automação máxima do pipeline (testes estáticos, cobertura, unitários);
-	\item Usar técnicas para geração de \textit{releases} mais enxutas, como \textit{Toggles} e \textit{Canary} \textit{releases}. É uma boa medida para entregar novas funcionalidades do software de maneira mais segura e gradual.
-\end{itemize}
-
-\subsection{Executar análise estática automatizada - INC2}
-
-A análise estática de código automatizada visa evidenciar problemas triviais (ou não) inseridos no código fonte. A Automatização desta atividade é amplamente recomendada, principalmente dentro de um ambiente de Integração Contínua, por ser uma atividade corriqueira e facilmente automatizada. 
-
-A implantação desta prática envolve muito o aparato técnico e de infraestrutura da organização. Desta forma é muito importante que integrantes mais seniores e técnicos façam parte da implantação desta prática, pois devera realizar a escolha de ferramentas de acordo com o código fonte do software desenvolvido, por exemplo. O estudo "Estudo, Definição e Implementação de um Sistema de Recomendação para Priorizar os Avisos Gerados por Ferramentas de Análise Estática" \cite{estudoDefinicaoAnalisEstatica} fornece uma base de conhecimento sobre algumas ferramentas, e pode auxiliar na implantação desta prática.
-
-\subsection{Executar conjunto de testes automatizados abrangentes - INC3}
-
-A execução dos testes abrangentes em um ambiente de Integração Continua é importante, pois cria um "filtro" a mais para evidenciar bugs ou possíveis bugs. Como se trata de um ambiente automatizado de uma atividade repetitiva e que ocorre bem próximo ao desenvolvimento, entende-se que é uma prática eficaz na a melhoria continua do código-fonte.
-
-Essa prática auxilia o testador a identificar possíveis "lacunas" a serem melhoradas na cobertura do código fonte. Por se tratar de uma execução automatizada dos testes abrangentes o testador com base no resultado da execução, poderá auxiliar o desenvolvedor antes mesmo da geração do build a melhorar a cobertura do código fonte e sanar possíveis problemas. No ponto de vista da equipe de testes essa atividade pode auxiliar no aprendizado mútuo, da resolução do problema, redução de ruídos na comunicação, no entendimento do negócio por parte do testador e, por fim, engajamento da equipe.
-
-Abaixo uma lista de algumas características que poderão ser criados testes automatizados, e que neste caso, é imprescindível o apoio/realização da tarefa por parte do testador.
-
-\begin{itemize}
-    \item Conciso;
-    \item Repetitivo;
-    \item Limpo;
-    \item Eficiente;
-    \item Independente;
-    \item Sustentável.
-\end{itemize}
-
-\subsection{Executar criação de ambientes virtualizados de forma automatizada - INC4}
-
-Em adicional à qualidade dos testes, é também importante ter cuidado com os ambientes onde os mesmos serão gerados. Algumas recomendações gerais são aconselhadas pelo FreeTest:
-
-\begin{itemize}
-	\item "Ambientes Limpos": É de suma importante que os testes sejam executados em ambientes limpos, ou seja, não sofram interferência de outras baterias de testes realizadas anteriormente. Se tratando de ambientes de IC que integram com práticas DevOps é possível usar mecanismos de provisionamento para gerar ambientes limpos toda vez antes da execução dos testes. Organizações que usam do conceito de Infraestrutura como Serviço, podem gozar dessa possibilidade sempre criando \textit{snapshots} de seus ambientes.
-	\item Fidelidade: Ambientes de teste devem ser o mais fieis possível do ambiente de produção. Pode-se então clonar ambientes de produção limpos e sempre usá-los para testes.
-	\item Ambientes Baratos e Flexíveis: Infraestrutura como um todo é sempre um custo alto para organizações. Desta forma pensar em ambientes virtualizados e sob-demanda é uma alta alternativa para reduzir custos e melhorar a performance da criação de ambientes de teste, já que é de suma importância que os ambientes de testes possam inicializar/desligar rapidamente e serem flexíveis a mudanças.
-\end{itemize}
-
 \subsection{Preparar massa de teste - TRG1}
+\label{sec:guiatrg1}
 
 Tipicamente dados de teste devem ser gerados antes do inicio da execução dos testes, isto porque é difícil realizar essa tarefa durante o gerenciamento dos dados. Isso por que essa etapa para geração dos dados de teste consome muito tempo, então é importante que seja feita antes da execução dos testes de regressão, pois pode atrapalhar a deadline para execução desta atividade. Para cada modalidade de teste (Testes Caixa Branca, Segurança, etc) existem várias boas práticas que podem ser seguidas, no entanto para Teste de Regressão o FreeTest recomenda algumas:
 
@@ -404,23 +289,159 @@ Tipicamente dados de teste devem ser gerados antes do inicio da execução dos t
 A escolha da melhor técnica para criação da massa de dados depende do cenário de teste. Para cada tipo de modalidade de software e área de atuação as técnicas acima podem ser utilizadas ou combinadas com outras.
 
 \subsection{Manter \textit{scripts} de regressão - TRG2}
+\label{sec:guiatrg2}
 
 As manutenções nos scripts de teste devem ser atividades corriqueiras na organização. Uma vez que o acúmulo dessa atividade pode dificultar a manutenção e/ou comprometer partes íntegras dos mesmos. Recomenda-se que sempre antes de realizar um teste de regressão verificar os \textit{scripts} e massas utilizadas, para que não ocorra quebra no fluxo normal da execução automatizada.
 
 \subsection{Executar teste de regressão - TRG3}
+\label{sec:guiatrg3}
 
 O FreeTest defende a visão de que casos de teste criados durante a produção devem ser automatizadas e armazenadas em um repositório para posterior execução, criando assim, uma lista de casos de testes para regressão. Esta lista para regressão tem o propósito de assegurar que os incidentes encontrados não se repetirão, garantindo a confiabilidade do produto pelo cliente.
 
-Considerando que a geração de builds em times ágeis ocorre com maior frequência é crucial que o time de teste execute suítes de regressão em períodos mais curtos de tempo. Automatizar a execução das suítes de regressão é uma decisão muito interessante, pois como essa modalidade de teste é recorrente e pode ser executada através de um ambiente de Integração Contínua o retorno de investimento é de curto, médio prazo.
+Considerando que a geração de \textit{builds} em times ágeis ocorre com maior frequência é crucial que o time de teste execute suítes de regressão em períodos mais curtos de tempo. Automatizar a execução das suítes de regressão é uma decisão muito interessante, pois como essa modalidade de teste é recorrente e pode ser executada através de um ambiente de Integração Contínua o retorno de investimento é de curto, médio prazo.
 
 	
 \subsection{Encerrar teste de regressão - TRG4}
+\label{sec:guiatrg4}
 
 O FreeTest orienta que ao finalizar os testes de regressão deve-se apresentar um relatório da execução dos testes. Esse relatório é uma forma de avaliar a qualidade e criar confiabilidade no produto que está sendo produzido. Mesmo que haja defeitos ainda a serem consertados, o responsável pelo produto tem a exata noção de como anda a qualidade, podendo tomar as devidas ações em casos de desvios da qualidade ou, em casos extremos, abortar a produção do sistema.
 
 Normalmente as ferramentas de automação utilizadas nos testes de regressão disponibilizam relatórios para as análises dos resultados, no entanto é responsabilidade da organização definir quais as métricas e indicadores serão mais adequados às suas necessidades.
 
+
+\subsection{Definir critérios para seleção de casos de teste para automação - AET1}
+\label{sec:guiaaet1}
+
+Como já mencionado anteriormente quanto maior a automatização dos casos de teste, melhor. No entanto, quando não é possível automatizar todos os cenários é essencial que se tenha um critério de seleção para quais casos de teste automatizar. O critério de escolha está muito ligado às regras de negócio do produto, cliente e particularidades do projeto, tecnologias e etc. Todavia o FreeTest recomenda algumas práticas a serem tomadas para facilitar a escolha dos casos de teste passíveis de automação.
+
+\subsection{Definir um \textit{framework} para automação de teste - AET2}
+\label{sec:guiaaet2}
+
+A escolha do aparato técnico necessário para se implementar um ambiente automatizado está ligado, principalmente às tecnologias e recursos da organização. O FreeTest recomenda o uso de algumas ferramentas amplamente utilizadas no mercado, no entanto a escolha de qual ferramenta utilizar é de decisão final da empresa. Todavia recomendamos alguns critérios a serem analisados na escolha:
+
+\begin{itemize}
+    \item Usabilidade – A grande distinção entre as ferramentas de automação com relação a sua usabilidade está se a mesma disponibiliza uma interface/IDE para criação dos scripts de forma mais alto nível ou se, somente é possível a escrita de scripts diretamente.
+    \item \textit{Expertise} da equipe – A ferramenta a ser escolhida é conhecida por algum membro da equipe? Caso não haja um conhecimento na ferramenta poderá ser investido tempo/dinheiro na aprendizagem da mesma.
+    \item Suporte – O suporte da ferramenta é algo importante. Mesmo sendo uma ferramenta \textit{open-source} é importante se a comunidade mantém uma rede que dá suporte a ferramenta, se existem fóruns especializados de ajuda, ou até mesmo, criação de \textit{plugins}.
+    \item Tecnologia e propósito especifico – Ferramentas podem atender propósitos específicos, como performance, segurança, carga e etc, então é bom alinhar a escolha da ferramenta com a necessidade da organização. Outro fator trivial à análise do \textit{framework} de automação é com relação a linguagem de programação que a mesma atende, ou seja, Java, Python, C etc.
+\end{itemize}
+
+\subsection{Gerenciar incidentes de teste automatizado - AET3}
+\label{sec:guiaaet3}
+
+Essa atividade é importante, se tratando principalmente de empresas com um baixo nível de maturidade com o processo de automação de testes. No incio a infraestrutura de automação é prematura e muitos erros e ausências de validações podem ocorrer, pensando nisso é importante que haja um controle mais rigoroso sobre os erros evidenciados pela arquitetura de automação.
+No entanto, se tratando de erros encontrados é muito importante que a própria arquitetura de automação faça os relatos dos erros de forma automática, na verdade esse é um resultado comum de várias ferramentas no mercado. Contudo caso a arquitetura seja criada a partir do zero, como é o caso de organizações que optam por usar tecnologias \textit{open-source}, seguem algumas informações importantes para que o relato das inconsistências sejam efetivos.
+
+% \subsection{Automatizar a execução dos testes automatizados - AET4}
+% \label{sec:guiaaet1}
+
+% A melhor maneira de implantar essa prática é dispor de ferramentas de automatização de tarefas e integração entre as mesmas, neste caso ferramentas de Integração Contínua. O FreeTest recomenda o uso de algumas ferramentas, no entanto, não se limita a elas. Essa prática normalmente é transversal a todas as áreas do ciclo de desenvolvimento de software, não somente ao teste, e deve ser encorajada para as demais áreas, para que se tenha o máximo de aproveitamento desse tipo de prática de trabalho.
+
+\subsection{Versionar artefatos/scripts/planos/infraestrutura de teste - GCT1}
+\label{sec:guiagct1}
+
+A Gerência de Configuração só é factível com o uso de ferramentas de versionamento. O FreeTest indica o uso de algumas ferramentas, no entanto, quais artefatos versionar é relativo as necessidades da organização. Como já mencionado indicamos o versionamento dos artefatos básicos de projeto de teste, scripts de automação e quando a organização utiliza a infraestrutura como serviço é interessante que haja o versionamento dos ambientes base.
+
+\subsection{Criar \textit{baseline} dos artefatos/scripts/planos já testados - GCT2}
+\label{sec:guiagct2}
+
+Uma boa prática para criação das \textit{baselines} é alinhar as nomenclaturas e padrões utilizados na etapa de desenvolvimento. Então neste caso, caso seja gerado no desenvolvimento a versão 1.1 do software onde contemplará todo o código fonte e artefatos relacionados ao desenvolvimento, na etapa de teste todos os artefatos e scripts de teste também deverão ser versionados e definidos uma \textit{baseline} ao final de cada etapa.
+
+Com o uso de ferramentas apropriadas para a criação e versionamento dos ambientes de teste pode-se definir uma rotina de versionamento, ou seja, de tempos em tempos os ambientes serão versionados. Os ambientes podem ser versionados antes do início dos testes, para garantir uma cópia padrão com aquela versão do software e após o encerramento dos testes, contendo uma versão final do software.
+
+\subsection{Definir objetivos de medição de teste - MED1}
+\label{sec:guiamed1}
+
+A melhor maneira de definir quais objetivos de teste usar é buscar as necessidades de informação da organização. Em organizações menores geralmente é muito importante conhecimento sobre efetividade dos testes e quantidade de \textit{bugs} encontrados nos clientes, o FreeTest indica algumas métricas que podem ser utilizadas para medição:
+
+\begin{itemize}
+    \item Quantidade de \textit{bugs} encontrados;
+    \item Medir cobertura de testes;
+    \item Quantificar erros encontrados no cliente;
+    \item Efetividade dos testes;
+    \item Tempo planejado versus tempo executado de atividades;
+    \item \textit{Feedback} de cliente (pós implantação).
+\end{itemize}
+
+\subsection{Coletar, analisar e comunicar dados de medição - MED2}
+\label{sec:guiamed2}
+
+Uma coleta efetiva de métricas está atrelada às informações que essa organização gera e os objetivos de medição que ela define. Neste caso é importante sempre coletar e analisar métricas que são possíveis de se extrair resultados efetivos para a organização. A escolha da melhor técnica para análise dos dados coletados para medição vai de encontro aos objetivos que a organização definiu. No entanto, o FreeTest recomenda alguns métodos já conhecidos na literatura.
+
+\subsection{Armazenar dados de medição - MED3}
+\label{sec:guiamed3}
+
+O armazenamento das medições deve ser realizado sempre ao final da sua coleta com a finalidade de garantir base histórica e informações de desempenho do projeto de teste. Uma rotina importante a ser feita sempre que necessário consolidar e armazenar as medições são as seguintes:
+
+\begin{itemize}
+    \item Revisão dos dados coletados;
+    \item Utilizar o padrão organizacional de armazenamento das informações;
+    \item Disponibilizar o acesso as informações somente a equipe apropriada;
+\end{itemize}
+
+\subsection{Gerar \textit{build} automatizado - INC1}
+\label{sec:guiainc1}
+
+Considerando que o ambiente de integração contínua já está em ativo funcionamento é interessante que se determine uma nomenclatura para a geração das \textit{builds} e que a mesma seja feita de forma automática. É interessante que \textit{plugins} de comunicação sejam instalados para o envio de e-mail na equipe, desta forma, toda vez que um \textit{build} for gerado os interessados serão comunicados.
+
+O procedimento básico para criação de \textit{builds} e aconselhado pelo Freetest baseia-se nos seguintes passos:
+
+\begin{itemize}
+    \item O desenvolvedor implementa o código (seja uma correção, melhoria ou novo código);
+    \item Realiza os testes caixa branca e revisões de código necessárias;
+    \item Envia o código para sua \textit{branch} no repositório principal;
+    \item Notifica os interessados, neste caso os testadores também;
+    \item Por sua vez o testador gera o \textit{build} através da integração contínua;
+    \item Finalmente os testes são realizados e os erros relatados.
+\end{itemize}
+
+Perceba que além da automatização de uma tarefa recorrente, que é a geração do \textit{build}, a equipe ganha com feedback automático e obviamente com tempo. Algumas recomendações importantes podem ser seguidas para a geração de \textit{builds} em ambientes de Integração Continua:
+
+\begin{itemize}
+	\item Focar no desenvolvimento de pequenas alterações do que em grandes alterações no código. Quando for necessário alterar uma grande parte do código, desmembrá-la o máximo possível;
+	\item Criar uma massa de testes abrangente. Construa essa massa de teste, pouco a pouco, não é necessário escrever testes para todo o código em um único dia.
+	\item Automação máxima do pipeline (testes estáticos, cobertura, unitários);
+	\item Usar técnicas para geração de \textit{releases} mais enxutas, como \textit{Toggles} e \textit{Canary} \textit{releases}. É uma boa medida para entregar novas funcionalidades do software de maneira mais segura e gradual.
+\end{itemize}
+
+\subsection{Executar análise estática automatizada - INC2}
+\label{sec:guiainc2}
+
+A análise estática de código automatizada visa evidenciar problemas triviais (ou não) inseridos no código fonte. A Automatização desta atividade é amplamente recomendada, principalmente dentro de um ambiente de Integração Contínua, por ser uma atividade corriqueira e facilmente automatizada. 
+
+A implantação desta prática envolve muito o aparato técnico e de infraestrutura da organização. Desta forma é muito importante que integrantes mais seniores e técnicos façam parte da implantação desta prática, pois devera realizar a escolha de ferramentas de acordo com o código fonte do software desenvolvido, por exemplo. O estudo “Estudo, Definição e Implementação de um Sistema de Recomendação para Priorizar os Avisos Gerados por Ferramentas de Análise Estática” \cite{estudoDefinicaoAnalisEstatica} fornece uma base de conhecimento sobre algumas ferramentas, e pode auxiliar na implantação desta prática.
+
+\subsection{Executar conjunto de testes automatizados abrangentes - INC3}
+\label{sec:guiainc3}
+
+A execução dos testes abrangentes em um ambiente de Integração Continua é importante, pois cria um “filtro” a mais para evidenciar \textit{bugs} ou possíveis \textit{bugs}. Como se trata de um ambiente automatizado de uma atividade repetitiva e que ocorre bem próximo ao desenvolvimento, entende-se que é uma prática eficaz na a melhoria continua do código-fonte.
+
+Essa prática auxilia o testador a identificar possíveis “lacunas” a serem melhoradas na cobertura do código fonte. Por se tratar de uma execução automatizada dos testes abrangentes o testador com base no resultado da execução, poderá auxiliar o desenvolvedor antes mesmo da geração do \textit{build} a melhorar a cobertura do código fonte e sanar possíveis problemas. No ponto de vista da equipe de testes essa atividade pode auxiliar no aprendizado mútuo, da resolução do problema, redução de ruídos na comunicação, no entendimento do negócio por parte do testador e, por fim, engajamento da equipe.
+
+Abaixo uma lista de algumas características que poderão ser criados testes automatizados, e que neste caso, é imprescindível o apoio/realização da tarefa por parte do testador.
+
+\begin{itemize}
+    \item Conciso;
+    \item Repetitivo;
+    \item Limpo;
+    \item Eficiente;
+    \item Independente;
+    \item Sustentável.
+\end{itemize}
+
+\subsection{Executar criação de ambientes virtualizados de forma automatizada - INC4}
+\label{sec:guiainc4}
+
+Em adicional à qualidade dos testes, é também importante ter cuidado com os ambientes onde os mesmos serão gerados. Algumas recomendações gerais são aconselhadas pelo FreeTest:
+
+\begin{itemize}
+	\item “Ambientes Limpos”: É de suma importante que os testes sejam executados em ambientes limpos, ou seja, não sofram interferência de outras baterias de testes realizadas anteriormente. Se tratando de ambientes de IC que integram com práticas DevOps é possível usar mecanismos de provisionamento para gerar ambientes limpos toda vez antes da execução dos testes. Organizações que usam do conceito de Infraestrutura como Serviço, podem gozar dessa possibilidade sempre criando \textit{snapshots} de seus ambientes.
+	\item Fidelidade: Ambientes de teste devem ser o mais fieis possível do ambiente de produção. Pode-se então clonar ambientes de produção limpos e sempre usá-los para testes.
+	\item Ambientes Baratos e Flexíveis: Infraestrutura como um todo é sempre um custo alto para organizações. Desta forma pensar em ambientes virtualizados e sob-demanda é uma alta alternativa para reduzir custos e melhorar a performance da criação de ambientes de teste, já que é de suma importância que os ambientes de testes possam inicializar/desligar rapidamente e serem flexíveis a mudanças.
+\end{itemize}
+
 \subsection{Preparar ambiente de teste - TPE1}
+\label{sec:guiatpe1}
 
 O ambiente de teste de desempenho deve ser o mais próximo possível do ambiente de produção. Essa tarefa não é fácil e demanda muito conhecimento técnico, as vezes tornando-se uma tarefa que pode demorar dias e até semanas, por isso se faz importante o planejamento desta atividade de forma bem minuciosa.
 
@@ -435,6 +456,7 @@ Essa prática está ligada ao contexto de uso da aplicação, características t
 
 
 \subsection{Manter \textit{script} de desempenho - TPE2}
+\label{sec:guiatpe2}
 
 Os scripts de desempenho devem ser versionados em repositório de teste padrão e mantida uma nomenclatura adequada. Sempre que possível fazer uma rastreabilidade das funcionalidades que deverão sofrer o teste de desempenho com os \textit{scripts} que já foram gravados pra mesma.
 
@@ -442,6 +464,7 @@ Em arquiteturas monolíticas, pode-se criar uma subdivisão e nomenclatura por f
 
 
 \subsection{Executar teste de desempenho - TPE3}
+\label{sec:guiatpe3}
 
 Antes de iniciar qualquer modalidade de teste de desempenho é necessário definir o escopo da sua aplicação em termos de desempenho. Alguns parâmetros são definidos abaixo para guiar a Organização nesta definição de abrangência dos testes e objetivos de qualidade a serem alcançados: 
 
@@ -479,7 +502,7 @@ Segundo o RUP (\textit{Rational Unified Process}) \cite{RUP940320} o teste de de
 \end{itemize}
 
 \subsection{Encerrar teste de desempenho - TPE4}
-
+\label{sec:guiatpe4}
 
 Estando os testes de desempenho concluídos, seus resultados deverão ser compilados de forma a identificar os defeitos que eventualmente tenham ocorridos, bem como o plano de ação aplicado para resolução destes. Com isso haverá condições de se obter o nível de qualidade sobre o aspecto de desempenho da software.
 
@@ -487,6 +510,7 @@ O FreeTest aconselha que os resultados gerados sejam versionados e utilizados co
 
 
 \subsection{Definição da abordagem de automação que será utilizada - TCA1}
+\label{sec:guiatca1}
 
 A escolha da melhor abordagem para realização dos testes contínuos automatizados é muito inerente às características da Organização. Não só no que diz respeito à linguagem(ens) utilizadas para codificação do software, \textit{know-how} e também limitações financeiras \cite{Castelo2015}.
 
@@ -503,8 +527,9 @@ Há muitos aspectos que devem ser considerados na escolha da melhor abordagem pa
 
 
 \subsection{Automatizar \textit{suites} de teste contínuos - TCA2}
+\label{sec:guiatca2}
 
-Testes Contínuos Automatizados envolvem uma séries de modalidades de teste, como técnicas, funcionais, performance, unidade, aceitação/integração e etc. O FreeTest recomenda que pelo menos a \textit{suite} de testes de aceitação e unidade sejam integrados ao \textit{pipeline} de teste. Outro fator de sucesso para a implantação desta prática é que a Organização precisa estar alinhada com uma mentalidade mais "agilista" e ter em mente que:
+Testes Contínuos Automatizados envolvem uma séries de modalidades de teste, como técnicas, funcionais, performance, unidade, aceitação/integração e etc. O FreeTest recomenda que pelo menos a \textit{suite} de testes de aceitação e unidade sejam integrados ao \textit{pipeline} de teste. Outro fator de sucesso para a implantação desta prática é que a Organização precisa estar alinhada com uma mentalidade mais “agilista” e ter em mente que:
 
 \begin{itemize}
 	\item Os testes devem ser contínuos e devem ter seu espaço dentro do desenvolvimento do software;
@@ -516,9 +541,9 @@ Testes Contínuos Automatizados envolvem uma séries de modalidades de teste, co
 
 \textbf{Automatizando Testes de Aceitação:}
 
-A \textit{suite} de testes de aceitação será executada a cada novo \textit{build} gerado com a intenção de validar se o \textit{build} é "testável" e então ser enviado para a equipe de teste. O teste de aceitação faz uma cobertura mais abrangente do \textit{build}, não tem a intenção ser minucioso/preciso. Estes casos de teste geralmente são o "\textit{core}" do sistema e quando executados e falhos retornam para o desenvolvedor para que sejam corrigidos, antes de enviar para a equipe de teste, evitando assim a entrega de builds instáveis para a equipe.
+A \textit{suite} de testes de aceitação será executada a cada novo \textit{build} gerado com a intenção de validar se o \textit{build} é “testável” e então ser enviado para a equipe de teste. O teste de aceitação faz uma cobertura mais abrangente do \textit{build}, não tem a intenção ser minucioso/preciso. Estes casos de teste geralmente são o “\textit{core}” do sistema e quando executados e falhos retornam para o desenvolvedor para que sejam corrigidos, antes de enviar para a equipe de teste, evitando assim a entrega de builds instáveis para a equipe.
 
-Os \textit{scripts} criados para o teste de aceitação costumam avaliar primeiro a estabilidade da \textit{build} e então validam as integrações entre os códigos e por fim o funcionamento correto das funcionalidades a serem testadas. Essa prática é importante, pois é muito comum que as equipes trabalhem separadamente no mesmo módulo dos sistema. Todos os casos de teste criados devem ter resultados esperados, não é aconselhável mesclar códigos de módulos "instáveis", ou seja, não concluídos totalmente e é altamente recomendado que se tenha uma cobertura de teste o suficiente para abranger as funcionalidades mais críticas.
+Os \textit{scripts} criados para o teste de aceitação costumam avaliar primeiro a estabilidade da \textit{build} e então validam as integrações entre os códigos e por fim o funcionamento correto das funcionalidades a serem testadas. Essa prática é importante, pois é muito comum que as equipes trabalhem separadamente no mesmo módulo dos sistema. Todos os casos de teste criados devem ter resultados esperados, não é aconselhável mesclar códigos de módulos “instáveis”, ou seja, não concluídos totalmente e é altamente recomendado que se tenha uma cobertura de teste o suficiente para abranger as funcionalidades mais críticas.
 
 Como automatizar todos os cenários possíveis para aceitação nem sempre é viável, aconselha-se que fazer um levantamento das funcionalidades mais críticas e principais do ponto de vista do negócio, então gravar os \textit{scripts} de aceitação. Em um ambiente de Testes Contínuos a execução dos \textit{scripts} de aceitação ocorrem normalmente dentro do ambiente de Integração Contínua e são executados logo após a geração do \textit{build}, os passos podem ser vistos a seguir:
 
@@ -532,8 +557,9 @@ Como automatizar todos os cenários possíveis para aceitação nem sempre é vi
 \end{itemize}
 
 \subsection{Medir cobertura de testes - TCA3}
+\label{sec:guiatca3}
 
-Uma Organização que aplica abordagens de testes contínuos sempre deve automatizar o máximo possível. Várias técnicas de testes por sua vez podem ser automatizadas, entre elas testes funcionais e unitários, contudo é importante que a automatização de novas funcionalidades seja constante, logo deve-se sempre que possível realizar medições para saber se o software possui uma "boa cobertura". O FreeTest recomenda algumas maneiras de se medir a cobertura do teste:
+Uma Organização que aplica abordagens de testes contínuos sempre deve automatizar o máximo possível. Várias técnicas de testes por sua vez podem ser automatizadas, entre elas testes funcionais e unitários, contudo é importante que a automatização de novas funcionalidades seja constante, logo deve-se sempre que possível realizar medições para saber se o software possui uma “boa cobertura”. O FreeTest recomenda algumas maneiras de se medir a cobertura do teste:
 
 \begin{itemize}
     \item Cobertura dos testes por funcionalidade: Validar se para cada funcionalidade especificada no documento de requisitos há casos de teste cobrindo os cenários possíveis;
@@ -543,6 +569,7 @@ Uma Organização que aplica abordagens de testes contínuos sempre deve automat
 \end{itemize}
 
 \subsection{Manter ambientes de teste versionados - TCA4}
+\label{sec:guiatca4}
 
 A realização desta prática está basicamente relacionada a escolha da ferramenta correta para manutenção e versionamento das máquinas virtuais utilizadas para realização dos testes. A sugestão para uso desses recursos depende das demandas e o contexto dos testes, sendo que o mais comum é Ambientes de Teste Permanentes e Temporários.
 
@@ -552,6 +579,7 @@ A realização desta prática está basicamente relacionada a escolha da ferrame
 \end{itemize}
 
 \subsection{Definir a estrutura organizacional do teste - OT1}
+\label{sec:guiaot1}
 
 A estrutura organizacional é o sistema de tarefas e relacionamentos de autoridade que controla como a equipe de teste irá exercer suas atividades para atingir os objetivos do projeto. Essa estrutura define a hierarquia de como os papéis de teste devem interagir e se reportar, a definição de uma estrutura organizacional além de tornar claro para cada membro da equipe, o que fazer e para quem reportar e gera condições motivadores para a equipe.
 
@@ -569,6 +597,7 @@ O FreeTest não orienta alguma técnica especifica para escolha de papéis dentr
 Uma sugestão de leitura é o \textit{SWECOM - Software Engineering Competency Model} \cite{swecom2017} que aborda um modelo de competências focado em todas as áreas da Engenharia de Software.
 
 \subsection{Estabelecer um grupo de processo de teste de software - OT2}
+\label{sec:guiaot2}
 
 Assim como no MPT.Br \cite{GuiaMPTbr} o FreeTest aconselha fortemente a criação de um Grupo de Processo de Teste, a intenção deste grupo é manter a evolução constante dos processos da Organização alinhado às novas tendências do mercado. O grupo de processo não será responsável somente a abordar melhorias no processo no ponto de vista técnico e ferramental, o grupo deverá sempre tentar alinhar às melhorias aos processos existentes, como desenvolvimento, requisitos, suporte e etc.
 
@@ -586,18 +615,17 @@ A criação do grupo deve ser feita elegendo papeis multidisciplinares, a ideia 
 \end{itemize}
 
 \subsection{Definir melhoria contínua do processo de teste - OT3}
+\label{sec:guiaot3}
 
 A manutenção/evolução contínua do processo de teste é importante para a Organização, quando o time focam esforços em objetivos comuns as mudanças ocorrerão não somente na empresa, mas também dentro do próprio time.
 
-O FreeTest recomenda que a melhoria contínua do processo de teste deverá olhar para frente, em busca de desempenhos significativos e mais altos alinhados com os demais processos da Organização. A melhoria contínua deverá ser uma abordagem sistemática, coordenada e baseada em prioridades, neste sentido os indicadores e métricas de teste recolhidos durante os projetos podem ser utilizados como base para um "norte" nos resultados que a organização deseja alcançar no futuro.
+O FreeTest recomenda que a melhoria contínua do processo de teste deverá olhar para frente, em busca de desempenhos significativos e mais altos alinhados com os demais processos da Organização. A melhoria contínua deverá ser uma abordagem sistemática, coordenada e baseada em prioridades, neste sentido os indicadores e métricas de teste recolhidos durante os projetos podem ser utilizados como base para um “norte” nos resultados que a organização deseja alcançar no futuro.
 
-Pode-se realizar reuniões de acompanhamento após o termino de cada projeto com o intuito de alinhar os resultados do projeto com a estratégia da Organização e então definir reuniões de melhorias para o processo caso seja necessário. Para isso é importante que cada integrante da equipe de teste mantenha um "diário de bordo" com informações importantes que aconteceram durante a execução do projeto e utilize essas informações para promoverem as mudanças necessárias.
+Pode-se realizar reuniões de acompanhamento após o termino de cada projeto com o intuito de alinhar os resultados do projeto com a estratégia da Organização e então definir reuniões de melhorias para o processo caso seja necessário. Para isso é importante que cada integrante da equipe de teste mantenha um “diário de bordo” com informações importantes que aconteceram durante a execução do projeto e utilize essas informações para promoverem as mudanças necessárias.
 
 \section{Considerações Finais}
 \label{sec:consideracoesfinaisguiaimplantacao}
 
-Este capítulo abordou a criação de uma das principais contribuições deste trabalho, a criação do Guia de Implantação do processo FreeTest 2.0. 
+Este capítulo abordou a criação do Guia de Implantação do processo FreeTest 2.0. Espera-se que esse guia de implantação seja um instrumento de apoio às MPEs na implantação das práticas especificas propostas no processo, como propõe, trata-se somente de um guia, e não procedimentos para alcançar nível de excelência nas práticas aqui citadas. Desta forma, vale ressaltar que para melhor aderência às práticas especificas citadas no FreeTest 2.0 a Organização deve recorrer à outras fontes de estudo.
 
-Com base no conhecimento empírico dos autores e de revisões da literatura do estado da prática de processos de teste em Organizações, principalmente MPEs observou-se que um dos grandes fatores de desistência na implantação de processos de teste é o custo de implantação e o \textit{know-how} técnico necessário para a implantação deste tipo de processo. A partir dessa premissa este trabalho, por meio deste capítulo e do capítulo \ref{sec:referencialteorico} propôs à criação de ferramentas que apoiassem as Organizações, não somente com um processo de teste, mas também com a sua implantação, manutenção e evolução do mesmo. 
-
-Este Guia de Implantação que funciona como um \textit{wizard} de implantação do processo FreeTest, também possibilita a customização do processo proposto, desta maneira permite as organizações adequarem o processo à sua realidade, o que é um grande ganho, já que cada organização possui seu ecossistema de processos peculiares ao seu nicho de atuação. No capítulo \ref{sec:ferramentas} será mostrado a ferramenta \textbf{FreeTest Wizard}, que faz a gestão de todos os passos do Guia de Implantação.
+Este Guia de Implantação é entregue juntamente com uma ferramenta \textbf{FreeTest Wizard}, que faz a gestão de todos as etapas de implantação do processo e permite a manutenção de cada prática especifica a ser implantada e será apresentada no capítulo \ref{sec:ferramentas}.

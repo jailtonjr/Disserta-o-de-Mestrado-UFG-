@@ -31,3 +31,8 @@ work.
 # Work
 
 [FreeTest 2.0: A FreeTest Method Evolution to Improvement of the Software Testing Process in midsized brazilian companies](http://repositorio.bc.ufg.br/tede/handle/tede/7741)
+
+# Social media
+
+[Facebook](https://www.facebook.com/freetestGO/)
+[Twitter](https://twitter.com/freetestgo)

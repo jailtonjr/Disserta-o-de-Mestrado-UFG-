@@ -3,7 +3,7 @@
 > This is my Master Degree Thesis. We developed it focused to support midsized/startup companies to achieve
 > more software quality, creating a framework using open source tools, techniques, and agile process. 
 > This work was performed in more than ten local companies and supported by the [Federal University of Goias](https://ufg.br/) and [Sebrae](http://www.sebrae.com.br/sites/PortalSebrae).
-> A special thanks to my mentor and professor Celso Camilo to help me in all this journey.
+> A special thanks to my mentor and professor [Celso Camilo](https://twitter.com/celsocamilo) to help me in all this journey.
 
 
 # Abstract
